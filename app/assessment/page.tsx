@@ -10,161 +10,115 @@ interface Question {
 }
 
 const questions: Question[] = [
-  {
-    id: 'q1',
-    text: 'Do you wake up with a racing heart or feeling anxious?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q2',
-    text: 'Do you experience an energy crash around 3 PM?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q3',
-    text: 'Do you scroll social media or check news to "relax"?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q4',
-    text: 'Do you have trouble falling asleep despite being exhausted?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q5',
-    text: 'Do you wake up between 2-4 AM and struggle to fall back asleep?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q6',
-    text: 'Do you get "hangry" (hungry + angry) easily?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q7',
-    text: 'Do you have belly fat despite regular exercise?',
-    options: ['No', 'A little', 'Moderate', 'Significant']
-  },
-  {
-    id: 'q8',
-    text: 'Is your face puffy or bloated in the morning?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q9',
-    text: 'Do you crave sugar or caffeine to get through the day?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  },
-  {
-    id: 'q10',
-    text: 'Do you feel "tired but wired"—exhausted yet unable to rest?',
-    options: ['Never', 'Sometimes', 'Often', 'Always']
-  }
+  { id: 'q1', text: 'Cold hands and feet; prefer warmth and hot drinks', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q2', text: 'Hot flashes, night sweats, or heat at night', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q3', text: 'Dry mouth/throat, dry eyes or skin (especially at night)', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q4', text: 'Insomnia or waking between 1–3 AM', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q5', text: 'Low energy or fatigue, worse in mornings or after meals', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q6', text: 'Irritability, tension in neck/shoulders, or stress headaches', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q7', text: 'Bloating, heaviness, or loose stools', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q8', text: 'Thirst for small sips; prefer room‑temperature water', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q9', text: 'Palpitations, restlessness, or anxious heat', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q10', text: 'Sensitive to cold weather and AC', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q11', text: 'Red face/eyes, feel hotter with stress', options: ['Never', 'Sometimes', 'Often', 'Always'] },
+  { id: 'q12', text: 'Feel better with warmth; worse with cold/raw foods', options: ['Never', 'Sometimes', 'Often', 'Always'] },
 ]
 
-const profiles = {
-  spiker: {
-    title: 'The Spiker',
-    icon: '🔥',
-    color: 'coral',
-    description: 'You have high morning cortisol that crashes later. Your nervous system starts the day in overdrive.',
-    symptoms: [
-      'Morning anxiety or racing heart',
-      'Afternoon energy crash',
-      'Difficulty winding down at night'
-    ],
-    recommendations: [
-      'Active morning movement to burn off cortisol',
-      'Gentle stretching in the afternoon',
-      'Evening restorative practices'
-    ],
-    programs: ['The Executive Reset', '5-Minute Morning Flush']
-  },
-  flatliner: {
-    title: 'The Flatliner',
-    icon: '😴',
-    color: 'slate-500',
-    description: 'Your cortisol is chronically low. You are in a state of burnout, with little energy throughout the day.',
-    symptoms: [
-      'Chronic exhaustion all day',
-      'Difficulty getting out of bed',
-      'Low motivation and brain fog'
-    ],
-    recommendations: [
-      'Gentle, restorative yoga',
-      'Breathwork to reawaken your system',
-      'Prioritize rest and recovery'
-    ],
-    programs: ['The 7-Day Cortisol Detox', 'Gentle Restoration Protocol']
-  },
-  nightOwl: {
-    title: 'The Night Owl',
+type ResultKey = 'yinDef' | 'yangDef' | 'heatExcess' | 'balanced'
+
+const profiles: Record<ResultKey, {
+  title: string
+  icon: string
+  description: string
+  guidance: string
+  points: string[]
+  protocols: string[]
+}> = {
+  yinDef: {
+    title: 'Yin‑Deficient Pattern',
     icon: '🌙',
-    color: 'navy-500',
-    description: 'Your cortisol curve is reversed—low in the morning, high at night. This disrupts your sleep-wake cycle.',
-    symptoms: [
-      'Wired at night, cannot fall asleep',
-      'Wake up groggy and unmotivated',
-      'Second wind of energy late evening'
-    ],
-    recommendations: [
-      'Morning light exposure + gentle movement',
-      'Afternoon grounding practices',
-      'Strong evening wind-down routine'
-    ],
-    programs: ['The Sleep Protocol', 'Evening Wind-Down Sequence']
+    description: 'Signs of fluid/"cooling" deficiency: dryness, heat at night, light sleep.',
+    guidance: 'Focus on calming, nourishing pressure with gentle holds. Avoid intense heat and late nights.',
+    points: ['KI3 (Kidney 3)', 'SP6 (Spleen 6)', 'HT7 (Heart 7)'],
+    protocols: ['Insomnia Support', 'Calm Heart Sequence']
+  },
+  yangDef: {
+    title: 'Yang‑Deficient Pattern',
+    icon: '❄️',
+    description: 'Signs of warming/activation deficiency: cold limbs, low energy, sluggish digestion.',
+    guidance: 'Use warming, steady pressure and keep core warm. Prefer cooked, warm foods.',
+    points: ['ST36 (Stomach 36)', 'CV6 (Conception 6)', 'KI3 (Kidney 3)'],
+    protocols: ['Morning Warm‑Up', 'Digestive Boost']
+  },
+  heatExcess: {
+    title: 'Heat / Yang Rising Pattern',
+    icon: '🔥',
+    description: 'Signs of excess heat or tension: irritability, red face/eyes, tension headaches.',
+    guidance: 'Apply cooling, dispersing pressure. Breathe slowly and lengthen exhale.',
+    points: ['LI11 (Large Intestine 11)', 'LI4 (Large Intestine 4)', 'LV3 (Liver 3)', 'GB20 (Gallbladder 20)'],
+    protocols: ['Headache Relief', 'Stress Cool‑Down']
+  },
+  balanced: {
+    title: 'Balanced (Minor Variations)',
+    icon: '🟢',
+    description: 'No dominant pattern detected. Mild fluctuations are normal.',
+    guidance: 'Maintain daily self‑care. Use general points for resilience.',
+    points: ['LI4', 'PC6', 'ST36'],
+    protocols: ['Daily Maintenance', 'Evening Wind‑Down']
   }
 }
 
 export default function AssessmentPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
-  const [result, setResult] = useState<'spiker' | 'flatliner' | 'nightOwl' | null>(null)
+  const [result, setResult] = useState<ResultKey | null>(null)
 
   const handleAnswer = (value: number) => {
     const newAnswers = { ...answers, [questions[currentQuestion].id]: value }
     setAnswers(newAnswers)
-
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-    } else {
-      calculateResult(newAnswers)
-    }
+    if (currentQuestion < questions.length - 1) setCurrentQuestion(currentQuestion + 1)
+    else calculateResult(newAnswers)
   }
 
   const calculateResult = (finalAnswers: Record<string, number>) => {
-    // Simple scoring logic
-    const morningAnxiety = finalAnswers['q1'] || 0
-    const afternoonCrash = finalAnswers['q2'] || 0
-    const sleepTrouble = finalAnswers['q4'] || 0
-    const nightWake = finalAnswers['q5'] || 0
-    const tiredButWired = finalAnswers['q10'] || 0
+    let yin = 0, yang = 0, heat = 0
 
-    const spikerScore = morningAnxiety + afternoonCrash
-    const nightOwlScore = sleepTrouble + nightWake + tiredButWired
-    const totalScore = Object.values(finalAnswers).reduce((a, b) => a + b, 0)
-
-    // Determine profile
-    if (nightOwlScore > 8 && sleepTrouble > 2) {
-      setResult('nightOwl')
-    } else if (spikerScore > 5 && morningAnxiety > 2) {
-      setResult('spiker')
-    } else {
-      setResult('flatliner')
+    const add = (k: 'yin'|'yang'|'heat', v: number, w = 1) => {
+      const inc = v * w
+      if (k === 'yin') yin += inc
+      if (k === 'yang') yang += inc
+      if (k === 'heat') heat += inc
     }
+
+    const v = (id: string) => finalAnswers[id] || 0
+    // Map questions to patterns
+    add('yang', v('q1'), 2)
+    add('heat', v('q2'), 1); add('yin', v('q2'), 2)
+    add('yin', v('q3'), 2)
+    add('yin', v('q4'), 1); add('heat', v('q4'), 1)
+    add('yang', v('q5'), 1)
+    add('heat', v('q6'), 2)
+    add('yang', v('q7'), 1)
+    add('yin', v('q8'), 1)
+    add('heat', v('q9'), 1); add('yin', v('q9'), 1)
+    add('yang', v('q10'), 1)
+    add('heat', v('q11'), 1)
+    add('yang', v('q12'), 1)
+
+    const scores = [
+      { key: 'yinDef' as const, val: yin },
+      { key: 'yangDef' as const, val: yang },
+      { key: 'heatExcess' as const, val: heat },
+    ].sort((a,b) => b.val - a.val)
+
+    const top = scores[0]
+    const threshold = 4
+    if (!top || top.val < threshold) setResult('balanced')
+    else setResult(top.key)
   }
 
-  const goBack = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1)
-    }
-  }
-
-  const restart = () => {
-    setCurrentQuestion(0)
-    setAnswers({})
-    setResult(null)
-  }
+  const goBack = () => { if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1) }
+  const restart = () => { setCurrentQuestion(0); setAnswers({}); setResult(null) }
 
   if (result) {
     const profile = profiles[result]
@@ -173,8 +127,8 @@ export default function AssessmentPage() {
         {/* Header */}
         <header className="bg-slate-medical border-b border-slate-200">
           <div className="container mx-auto px-4 py-6">
-            <Link href="/" className="text-2xl font-heading font-bold text-navy-500">
-              VrikshaYoga
+            <Link href="/" className="text-2xl font-heading font-bold text-deep-teal">
+              Accucentral
             </Link>
           </div>
         </header>
@@ -184,60 +138,42 @@ export default function AssessmentPage() {
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <div className="text-8xl mb-4">{profile.icon}</div>
-              <h1 className="text-5xl font-heading font-bold text-navy-500 mb-4">
-                Your Profile: {profile.title}
+              <h1 className="text-5xl font-heading font-bold text-charcoal mb-4">
+                Yin–Yang Energy Assessment Result
               </h1>
               <p className="text-xl text-slate-600">
-                {profile.description}
+                {profile.title} — {profile.description}
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-gold-300/30 mb-8">
-              <h2 className="text-2xl font-heading font-bold text-navy-500 mb-4">
-                Your Symptoms
-              </h2>
-              <ul className="space-y-3">
-                {profile.symptoms.map((symptom, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-slate-600">
-                    <span className="text-coral text-xl">•</span>
-                    <span>{symptom}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 mb-8">
+              <h2 className="text-2xl font-heading font-bold text-deep-teal mb-3">Guidance</h2>
+              <p className="text-slate-700">{profile.guidance}</p>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-gold-300/30 mb-8">
-              <h2 className="text-2xl font-heading font-bold text-navy-500 mb-4">
-                What You Need
-              </h2>
-              <ul className="space-y-3">
-                {profile.recommendations.map((rec, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-slate-600">
-                    <span className="text-gold-300 text-xl">✓</span>
-                    <span>{rec}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-navy-500 text-white rounded-xl p-8 shadow-lg mb-8">
-              <h2 className="text-2xl font-heading font-bold mb-4">
-                Recommended Programs
-              </h2>
-              <ul className="space-y-2 mb-6">
-                {profile.programs.map((program, idx) => (
-                  <li key={idx} className="flex items-center gap-2">
-                    <span className="text-gold-300">→</span>
-                    <span>{program}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/programs"
-                className="inline-block px-6 py-3 bg-coral hover:bg-coral-500 text-white font-semibold rounded-lg transition-colors"
-              >
-                Explore Programs →
-              </Link>
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
+                <h3 className="text-xl font-heading font-bold text-deep-teal mb-4">Suggested Points</h3>
+                <ul className="space-y-2 text-slate-700">
+                  {profile.points.map((p, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <span className="text-calm-blue">•</span>
+                      <a className="hover:text-calm-blue" href={`/points?search=${encodeURIComponent(p)}`}>{p}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
+                <h3 className="text-xl font-heading font-bold text-deep-teal mb-4">Suggested Protocols</h3>
+                <ul className="space-y-2 text-slate-700">
+                  {profile.protocols.map((p, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <span className="text-sage-green">→</span>
+                      <a className="hover:text-calm-blue" href={`/protocols?search=${encodeURIComponent(p)}`}>{p}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <div className="flex gap-4 justify-center">
@@ -248,12 +184,16 @@ export default function AssessmentPage() {
                 Retake Assessment
               </button>
               <Link
-                href="/poses"
-                className="px-6 py-3 bg-navy-500 hover:bg-navy-600 text-white font-semibold rounded-lg transition-colors"
+                href="/points"
+                className="px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors"
               >
-                Browse All Poses
+                Browse Points
               </Link>
             </div>
+
+            <p className="text-xs text-slate-500 mt-8 text-center">
+              This self‑assessment is educational and not a medical diagnosis. If you have health concerns, consult a qualified practitioner.
+            </p>
           </div>
         </div>
       </div>
@@ -265,14 +205,24 @@ export default function AssessmentPage() {
       {/* Header */}
       <header className="bg-slate-medical border-b border-slate-200">
         <div className="container mx-auto px-4 py-6">
-          <Link href="/" className="text-2xl font-heading font-bold text-navy-500">
-            VrikshaYoga
+          <Link href="/" className="text-2xl font-heading font-bold text-deep-teal">
+            Accucentral
           </Link>
         </div>
       </header>
 
+      {/* Intro */}
+      <div className="container mx-auto px-4 pt-12">
+        <div className="max-w-2xl mx-auto text-center mb-8">
+          <h1 className="text-4xl font-heading font-bold text-charcoal mb-3">Yin–Yang Energy Assessment</h1>
+          <p className="text-slate-600">
+            A quick self‑check inspired by traditional East Asian frameworks. Learn which pattern is most dominant for you today—and which pressure points can help. 
+          </p>
+        </div>
+      </div>
+
       {/* Quiz */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-10">
         <div className="max-w-2xl mx-auto">
           {/* Progress */}
           <div className="mb-8">
@@ -282,7 +232,7 @@ export default function AssessmentPage() {
             </div>
             <div className="w-full bg-slate-200 rounded-full h-2">
               <div
-                className="bg-gold-300 h-2 rounded-full transition-all duration-300"
+                className="bg-calm-blue h-2 rounded-full transition-all duration-300"
                 style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
               />
             </div>
@@ -290,7 +240,7 @@ export default function AssessmentPage() {
 
           {/* Question Card */}
           <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 mb-6">
-            <h2 className="text-2xl font-heading font-bold text-navy-500 mb-8">
+            <h2 className="text-2xl font-heading font-bold text-deep-teal mb-8">
               {questions[currentQuestion].text}
             </h2>
             <div className="space-y-3">
@@ -298,7 +248,7 @@ export default function AssessmentPage() {
                 <button
                   key={idx}
                   onClick={() => handleAnswer(idx)}
-                  className="w-full text-left px-6 py-4 bg-slate-50 hover:bg-gold-300/10 border-2 border-slate-200 hover:border-gold-300 rounded-lg transition-all font-medium text-slate-700"
+                  className="w-full text-left px-6 py-4 bg-slate-50 hover:bg-calm-blue/10 border-2 border-slate-200 hover:border-calm-blue rounded-lg transition-all font-medium text-slate-700"
                 >
                   {option}
                 </button>
@@ -311,15 +261,15 @@ export default function AssessmentPage() {
             <button
               onClick={goBack}
               disabled={currentQuestion === 0}
-              className="px-6 py-3 text-slate-600 hover:text-navy-500 font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-3 text-slate-600 hover:text-deep-teal font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               ← Back
             </button>
             <Link
               href="/"
-              className="px-6 py-3 text-slate-600 hover:text-navy-500 font-semibold transition-colors"
+              className="px-6 py-3 text-slate-600 hover:text-deep-teal font-semibold transition-colors"
             >
-              Exit Quiz
+              Exit
             </Link>
           </div>
         </div>

@@ -1,154 +1,111 @@
-import { client } from '@/lib/sanity.client';
 import Link from 'next/link';
+import { getPublishedServices, categoryColors, categoryLabels, complexityLabels } from '@/data/services';
 
-const PROTOCOLS_QUERY = `*[_type == "protocol" && status in ["published", "featured"]] | order(status desc, _createdAt desc) {
-  _id,
-  title,
-  slug,
-  tagline,
-  category,
-  targetIssue,
-  duration,
-  difficulty,
-  status,
-  "poseCount": count(poseSequence),
-  benefits
-}`;
-
-const categoryColors: Record<string, string> = {
-  'stress-anxiety': 'from-purple-500 to-indigo-600',
-  'pain-relief': 'from-red-500 to-orange-600',
-  'energy': 'from-yellow-500 to-orange-500',
-  'sleep': 'from-indigo-600 to-purple-700',
-  'flexibility': 'from-green-500 to-teal-500',
-  'strength': 'from-blue-600 to-cyan-600',
-  'digestion': 'from-amber-500 to-yellow-600',
-  'posture': 'from-slate-600 to-gray-700',
-};
-
-const categoryLabels: Record<string, string> = {
-  'stress-anxiety': 'Stress & Anxiety',
-  'pain-relief': 'Pain Relief',
-  'energy': 'Energy & Vitality',
-  'sleep': 'Sleep & Restoration',
-  'flexibility': 'Flexibility & Mobility',
-  'strength': 'Strength & Stability',
-  'digestion': 'Digestive Health',
-  'posture': 'Posture Correction',
-};
-
-const difficultyStars: Record<string, string> = {
-  beginner: '⭐',
-  intermediate: '⭐⭐',
-  advanced: '⭐⭐⭐',
-  'all-levels': '⭐',
-};
-
-export default async function ProtocolsPage() {
-  const protocols = await client.fetch(PROTOCOLS_QUERY);
+export default function ProtocolsPage() {
+  const services = getPublishedServices();
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">
+      <div className="bg-gradient-to-r from-deep-teal to-calm-blue text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <Link href="/" className="text-white/80 hover:text-white text-sm mb-4 inline-block">
             ← Back to Home
           </Link>
-          <h1 className="text-5xl font-bold mb-4">Healing Protocols</h1>
+          <h1 className="text-5xl font-bold mb-4">Our Services</h1>
           <p className="text-xl text-white/90 max-w-3xl">
-            Curated sequences designed to address specific health issues. Not just exercise—precision medicine for your body.
+            Professional acupressure treatments designed to address your specific health concerns. Evidence-based protocols combining Traditional Chinese Medicine with modern science.
           </p>
-          <div className="mt-6 flex gap-4 text-sm">
+          <div className="mt-6 flex gap-4 text-sm flex-wrap">
             <div className="bg-white/20 px-4 py-2 rounded-full">
-              ✓ Science-backed
+              ✓ Personalized Treatment
             </div>
             <div className="bg-white/20 px-4 py-2 rounded-full">
-              ✓ 5-15 minutes
+              ✓ 30-60 minute sessions
             </div>
             <div className="bg-white/20 px-4 py-2 rounded-full">
-              ✓ Results in 7 days
+              ✓ Expert Practitioner
             </div>
           </div>
         </div>
       </div>
 
-      {/* Protocols Grid */}
+      {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-2">Featured Protocols</h2>
+          <h2 className="text-2xl font-bold mb-2">Treatment Offerings</h2>
           <p className="text-slate-600">
-            Start here—these protocols target the most common issues facing modern humans.
+            Professional acupressure services tailored to your needs. Each session is customized to target your specific symptoms and health goals.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {protocols.map((protocol: any) => (
+          {services.map((service) => (
             <Link
-              key={protocol._id}
-              href={`/protocol/${protocol.slug.current}`}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-green-300"
+              key={service.id}
+              href={`/protocol/${service.slug}`}
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-calm-blue"
             >
               {/* Category Badge */}
-              <div className={`h-2 bg-gradient-to-r ${categoryColors[protocol.category] || 'from-gray-500 to-gray-600'}`} />
+              <div className={`h-2 bg-gradient-to-r ${categoryColors[service.category] || 'from-gray-500 to-gray-600'}`} />
 
               <div className="p-6">
                 {/* Status Badge */}
-                {protocol.status === 'featured' && (
-                  <div className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                    ⭐ Featured
+                {service.status === 'featured' && (
+                  <div className="inline-block bg-sage-green/20 text-deep-teal text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                    ⭐ Popular Service
                   </div>
                 )}
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold mb-2 group-hover:text-green-600 transition-colors">
-                  {protocol.title}
+                <h3 className="text-2xl font-bold mb-2 group-hover:text-calm-blue transition-colors">
+                  {service.title}
                 </h3>
 
                 {/* Tagline */}
                 <p className="text-slate-600 mb-4 text-sm">
-                  {protocol.tagline}
+                  {service.tagline}
                 </p>
 
                 {/* Meta Info */}
                 <div className="flex flex-wrap gap-2 mb-4 text-sm">
                   <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-                    ⏱️ {protocol.duration}
+                    ⏱️ {service.duration}
+                  </span>
+                  <span className="bg-calm-blue/10 px-3 py-1 rounded-full text-deep-teal font-medium">
+                    {complexityLabels[service.complexity]}
                   </span>
                   <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-                    {difficultyStars[protocol.difficulty]} {protocol.difficulty}
-                  </span>
-                  <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-                    {protocol.poseCount} poses
+                    {service.pressurePoints.length} points
                   </span>
                 </div>
 
                 {/* Category */}
                 <div className="text-xs font-semibold text-slate-500 mb-3 uppercase">
-                  {categoryLabels[protocol.category]}
+                  {categoryLabels[service.category]}
                 </div>
 
                 {/* Benefits Preview */}
                 <div className="border-t border-slate-200 pt-4 mt-4">
-                  <p className="text-xs font-semibold text-slate-500 mb-2">KEY BENEFITS:</p>
+                  <p className="text-xs font-semibold text-slate-500 mb-2">EXPECTED OUTCOMES:</p>
                   <ul className="space-y-1">
-                    {protocol.benefits?.slice(0, 2).map((benefit: string, idx: number) => (
+                    {service.outcomes.slice(0, 2).map((outcome, idx) => (
                       <li key={idx} className="text-sm text-slate-600 flex items-start">
-                        <span className="text-green-500 mr-2">✓</span>
-                        <span className="line-clamp-1">{benefit}</span>
+                        <span className="text-sage-green mr-2">✓</span>
+                        <span className="line-clamp-1">{outcome}</span>
                       </li>
                     ))}
                   </ul>
-                  {protocol.benefits?.length > 2 && (
+                  {service.outcomes.length > 2 && (
                     <p className="text-xs text-slate-400 mt-2">
-                      +{protocol.benefits.length - 2} more benefits
+                      +{service.outcomes.length - 2} more outcomes
                     </p>
                   )}
                 </div>
 
                 {/* CTA */}
-                <div className="mt-4 text-green-600 font-semibold flex items-center group-hover:translate-x-1 transition-transform">
-                  View Protocol →
+                <div className="mt-4 text-calm-blue font-semibold flex items-center group-hover:translate-x-1 transition-transform">
+                  Learn More →
                 </div>
               </div>
             </Link>
@@ -156,30 +113,30 @@ export default async function ProtocolsPage() {
         </div>
 
         {/* Empty State */}
-        {protocols.length === 0 && (
+        {services.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-slate-500 text-lg">No protocols found. Check back soon!</p>
+            <p className="text-slate-500 text-lg">Services coming soon. Contact us for availability!</p>
           </div>
         )}
 
         {/* Bottom CTA */}
-        <div className="mt-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-2">Not sure where to start?</h3>
+        <div className="mt-16 bg-gradient-to-r from-sage-green/20 to-calm-blue/20 rounded-2xl p-8 text-center border border-sage-green/30">
+          <h3 className="text-2xl font-bold mb-2 text-charcoal">Ready to Book a Session?</h3>
           <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-            Most people begin with "The 5-Minute Morning Flush" or "The 7-Day Cortisol Detox." Both are beginner-friendly and deliver results within a week.
+            Not sure which service is right for you? Book a consultation with Chandan to discuss your symptoms and create a personalized treatment plan.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
-              href="/protocol/5-minute-morning-flush"
-              className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+              href="/book"
+              className="bg-warm-coral text-white px-6 py-3 rounded-lg font-semibold hover:bg-warm-coral/90 transition-colors shadow-lg"
             >
-              Try Morning Flush
+              Book Consultation
             </Link>
             <Link
-              href="/protocol/7-day-cortisol-detox"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              href="/about"
+              className="bg-deep-teal text-white px-6 py-3 rounded-lg font-semibold hover:bg-deep-teal/90 transition-colors"
             >
-              Try Cortisol Detox
+              Learn About Our Approach
             </Link>
           </div>
         </div>

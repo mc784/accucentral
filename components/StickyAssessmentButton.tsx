@@ -28,9 +28,9 @@ export function StickyAssessmentButton() {
     >
       <Link
         href="/assessment"
-        className="px-6 py-4 bg-coral hover:bg-coral-500 text-white font-bold rounded-full shadow-2xl hover:shadow-coral/50 transition-all flex items-center gap-2 group"
+        className="px-6 py-4 bg-warm-coral hover:bg-warm-coral-500 text-white font-bold rounded-full shadow-2xl hover:shadow-warm-coral/50 transition-all flex items-center gap-2 group"
       >
-        Take Assessment
+        Yin–Yang Energy Assessment
         <svg 
           className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
           fill="none" 

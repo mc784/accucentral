@@ -1,124 +1,74 @@
 import Link from 'next/link'
-import { client } from '@/lib/sanity.client'
 import { SearchHero } from '@/components/SearchHero'
 import { PoseCard } from '@/components/PoseCard'
 import { ScienceNote } from '@/components/ScienceNote'
-import { StickyAssessmentButton } from '@/components/StickyAssessmentButton'
+import { StickyBookingButton } from '@/components/StickyBookingButton'
+import { getFeaturedServices, complexityLabels } from '@/data/services'
 
-interface YogaPose {
-  _id: string
-  title: string
-  slug: { current: string }
-  sanskritName?: string
-  category?: string
-  difficulty?: string
-  duration?: string
-  benefits?: string[]
-  mainImage?: {
-    asset: {
-      url: string
-    }
-  }
-}
+// Placeholder pose count (will be dynamic when we add pressure points library)
+const totalCount = 100
 
-async function getFeaturedPoses(): Promise<YogaPose[]> {
-  const query = `*[_type == "yogaPose" && status == "published"] | order(_createdAt desc) [0...6] {
-    _id,
-    title,
-    slug,
-    sanskritName,
-    category,
-    difficulty,
-    duration,
-    benefits,
-    mainImage {
-      asset-> {
-        url
-      }
-    }
-  }`
-
-  return client.fetch(query)
-}
-
-async function getPoseCount(): Promise<number> {
-  const query = `count(*[_type == "yogaPose" && status == "published"])`
-  return client.fetch(query)
-}
-
-interface Protocol {
-  _id: string
-  title: string
-  slug: { current: string }
-  tagline: string
-  category: string
-  duration: string
-  difficulty: string
-  status: string
-}
-
-async function getFeaturedProtocols(): Promise<Protocol[]> {
-  const query = `*[_type == "protocol" && status == "featured"] | order(_createdAt desc) [0...3] {
-    _id,
-    title,
-    slug,
-    tagline,
-    category,
-    duration,
-    difficulty,
-    status
-  }`
-  return client.fetch(query)
-}
-
-const categories = [
-  { name: 'Standing', value: 'standing' },
-  { name: 'Seated', value: 'seated' },
-  { name: 'Backbends', value: 'backbends' },
-  { name: 'Forward Bends', value: 'forward-bends' },
-  { name: 'Twists', value: 'twists' },
-  { name: 'Inversions', value: 'inversions' },
-  { name: 'Arm Balances', value: 'arm-balances' },
-  { name: 'Hip Openers', value: 'hip-openers' },
-  { name: 'Core', value: 'core' },
-  { name: 'Restorative', value: 'restorative' },
-  { name: 'Balancing', value: 'balancing' },
+const symptomCategories = [
+  {
+    name: 'Stress & Anxiety',
+    value: 'stress-anxiety',
+    icon: '🧘',
+    description: 'Calming points for nervous tension and emotional balance',
+    color: 'calm-blue'
+  },
+  {
+    name: 'Chronic Pain',
+    value: 'chronic-pain',
+    icon: '💆',
+    description: 'Relief for headaches, back pain, and muscle tension',
+    color: 'deep-teal'
+  },
+  {
+    name: 'Sleep & Insomnia',
+    value: 'sleep-insomnia',
+    icon: '😴',
+    description: 'Points to calm your nervous system for restful sleep',
+    color: 'sage-green'
+  },
+  {
+    name: 'Digestive Health',
+    value: 'digestive-health',
+    icon: '🌿',
+    description: 'Support for bloating, IBS, and sluggish digestion',
+    color: 'sage-green'
+  },
 ]
 
-export default async function Home() {
-  const [featuredPoses, totalCount, featuredProtocols] = await Promise.all([
-    getFeaturedPoses(),
-    getPoseCount(),
-    getFeaturedProtocols(),
-  ])
+export default function Home() {
+  const featuredServices = getFeaturedServices()
 
   return (
     <div className="min-h-screen bg-slate-medical">
-      {/* Sticky Assessment Button */}
-      <StickyAssessmentButton />
+      {/* Sticky Booking Button */}
+      <StickyBookingButton />
 
       {/* Header */}
       <header className="bg-slate-medical border-b border-slate-200">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-heading font-bold text-navy-500">
-              VrikshaYoga
+            <Link href="/" className="text-2xl font-heading font-bold text-deep-teal">
+              Accucentral
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/protocols" className="text-slate-600 hover:text-navy-500 font-semibold">
+              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Points
+              </Link>
+              <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Protocols
               </Link>
-              <Link href="/poses" className="text-slate-600 hover:text-navy-500">
-                Poses
-              </Link>
-              <Link href="/science" className="text-slate-600 hover:text-navy-500">
+              <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
               </Link>
-              <Link href="/about" className="text-slate-600 hover:text-navy-500">
+              <Link href="/about" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 About
               </Link>
-              <Link href="/assessment" className="px-4 py-2 bg-coral text-white rounded-lg hover:bg-coral-500 transition font-semibold">
-                Take Assessment
+              <Link href="/book" className="px-4 py-2 bg-warm-coral text-white rounded-lg hover:bg-warm-coral-500 transition font-semibold shadow-md">
+                Book Consultation
               </Link>
             </nav>
           </div>
@@ -128,51 +78,51 @@ export default async function Home() {
       {/* Hero Section with Search */}
       <SearchHero totalCount={totalCount} />
 
-      {/* Featured Protocols Section - The Clinic Model */}
-      <section id="protocols" className="py-16 bg-white scroll-mt-20">
+      {/* Featured Services Section */}
+      <section id="protocols" className="py-16 bg-slate-medical scroll-mt-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-block bg-gold-300/20 text-gold-300 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              The Clinic Model
+            <div className="inline-block bg-sage-green/20 text-sage-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              Our Services
             </div>
-            <h2 className="text-4xl font-heading font-bold text-navy-500 mb-4">
-              Healing Protocols
+            <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
+              Professional Acupressure Treatments
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Not just poses—curated sequences designed to solve specific health issues.
-              This is how we differ from the "gym" approach.
+            <p className="text-lg text-slate-gray max-w-2xl mx-auto">
+              Customized treatment protocols for your specific health concerns.
+              Each session combines Traditional Chinese Medicine with modern therapeutic techniques.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {featuredProtocols.map((protocol) => (
+            {featuredServices.map((service) => (
               <Link
-                key={protocol._id}
-                href={`/protocol/${protocol.slug.current}`}
-                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-navy-200 hover:border-gold-300"
+                key={service.id}
+                href={`/protocol/${service.slug}`}
+                className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-slate-200 hover:border-calm-blue"
               >
                 <div className="p-6">
-                  {protocol.status === 'featured' && (
-                    <div className="inline-block bg-gold-300/20 text-gold-300 text-xs font-bold px-3 py-1 rounded-full mb-3">
-                      ⭐ Featured
+                  {service.status === 'featured' && (
+                    <div className="inline-block bg-sage-green/20 text-sage-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">
+                      ⭐ Popular Service
                     </div>
                   )}
-                  <h3 className="text-xl font-heading font-bold text-navy-500 mb-2 group-hover:text-coral transition-colors">
-                    {protocol.title}
+                  <h3 className="text-xl font-heading font-bold text-charcoal mb-2 group-hover:text-calm-blue transition-colors">
+                    {service.title}
                   </h3>
-                  <p className="text-slate-600 mb-4 text-sm">
-                    {protocol.tagline}
+                  <p className="text-slate-gray mb-4 text-sm">
+                    {service.tagline}
                   </p>
                   <div className="flex gap-2 text-xs">
                     <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
-                      ⏱️ {protocol.duration}
+                      ⏱️ {service.duration}
                     </span>
                     <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700 capitalize">
-                      {protocol.difficulty}
+                      {complexityLabels[service.complexity]}
                     </span>
                   </div>
-                  <div className="mt-4 text-coral font-semibold flex items-center group-hover:translate-x-1 transition-transform">
-                    Start Protocol →
+                  <div className="mt-4 text-calm-blue font-semibold flex items-center group-hover:translate-x-1 transition-transform">
+                    Learn More →
                   </div>
                 </div>
               </Link>
@@ -182,9 +132,9 @@ export default async function Home() {
           <div className="text-center mt-8">
             <Link
               href="/protocols"
-              className="inline-flex items-center gap-2 text-coral hover:text-coral-500 font-medium"
+              className="inline-flex items-center gap-2 text-calm-blue hover:text-calm-blue-600 font-medium text-lg"
             >
-              View all protocols
+              View all services
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -193,75 +143,91 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Explore Our Library - Unified Section */}
+      {/* Browse by Symptom - Category Cards */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold text-navy-500 mb-4">
-              Explore Our Library
+            <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
+              What Brings You Here Today?
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Browse {totalCount}+ poses by category or explore our featured selections
+            <p className="text-lg text-slate-gray max-w-2xl mx-auto">
+              Find relief for your specific symptoms through targeted pressure points
             </p>
           </div>
 
-          {/* Categories Grid */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-heading font-bold text-navy-500 mb-6">Browse by Category</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {categories.map((category) => (
-                <Link
-                  key={category.value}
-                  href={`/poses?category=${category.value}`}
-                  className="group"
-                >
-                  <div className="bg-slate-50 border-2 border-navy-200 rounded-xl p-6 text-center hover:border-gold-300 hover:shadow-md hover:bg-white transition-all">
-                    <h4 className="text-navy-500 font-heading font-semibold text-lg">{category.name}</h4>
+          {/* Symptom Categories Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {symptomCategories.map((category) => (
+              <Link
+                key={category.value}
+                href={`/points?category=${category.value}`}
+                className="group"
+              >
+                <div className="bg-slate-50 border-2 border-slate-200 rounded-xl p-6 hover:border-calm-blue hover:shadow-lg hover:bg-white transition-all h-full flex flex-col">
+                  <div className="text-4xl mb-3">{category.icon}</div>
+                  <h3 className="text-xl font-heading font-semibold text-charcoal mb-2 group-hover:text-calm-blue transition-colors">
+                    {category.name}
+                  </h3>
+                  <p className="text-sm text-slate-gray flex-grow">
+                    {category.description}
+                  </p>
+                  <div className="mt-4 text-calm-blue font-medium flex items-center group-hover:translate-x-1 transition-transform">
+                    Explore points →
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Points */}
+      <section className="py-16 bg-slate-medical">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
+              Essential Pressure Points
+            </h2>
+            <p className="text-lg text-slate-gray max-w-2xl mx-auto">
+              Master these foundational points for everyday relief
+            </p>
           </div>
 
-          {/* Featured Poses */}
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-heading font-bold text-navy-500">Featured Poses</h3>
-              <Link
-                href="/poses"
-                className="text-coral hover:text-coral-500 font-medium flex items-center gap-2"
-              >
-                View all {totalCount} poses
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {featuredPoses.slice(0, 6).map((pose) => (
+              <PoseCard key={pose._id} pose={pose} />
+            ))}
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredPoses.map((pose) => (
-                <PoseCard key={pose._id} pose={pose} />
-              ))}
-            </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/points"
+              className="inline-flex items-center gap-2 text-calm-blue hover:text-calm-blue-600 font-medium text-lg"
+            >
+              Explore all pressure points
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Science CTA */}
-      <section id="science" className="py-16 bg-slate-medical scroll-mt-20">
+      <section id="science" className="py-16 bg-white scroll-mt-20">
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h2 className="text-3xl font-heading font-bold text-navy-500 mb-4">
-            Want to Dive Deeper into the Biology?
+          <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
+            How Does Pressing a Point Stop Pain?
           </h2>
-          <p className="text-lg text-slate-600 mb-8">
-            Learn how chronic stress rewires your nervous system—and how yoga regulates it back. 
-            Evidence-based education for the skeptical mind.
+          <p className="text-lg text-slate-gray mb-8">
+            Learn the science behind acupressure—from Gate Control Theory to fascia research.
+            Evidence-based education grounded in both TCM wisdom and modern neuroscience.
           </p>
           <Link
             href="/science"
-            className="inline-block px-8 py-4 bg-navy-500 hover:bg-navy-600
+            className="inline-block px-8 py-4 bg-deep-teal hover:bg-deep-teal-600
                        text-white font-semibold text-lg rounded-lg
-                       transition-colors"
+                       transition-colors shadow-lg"
           >
             Explore the Science →
           </Link>
@@ -269,60 +235,52 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-navy-500 text-slate-medical py-12">
+      <footer className="bg-deep-teal text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h3 className="text-2xl font-heading font-bold mb-4">VrikshaYoga</h3>
-            <p className="text-slate-300 mb-6">
-              Your comprehensive guide to yoga poses and practice
+            <h3 className="text-2xl font-heading font-bold mb-4">Accucentral</h3>
+            <p className="text-slate-200 mb-6">
+              The Google Maps of Your Body — Instant Pain Relief Through Acupressure
             </p>
 
             {/* Recommended Reading */}
-            <div className="max-w-3xl mx-auto mb-8 border-t border-slate-400/30 pt-8">
-              <h4 className="text-sm font-semibold text-gold-300 uppercase tracking-wide mb-4">
-                Recommended Reading
+            <div className="max-w-3xl mx-auto mb-8 border-t border-white/20 pt-8">
+              <h4 className="text-sm font-semibold text-sage-green uppercase tracking-wide mb-4">
+                Evidence-Based Resources
               </h4>
-              <p className="text-sm text-slate-300 mb-4">
-                The science behind the practice:
+              <p className="text-sm text-slate-200 mb-4">
+                Learn more about acupressure and pain science:
               </p>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-                <a 
-                  href="https://www.amazon.com/Why-Zebras-Dont-Ulcers-Third/dp/0805073698" 
-                  target="_blank" 
+                <a
+                  href="https://www.acusansthan-ald.in/"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-gold-200 transition-colors underline decoration-slate-400 hover:decoration-gold-200"
+                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
                 >
-                  Why Zebras Don't Get Ulcers (Sapolsky)
+                  AYUSH Ministry Guidelines
                 </a>
-                <a 
-                  href="https://www.amazon.com/Dopamine-Nation-Finding-Balance-Indulgence/dp/152474672X" 
-                  target="_blank" 
+                <a
+                  href="https://www.amazon.com/Acupressure-Beginners-Guide-Alternative-Healing/dp/0895295733"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-gold-200 transition-colors underline decoration-slate-400 hover:decoration-gold-200"
+                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
                 >
-                  Dopamine Nation (Lembke)
+                  Acupressure's Potent Points (Gach)
                 </a>
-                <a 
-                  href="https://www.amazon.com/Myth-Normal-Illness-Toxic-Culture/dp/0593083881" 
-                  target="_blank" 
+                <a
+                  href="https://www.amazon.com/Pain-Story-You-Need-Read/dp/0393355853"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-gold-200 transition-colors underline decoration-slate-400 hover:decoration-gold-200"
+                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
                 >
-                  The Myth of Normal (Maté)
+                  The Pain Story (Moseley & Butler)
                 </a>
-                <a 
-                  href="https://www.amazon.com/Breath-New-Science-Lost-Art/dp/0735213615" 
-                  target="_blank" 
+                <a
+                  href="https://www.amazon.com/Body-Keeps-Score-Healing-Trauma/dp/0143127748"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-gold-200 transition-colors underline decoration-slate-400 hover:decoration-gold-200"
-                >
-                  Breath (Nestor)
-                </a>
-                <a 
-                  href="https://www.amazon.com/Body-Keeps-Score-Healing-Trauma/dp/0143127748" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-gold-200 transition-colors underline decoration-slate-400 hover:decoration-gold-200"
+                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
                 >
                   The Body Keeps the Score (van der Kolk)
                 </a>
@@ -330,29 +288,33 @@ export default async function Home() {
             </div>
 
             <div className="flex justify-center gap-6 text-sm">
-              <Link href="/poses" className="text-gold-300 hover:text-gold-200">
-                Browse Poses
+              <Link href="/points" className="text-sage-green hover:text-sage-green-300">
+                Browse Points
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/studio" className="text-gold-300 hover:text-gold-200">
-                Studio
+              <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">
+                Protocols
+              </Link>
+              <span className="text-slate-400">•</span>
+              <Link href="/book" className="text-sage-green hover:text-sage-green-300">
+                Book Consultation
               </Link>
             </div>
             <div className="flex justify-center gap-6 text-sm mt-6">
-              <Link href="/about" className="text-slate-300 hover:text-gold-200">
-                About
+              <Link href="/about" className="text-slate-200 hover:text-sage-green">
+                About Chandan Accucenter
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/science" className="text-slate-300 hover:text-gold-200">
+              <Link href="/science" className="text-slate-200 hover:text-sage-green">
                 Science
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/programs" className="text-slate-300 hover:text-gold-200">
-                Programs
+              <Link href="/studio" className="text-slate-200 hover:text-sage-green">
+                Studio
               </Link>
             </div>
-            <p className="mt-8 text-sm text-slate-400">
-              Built with Next.js • Sanity CMS • AWS Amplify
+            <p className="mt-8 text-sm text-slate-300">
+              Built with Next.js • Sanity CMS • Vercel
             </p>
           </div>
         </div>

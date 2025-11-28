@@ -8,40 +8,36 @@ interface SearchHeroProps {
 }
 
 const headlines = [
-  { line1: "Regulate Your Nervous System,", line2: "Not Just Your Hamstrings" },
-  { line1: "You're Not Broken,", line2: "You're Just Dysregulated" },
-  { line1: "Your Body Isn't Tight,", line2: "It's Traumatized" },
-  { line1: "This Isn't Just Yoga.", line2: "This Is Biology." },
-  { line1: "Fix Your Cortisol,", line2: "Fix Your Life" },
-  { line1: "Stop Stretching.", line2: "Start Regulating." },
-  { line1: "The User Manual", line2: "For Your Nervous System" },
-  { line1: "From Cortisol Addiction", line2: "To Calm Capability" },
-  { line1: "Fix Your Circadian Rhythm,", line2: "Fix Your Sleep" },
-  { line1: "Doom Scrolling Destroys", line2: "Your Nervous System" },
-  { line1: "Binge Watching Is", line2: "Binge Cortisol" },
-  { line1: "You Can't Sleep Because", line2: "You Can't Regulate" }
+  { line1: "Acupressure for Pain", line2: "Clear, Practical Guidance" },
+  { line1: "Search Symptoms", line2: "Find Precise Pressure Points" },
+  { line1: "Relieve Headaches", line2: "Ease Neck & Back Pain" },
+  { line1: "Where to Press", line2: "How Long & How Firm" },
+  { line1: "Evidence‑Informed", line2: "TCM + Modern Insights" },
+  { line1: "Safe Techniques", line2: "For Everyday Complaints" },
+  { line1: "Step‑by‑Step", line2: "Simple, Repeatable Routines" },
+  { line1: "Non‑Pharmacologic", line2: "Self‑Care Pain Relief" }
 ]
 
 const expertQuotes = [
-  { 
-    quote: "Chronic stress literally shrinks the hippocampus—the part of your brain responsible for memory and emotional regulation.",
-    expert: "Robert Sapolsky",
-    source: "Why Zebras Don't Get Ulcers"
+  {
+    quote: "Pain is a protective output. Gentle pressure may modulate pain via gate control mechanisms.",
+    expert: "Lorimer Moseley, PhD",
+    source: "Pain Education"
   },
-  { 
-    quote: "The body keeps the score. Trauma lives in the nervous system until you give it a way out.",
-    expert: "Bessel van der Kolk",
-    source: "The Body Keeps the Score"
+  {
+    quote: "Fascial continuity helps explain body‑wide effects from local mechanical stimulation.",
+    expert: "Thomas Myers",
+    source: "Anatomy Trains"
   },
-  { 
-    quote: "Stress is not what happens to us. It's our response to what happens. And response is something we can choose.",
-    expert: "Gabor Maté",
-    source: "The Myth of Normal"
+  {
+    quote: "Mechanical stimulation can produce measurable local tissue responses in connective tissue.",
+    expert: "Helene Langevin, MD",
+    source: "NIH Research"
   },
-  { 
-    quote: "The physiological sigh—a double inhale followed by a long exhale—is the fastest way to calm your nervous system.",
-    expert: "Andrew Huberman",
-    source: "Huberman Lab"
+  {
+    quote: "Slow, focused touch can support a parasympathetic shift—calming and down‑regulating stress.",
+    expert: "Peter Levine, PhD",
+    source: "Somatic Approaches"
   }
 ]
 
@@ -80,7 +76,7 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      router.push(`/poses?search=${encodeURIComponent(searchQuery.trim())}`)
+      router.push(`/points?search=${encodeURIComponent(searchQuery.trim())}`)
     }
   }
 
@@ -89,84 +85,103 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
       <div className="container mx-auto px-4">
         {/* Hero Text */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-navy-500 mb-6 leading-tight min-h-[160px] md:min-h-[180px] flex items-center justify-center">
-            <span 
+          <h1 className="font-heading text-5xl md:text-6xl font-bold text-charcoal mb-6 leading-tight min-h-[160px] md:min-h-[180px] flex items-center justify-center">
+            <span
               className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
               style={{ display: 'block' }}
             >
               {headlines[currentHeadline].line1}
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-coral-400 mt-2">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-calm-blue to-sage-green mt-2">
                 {headlines[currentHeadline].line2}
               </span>
             </span>
           </h1>
-          
+
           {/* Rotating Expert Quotes */}
-          <div className="max-w-3xl mx-auto mb-6 min-h-[120px] flex items-center justify-center">
-            <div 
+          <div className="max-w-3xl mx-auto mb-8 min-h-[120px] flex items-center justify-center">
+            <div
               className={`transition-opacity duration-1000 ease-in-out ${isQuoteVisible ? 'opacity-100' : 'opacity-60'}`}
             >
-              <blockquote className="text-lg md:text-xl text-slate-700 leading-relaxed italic mb-3">
+              <blockquote className="text-lg md:text-xl text-slate-gray leading-relaxed italic mb-3">
                 "{expertQuotes[currentQuote].quote}"
               </blockquote>
               <p className="text-sm text-slate-500">
-                — <span className="font-semibold text-navy-500">{expertQuotes[currentQuote].expert}</span>, {expertQuotes[currentQuote].source}
+                — <span className="font-semibold text-deep-teal">{expertQuotes[currentQuote].expert}</span>, {expertQuotes[currentQuote].source}
               </p>
             </div>
           </div>
 
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <form onSubmit={handleSearch} className="relative">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Where does it hurt? (e.g., headache, nausea, back pain)"
+                className="w-full px-6 py-5 text-lg rounded-full border-2 border-calm-blue/30 focus:border-calm-blue focus:outline-none focus:ring-4 focus:ring-calm-blue/20 transition-all shadow-md"
+              />
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-3 bg-calm-blue hover:bg-calm-blue-600 text-white font-semibold rounded-full transition-colors"
+              >
+                Search →
+              </button>
+            </form>
+          </div>
+
           <p className="text-base text-slate-500 mb-8">
-            {totalCount}+ science-backed practices • Always free • No woo-woo
+            Pressure points • Evidence-based • TCM + Modern Science • Aligned with Ministry of AYUSH guidelines
           </p>
 
           {/* Navigation Pills */}
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             <a
-              href="/assessment"
-              className="px-8 py-4 bg-coral hover:bg-coral-500 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
-            >
-              Cortisol Assessment
-            </a>
-            <a
               href="/protocols"
-              className="px-8 py-4 bg-navy-500 hover:bg-navy-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
+              className="px-8 py-4 bg-deep-teal hover:bg-deep-teal-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
-              Our Protocols
+              Daily Protocols
             </a>
             <a
-              href="/poses"
-              className="px-8 py-4 border-2 border-navy-500 text-navy-500 hover:bg-navy-500 hover:text-white font-bold rounded-full transition-all hover:scale-105"
+              href="/points"
+              className="px-8 py-4 bg-calm-blue hover:bg-calm-blue-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
-              Yoga Poses
+              Browse Points
+            </a>
+            <a
+              href="/book"
+              className="px-8 py-4 bg-warm-coral hover:bg-warm-coral-500 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
+            >
+              Book Consultation
             </a>
             <a
               href="/science"
-              className="px-8 py-4 border-2 border-gold-300 text-gold-300 hover:bg-gold-300 hover:text-navy-500 font-bold rounded-full transition-all hover:scale-105"
+              className="px-8 py-4 border-2 border-sage-green text-sage-green-700 hover:bg-sage-green hover:text-white font-bold rounded-full transition-all hover:scale-105"
             >
-              Baseline Science
+              The Science
             </a>
           </div>
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-slate-600">
+        <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-slate-gray">
           <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-5 h-5 text-sage-green" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
             <span>No sign-up required</span>
           </div>
           <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-5 h-5 text-sage-green" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>100% free forever</span>
+            <span>100% free knowledge</span>
           </div>
           <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-5 h-5 text-sage-green" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>Evidence-based guidance</span>
+            <span>Instant relief techniques</span>
           </div>
         </div>
       </div>

@@ -18,8 +18,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VrikshaYoga - Regulate Your Nervous System",
-  description: "The biological regulation platform. Science-backed yoga for cortisol detox, stress relief, and nervous system regulation.",
+  title: "Accucentral — Acupressure for Pain Relief",
+  description: "Evidence‑informed acupressure guidance: precise pressure points, clear techniques, and practical protocols for common pain and symptoms.",
 };
 
 export default function RootLayout({

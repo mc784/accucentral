@@ -1,70 +1,6 @@
-import { client } from '@/lib/sanity.client';
-import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
-const PROTOCOL_QUERY = `*[_type == "protocol" && slug.current == $slug][0] {
-  _id,
-  title,
-  slug,
-  tagline,
-  category,
-  targetIssue,
-  duration,
-  difficulty,
-  frequency,
-  introduction,
-  poseSequence[] {
-    _key,
-    pose->{
-      _id,
-      title,
-      slug,
-      sanskritName,
-      mainImage,
-      difficulty,
-      category
-    },
-    duration,
-    instructions,
-    transitionNote
-  },
-  benefits,
-  scienceExplainer,
-  bestPracticedWhen,
-  contraindications,
-  tips,
-  status
-}`;
-
-const categoryColors: Record<string, string> = {
-  'stress-anxiety': 'from-purple-500 to-indigo-600',
-  'pain-relief': 'from-red-500 to-orange-600',
-  'energy': 'from-yellow-500 to-orange-500',
-  'sleep': 'from-indigo-600 to-purple-700',
-  'flexibility': 'from-green-500 to-teal-500',
-  'strength': 'from-blue-600 to-cyan-600',
-  'digestion': 'from-amber-500 to-yellow-600',
-  'posture': 'from-slate-600 to-gray-700',
-};
-
-const categoryLabels: Record<string, string> = {
-  'stress-anxiety': 'Stress & Anxiety',
-  'pain-relief': 'Pain Relief',
-  'energy': 'Energy & Vitality',
-  'sleep': 'Sleep & Restoration',
-  'flexibility': 'Flexibility & Mobility',
-  'strength': 'Strength & Stability',
-  'digestion': 'Digestive Health',
-  'posture': 'Posture Correction',
-};
-
-const difficultyStars: Record<string, string> = {
-  beginner: '⭐',
-  intermediate: '⭐⭐',
-  advanced: '⭐⭐⭐',
-  'all-levels': '⭐',
-};
+import { getServiceBySlug, categoryColors, categoryLabels, complexityLabels } from '@/data/services';
 
 export default async function ProtocolPage({
   params,
@@ -72,45 +8,45 @@ export default async function ProtocolPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const protocol = await client.fetch(PROTOCOL_QUERY, { slug });
+  const service = getServiceBySlug(slug);
 
-  if (!protocol) {
+  if (!service) {
     notFound();
   }
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Hero Section */}
-      <div className={`bg-gradient-to-r ${categoryColors[protocol.category]} text-white py-12`}>
+      <div className={`bg-gradient-to-r ${categoryColors[service.category]} text-white py-12`}>
         <div className="max-w-5xl mx-auto px-4">
           <Link href="/protocols" className="text-white/80 hover:text-white text-sm mb-4 inline-block">
-            ← Back to Protocols
+            ← Back to Services
           </Link>
 
           <div className="flex items-start justify-between gap-4 mb-4">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-3">{protocol.title}</h1>
-              <p className="text-xl text-white/90 mb-4">{protocol.tagline}</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-3">{service.title}</h1>
+              <p className="text-xl text-white/90 mb-4">{service.tagline}</p>
             </div>
-            {protocol.status === 'featured' && (
-              <div className="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap">
-                ⭐ Featured
+            {service.status === 'featured' && (
+              <div className="bg-sage-green text-deep-teal px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap">
+                ⭐ Popular Service
               </div>
             )}
           </div>
 
           <div className="flex flex-wrap gap-3 text-sm">
             <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-              ⏱️ {protocol.duration}
+              ⏱️ {service.duration} session
             </div>
             <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-              {difficultyStars[protocol.difficulty]} {protocol.difficulty}
+              {complexityLabels[service.complexity]}
             </div>
             <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-              {protocol.poseSequence.length} poses
+              {service.pressurePoints.length} pressure points
             </div>
             <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-              📋 {categoryLabels[protocol.category]}
+              📋 {categoryLabels[service.category]}
             </div>
           </div>
         </div>
@@ -122,99 +58,81 @@ export default async function ProtocolPage({
           {/* Main Column */}
           <div className="lg:col-span-2 space-y-8">
             {/* Introduction */}
-            {protocol.introduction && (
-              <section className="bg-white rounded-xl shadow-md p-6 border border-slate-200">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <span className="text-3xl">🎯</span>
-                  What This Protocol Does
-                </h2>
-                <div className="prose prose-slate max-w-none">
-                  <PortableText value={protocol.introduction} />
-                </div>
-                {protocol.targetIssue && (
-                  <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <p className="text-sm font-semibold text-blue-900">
-                      <strong>Targets:</strong> {protocol.targetIssue}
-                    </p>
-                  </div>
-                )}
-              </section>
-            )}
+            <section className="bg-white rounded-xl shadow-md p-6 border border-slate-200">
+              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                <span className="text-3xl">🎯</span>
+                About This Service
+              </h2>
+              <div className="prose prose-slate max-w-none">
+                <p className="text-slate-700">{service.description}</p>
+              </div>
+              <div className="mt-4 p-4 bg-calm-blue/10 rounded-lg border border-calm-blue/30">
+                <p className="text-sm font-semibold text-deep-teal">
+                  <strong>Targets:</strong> {service.targetIssue}
+                </p>
+              </div>
+            </section>
 
             {/* The Science */}
-            {protocol.scienceExplainer && (
-              <section className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-md p-6 border border-purple-200">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <span className="text-3xl">🧬</span>
-                  The Science
-                </h2>
-                <div className="prose prose-slate max-w-none">
-                  <PortableText value={protocol.scienceExplainer} />
-                </div>
-              </section>
-            )}
+            <section className="bg-gradient-to-br from-sage-green/10 to-calm-blue/10 rounded-xl shadow-md p-6 border border-sage-green/30">
+              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                <span className="text-3xl">🧬</span>
+                The Science & Mechanism
+              </h2>
+              <div className="prose prose-slate max-w-none">
+                <p className="text-slate-700">{service.science}</p>
+              </div>
+            </section>
 
-            {/* Pose Sequence */}
+            {/* Treatment Sequence */}
             <section className="bg-white rounded-xl shadow-md p-6 border border-slate-200">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <span className="text-3xl">🧘</span>
-                The Sequence
+                <span className="text-3xl">💆</span>
+                Treatment Sequence
               </h2>
 
               <div className="space-y-6">
-                {protocol.poseSequence.map((step: any, idx: number) => (
+                {service.pressurePoints.map((point, idx) => (
                   <div
-                    key={step._key}
-                    className="flex gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-green-300 transition-colors"
+                    key={idx}
+                    className="flex gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-calm-blue transition-colors"
                   >
                     {/* Step Number */}
                     <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                      <div className="w-10 h-10 bg-gradient-to-br from-deep-teal to-calm-blue text-white rounded-full flex items-center justify-center font-bold">
                         {idx + 1}
                       </div>
                     </div>
 
-                    {/* Pose Info */}
+                    {/* Point Info */}
                     <div className="flex-grow">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <div>
-                          <Link
-                            href={`/pose/${step.pose.slug.current}`}
-                            className="text-lg font-bold text-green-600 hover:text-green-700 hover:underline"
-                          >
-                            {step.pose.title}
-                          </Link>
-                          {step.pose.sanskritName && (
-                            <p className="text-sm text-slate-500 italic">
-                              {step.pose.sanskritName}
-                            </p>
-                          )}
+                          <h3 className="text-lg font-bold text-deep-teal">
+                            {point.name}
+                          </h3>
+                          <p className="text-sm text-slate-500 italic font-mono">
+                            {point.code}
+                          </p>
                         </div>
                         <div className="text-sm font-semibold text-slate-700 bg-white px-3 py-1 rounded-full whitespace-nowrap">
-                          {step.duration}
+                          {point.duration}
                         </div>
                       </div>
 
                       {/* Instructions */}
-                      <p className="text-slate-700 text-sm mb-2">
-                        {step.instructions}
+                      <p className="text-slate-700 text-sm">
+                        {point.instructions}
                       </p>
-
-                      {/* Transition */}
-                      {step.transitionNote && (
-                        <p className="text-xs text-slate-500 italic">
-                          ↪ {step.transitionNote}
-                        </p>
-                      )}
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Total Time */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-green-100 to-blue-100 rounded-lg text-center">
+              <div className="mt-6 p-4 bg-gradient-to-r from-sage-green/20 to-calm-blue/20 rounded-lg text-center border border-sage-green/30">
                 <p className="text-sm font-semibold text-slate-700">
-                  Total Practice Time: <span className="text-green-700 text-lg">{protocol.duration}</span>
+                  Session Duration: <span className="text-deep-teal text-lg">{service.duration}</span>
                 </p>
               </div>
             </section>
@@ -222,65 +140,57 @@ export default async function ProtocolPage({
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
-            {/* Benefits */}
-            {protocol.benefits && protocol.benefits.length > 0 && (
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-lg mb-4 text-green-900">✓ Key Benefits</h3>
-                <ul className="space-y-2">
-                  {protocol.benefits.map((benefit: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-green-900">
-                      <span className="text-green-600 mt-0.5">✓</span>
-                      <span>{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Expected Outcomes */}
+            <div className="bg-sage-green/10 border border-sage-green/30 rounded-xl p-6 shadow-md">
+              <h3 className="font-bold text-lg mb-4 text-deep-teal">✓ Expected Outcomes</h3>
+              <ul className="space-y-2">
+                {service.outcomes.map((outcome, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                    <span className="text-sage-green mt-0.5">✓</span>
+                    <span>{outcome}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            {/* Best Practiced When */}
-            {protocol.bestPracticedWhen && protocol.bestPracticedWhen.length > 0 && (
-              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-lg mb-4 text-blue-900">⏰ Best Practiced When</h3>
-                <ul className="space-y-2">
-                  {protocol.bestPracticedWhen.map((time: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-blue-900">
-                      <span className="text-blue-600 mt-0.5">•</span>
-                      <span>{time}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Ideal For */}
+            <div className="bg-calm-blue/10 border border-calm-blue/30 rounded-xl p-6 shadow-md">
+              <h3 className="font-bold text-lg mb-4 text-deep-teal">👤 Ideal For</h3>
+              <ul className="space-y-2">
+                {service.idealFor.map((person, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                    <span className="text-calm-blue mt-0.5">•</span>
+                    <span>{person}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {/* Frequency */}
-            {protocol.frequency && (
-              <div className="bg-purple-50 border border-purple-200 rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-lg mb-2 text-purple-900">🔁 Frequency</h3>
-                <p className="text-sm text-purple-900">{protocol.frequency}</p>
-              </div>
-            )}
+            <div className="bg-deep-teal/10 border border-deep-teal/30 rounded-xl p-6 shadow-md">
+              <h3 className="font-bold text-lg mb-2 text-deep-teal">🔁 Recommended Frequency</h3>
+              <p className="text-sm text-slate-700">{service.frequency}</p>
+            </div>
 
-            {/* Pro Tips */}
-            {protocol.tips && protocol.tips.length > 0 && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-lg mb-4 text-yellow-900">💡 Pro Tips</h3>
-                <ul className="space-y-2">
-                  {protocol.tips.map((tip: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-yellow-900">
-                      <span className="text-yellow-600 mt-0.5">•</span>
-                      <span>{tip}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Treatment Tips */}
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 shadow-md">
+              <h3 className="font-bold text-lg mb-4 text-amber-900">💡 Treatment Tips</h3>
+              <ul className="space-y-2">
+                {service.tips.map((tip, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-amber-900">
+                    <span className="text-amber-600 mt-0.5">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {/* Contraindications */}
-            {protocol.contraindications && protocol.contraindications.length > 0 && (
+            {service.contraindications.length > 0 && (
               <div className="bg-red-50 border border-red-200 rounded-xl p-6 shadow-md">
-                <h3 className="font-bold text-lg mb-4 text-red-900">⚠️ Cautions</h3>
+                <h3 className="font-bold text-lg mb-4 text-red-900">⚠️ Precautions</h3>
                 <ul className="space-y-2">
-                  {protocol.contraindications.map((warning: string, idx: number) => (
+                  {service.contraindications.map((warning, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-red-900">
                       <span className="text-red-600 mt-0.5">!</span>
                       <span>{warning}</span>
@@ -293,24 +203,24 @@ export default async function ProtocolPage({
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-12 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-3">Ready to Start?</h3>
+        <div className="mt-12 bg-gradient-to-r from-deep-teal to-calm-blue text-white rounded-2xl p-8 text-center">
+          <h3 className="text-2xl font-bold mb-3">Ready to Book This Service?</h3>
           <p className="mb-6 text-white/90 max-w-2xl mx-auto">
-            Set aside {protocol.duration}, find a quiet space, and follow the sequence above.
-            Remember: consistency beats intensity.
+            Schedule a {service.duration} session with Chandan to experience professional acupressure treatment.
+            Personalized care tailored to your specific needs.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
-              href="/protocols"
-              className="bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
+              href="/book"
+              className="bg-warm-coral text-white px-6 py-3 rounded-lg font-semibold hover:bg-warm-coral/90 transition-colors shadow-lg"
             >
-              Browse More Protocols
+              Book This Session
             </Link>
             <Link
-              href="/poses"
+              href="/protocols"
               className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors border border-white/40"
             >
-              Explore All Poses
+              View All Services
             </Link>
           </div>
         </div>
