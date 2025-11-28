@@ -181,8 +181,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Points */}
-      <section className="py-16 bg-slate-medical">
+      {/* Featured Points - Commented out until pressure point library is added */}
+      {/* <section className="py-16 bg-slate-medical">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
@@ -211,7 +211,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Science CTA */}
       <section id="science" className="py-16 bg-white scroll-mt-20">
