@@ -85,13 +85,13 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
       <div className="container mx-auto px-4">
         {/* Hero Text */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-charcoal mb-6 leading-tight min-h-[160px] md:min-h-[180px] flex items-center justify-center">
+          <h1 className="font-heading text-5xl md:text-6xl font-bold text-charcoal mb-6 leading-tight min-h-40 md:min-h-44 flex items-center justify-center">
             <span
               className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
               style={{ display: 'block' }}
             >
               {headlines[currentHeadline].line1}
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-calm-blue to-sage-green mt-2">
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-calm-blue to-sage-green mt-2">
                 {headlines[currentHeadline].line2}
               </span>
             </span>
@@ -147,6 +147,12 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
               className="px-8 py-4 bg-calm-blue hover:bg-calm-blue-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
               Browse Points
+            </a>
+            <a
+              href="/assessment"
+              className="px-8 py-4 border-2 border-calm-blue text-calm-blue hover:bg-calm-blue hover:text-white font-bold rounded-full transition-all hover:scale-105"
+            >
+              Yin–Yang Assessment
             </a>
             <a
               href="/book"

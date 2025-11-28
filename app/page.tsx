@@ -168,7 +168,7 @@ export default function Home() {
                   <h3 className="text-xl font-heading font-semibold text-charcoal mb-2 group-hover:text-calm-blue transition-colors">
                     {category.name}
                   </h3>
-                  <p className="text-sm text-slate-gray flex-grow">
+                  <p className="text-sm text-slate-gray grow">
                     {category.description}
                   </p>
                   <div className="mt-4 text-calm-blue font-medium flex items-center group-hover:translate-x-1 transition-transform">
@@ -240,7 +240,7 @@ export default function Home() {
           <div className="text-center">
             <h3 className="text-2xl font-heading font-bold mb-4">Accucentral</h3>
             <p className="text-slate-200 mb-6">
-              The Google Maps of Your Body — Instant Pain Relief Through Acupressure
+              Pain Relief Through Acupressure
             </p>
 
             {/* Recommended Reading */}

@@ -1,6 +1,6 @@
-# Accucentral - The Google Maps of Your Body
+# Accucentral - Pain Relief Through Acupressure
 
-Modern acupressure knowledge platform for instant pain relief through searchable pressure points and interactive body mapping.
+Modern acupressure knowledge platform for instant pain relief through searchable pressure points and evidence-based treatment protocols.
 
 ## Architecture
 
@@ -48,4 +48,4 @@ Built on proven VrikshaYoga architecture:
 
 ## Vision
 
-**"The Google Maps of the Body"** - Making ancient acupressure knowledge instantly accessible through modern search and visualization technology.
+**Pain Relief Through Acupressure** - Making ancient acupressure knowledge instantly accessible through modern search and evidence-based treatment protocols.

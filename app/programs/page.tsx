@@ -52,24 +52,24 @@ export default async function ProgramsPage() {
       <header className="bg-slate-medical border-b border-slate-200">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-heading font-bold text-navy-500">
-              VrikshaYoga
+            <Link href="/" className="text-2xl font-heading font-bold text-deep-teal">
+              Accucentral
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/protocols" className="text-slate-600 hover:text-navy-500 font-semibold">
+              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Points
+              </Link>
+              <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Protocols
               </Link>
-              <Link href="/poses" className="text-slate-600 hover:text-navy-500">
-                Poses
-              </Link>
-              <Link href="/science" className="text-slate-600 hover:text-navy-500">
+              <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
               </Link>
-              <Link href="/about" className="text-slate-600 hover:text-navy-500">
+              <Link href="/about" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 About
               </Link>
-              <Link href="/assessment" className="px-4 py-2 bg-coral text-white rounded-lg hover:bg-coral-500 transition font-semibold">
-                Yin–Yang Energy Assessment
+              <Link href="/book" className="px-4 py-2 bg-warm-coral text-white rounded-lg hover:bg-warm-coral-500 transition font-semibold shadow-md">
+                Book Consultation
               </Link>
             </nav>
           </div>
