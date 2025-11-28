@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /s /b *.pdf)",
+      "Bash(findstr:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(xcopy:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
