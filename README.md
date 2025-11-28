@@ -1,51 +1,51 @@
-# VrikshaYoga Gen2 - AI Yoga Content Factory
+# Accucentral - The Google Maps of Your Body
 
-Production-ready serverless application that uses AI to generate high-quality yoga pose content.
+Modern acupressure knowledge platform for instant pain relief through searchable pressure points and interactive body mapping.
 
 ## Architecture
 
-- **Frontend:** Next.js 16 (App Router) + TypeScript + Tailwind CSS
+- **Frontend:** Next.js 16 (App Router) + TypeScript + Tailwind CSS v4
 - **CMS:** Sanity Studio (embedded at `/studio`)
-- **Infrastructure:** AWS Amplify Gen 2 (Code-first IaC)
-- **Auth:** AWS Cognito with Admin Group
-- **Error Tracking:** DynamoDB FailedGenerations table
-- **AI Backend:** AWS Bedrock (Claude 3 Haiku + Sonnet 3.5 + Titan Image) - Phase 2
+- **Deployment:** Vercel
+- **Search:** Symptom-based point discovery
+- **Interactive Atlas:** Body mapping visualization (Phase 2)
 
-## Project Status
+## Core Features
 
-### ✅ Phase 1: Foundation (COMPLETE)
-- [x] Next.js project scaffolding
-- [x] Amplify Gen 2 setup (auth + data)
-- [x] Sanity CMS integration
-- [x] Embedded Studio at `/studio`
-- [x] yogaPose schema defined
-- [x] DynamoDB FailedGenerations table
-- [x] Cognito with Admins group
+### Current (MVP)
+- Symptom search engine ("Where does it hurt?")
+- Pressure point library with high-res location photos
+- Daily protocols (Tech-Neck Release, Insomnia Switch, Anxiety Reset, etc.)
+- Meridian science education
+- Appointment booking integration
 
-### 🔜 Phase 2: AI Agents (Coming Next)
-- [ ] AWS Step Functions state machine
-- [ ] Python Lambda: Research Agent (Claude 3 Haiku)
-- [ ] Python Lambda: Writer Agent (Claude 3.5 Sonnet)
-- [ ] Python Lambda: Artist Agent (Titan Image v2)
-- [ ] Python Lambda: Draft Builder (Sanity API client)
-- [ ] Admin UI trigger page
+### Coming Soon
+- Interactive 2D/3D body atlas
+- Practitioner directory
+- Certification courses
+- E-commerce (acupressure tools)
+
+## Project Foundation
+
+Built on proven VrikshaYoga architecture:
+- Same tech stack (Next.js + Sanity + Tailwind)
+- Adapted content model (poses → pressure points)
+- Enhanced with acupressure-specific features
 
 ## Setup Instructions
 
 ### Prerequisites
-
 - Node.js 18+ installed
-- AWS account with credentials configured
 - Sanity account (create at https://sanity.io/)
+- Vercel account for deployment
 
 ### Steps
 
 1. Install dependencies: `npm install`
 2. Configure Sanity: Update `.env.local` with your Project ID and API token
-3. Start Amplify: `npx ampx sandbox`
-4. Start Next.js: `npm run dev`
-5. Access Studio: http://localhost:3000/studio
+3. Start Next.js: `npm run dev`
+4. Access Studio: http://localhost:3000/studio
 
-## Next Steps
+## Vision
 
-See v-yoga.md for Phase 2 implementation plan.
+**"The Google Maps of the Body"** - Making ancient acupressure knowledge instantly accessible through modern search and visualization technology.
