@@ -61,7 +61,7 @@ export default async function SciencePage() {
                 About
               </Link>
               <Link href="/assessment" className="px-4 py-2 bg-coral text-white rounded-lg hover:bg-coral-500 transition font-semibold">
-                Take Assessment
+                Yin–Yang Energy Assessment
               </Link>
             </nav>
           </div>
@@ -86,6 +86,23 @@ export default async function SciencePage() {
               source="The Myth of Normal"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Yin–Yang Framework Intro */}
+      <section id="yin-yang" className="py-12 bg-white scroll-mt-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-3xl font-heading font-bold text-deep-teal mb-4 text-center">Yin–Yang Energy: A Practical Lens</h2>
+          <p className="text-slate-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-6">
+            We use a simple Yin–Yang framing to organize common symptom patterns. Yin often maps to cooling, moistening, and rest; Yang to warming, activating, and movement. 
+            This model is educational—not a medical diagnosis—and helps guide safe, non‑pharmacologic self‑care.
+          </p>
+          <div className="text-center">
+            <Link href="/assessment" className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors">
+              Take the Yin–Yang Energy Assessment →
+            </Link>
+          </div>
+          <p className="text-xs text-slate-500 mt-6 text-center">Always consider personal conditions (e.g., pregnancy) and consult a qualified clinician for medical concerns.</p>
         </div>
       </section>
 
@@ -177,7 +194,7 @@ export default async function SciencePage() {
               href="/assessment"
               className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold rounded-lg transition-colors text-lg"
             >
-              Discover Your Profile →
+              Yin–Yang Energy Assessment →
             </Link>
           </div>
         </div>
@@ -380,13 +397,13 @@ export default async function SciencePage() {
             Want Personalized Guidance?
           </h2>
           <p className="text-lg text-slate-600 mb-8">
-            Take our free cortisol assessment to discover your unique stress profile and get custom recommendations.
+            Take our Yin–Yang Energy Assessment to discover your current pattern and get tailored point suggestions.
           </p>
           <Link
             href="/assessment"
             className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold text-lg rounded-lg transition-colors"
           >
-            Take the Assessment →
+            Yin–Yang Energy Assessment →
           </Link>
         </div>
       </section>

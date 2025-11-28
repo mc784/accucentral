@@ -69,7 +69,7 @@ export default async function ProgramsPage() {
                 About
               </Link>
               <Link href="/assessment" className="px-4 py-2 bg-coral text-white rounded-lg hover:bg-coral-500 transition font-semibold">
-                Take Assessment
+                Yin–Yang Energy Assessment
               </Link>
             </nav>
           </div>
@@ -143,7 +143,7 @@ export default async function ProgramsPage() {
                   href="/assessment"
                   className="inline-block px-6 py-3 bg-coral hover:bg-coral-500 text-white font-semibold rounded-lg transition-colors"
                 >
-                  Take Assessment First →
+                  Start Yin–Yang Assessment →
                 </Link>
                 <Link
                   href="/poses"
@@ -234,7 +234,7 @@ export default async function ProgramsPage() {
             href="/assessment"
             className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold text-lg rounded-lg transition-colors"
           >
-            Take the Assessment →
+            Yin–Yang Energy Assessment →
           </Link>
         </div>
       </section>

@@ -176,6 +176,9 @@ export default function AssessmentPage() {
               </div>
             </div>
 
+            {/* Technique Guidance per Point */}
+            <TechniqueGuidance points={profile.points} />
+
             <div className="flex gap-4 justify-center">
               <button
                 onClick={restart}
@@ -274,6 +277,53 @@ export default function AssessmentPage() {
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+// --- Technique Guidance Component ---
+function TechniqueGuidance({ points }: { points: string[] }) {
+  const extractCode = (label: string) => {
+    const m = label.match(/^[A-Z]{1,2}\d+/)
+    if (m) return m[0]
+    const beforeParen = label.split('(')[0].trim()
+    return beforeParen.split(' ')[0]
+  }
+
+  const technique: Record<string, { duration: string; pressure: string; frequency: string; caution?: string }> = {
+    LI4: { duration: '30–60 seconds each side', pressure: 'Moderate, firm but comfortable', frequency: '2–3 times daily', caution: 'Avoid during pregnancy' },
+    SP6: { duration: '30–60 seconds each side', pressure: 'Gentle to moderate', frequency: '1–2 times daily', caution: 'Avoid during pregnancy' },
+    HT7: { duration: '60–90 seconds', pressure: 'Gentle, steady', frequency: 'Evening or when anxious' },
+    ST36: { duration: '60 seconds each side', pressure: 'Moderate', frequency: 'Daily, especially mornings' },
+    KI3: { duration: '60 seconds each side', pressure: 'Gentle to moderate', frequency: 'Daily' },
+    CV6: { duration: '60 seconds', pressure: 'Gentle, vertical pressure', frequency: 'Daily, especially mornings' },
+    LV3: { duration: '30–60 seconds each side', pressure: 'Moderate', frequency: '1–2 times daily' },
+    GB20: { duration: '30–60 seconds', pressure: 'Gentle to moderate with head support', frequency: 'As needed for tension' },
+    PC6: { duration: '60 seconds each side', pressure: 'Gentle to moderate', frequency: 'As needed for nausea or anxiety' },
+    LI11: { duration: '30–60 seconds each side', pressure: 'Moderate', frequency: 'As needed for heat/tension' },
+  }
+
+  const uniqueCodes = Array.from(new Set(points.map(extractCode)))
+
+  return (
+    <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 mb-8">
+      <h3 className="text-2xl font-heading font-bold text-deep-teal mb-4">Technique Guidance</h3>
+      <p className="text-slate-700 mb-4">Use slow, steady pressure. Breathe through the sensation and ease off if painful or numb.</p>
+      <div className="grid md:grid-cols-2 gap-4">
+        {uniqueCodes.map((code) => {
+          const t = technique[code]
+          return (
+            <div key={code} className="border-2 border-slate-200 rounded-lg p-4">
+              <div className="font-semibold text-charcoal mb-1">{code}</div>
+              <div className="text-sm text-slate-700"><strong>Duration:</strong> {t?.duration || '30–60 seconds'}</div>
+              <div className="text-sm text-slate-700"><strong>Pressure:</strong> {t?.pressure || 'Gentle to moderate'}</div>
+              <div className="text-sm text-slate-700"><strong>Frequency:</strong> {t?.frequency || '1–2 times daily'}</div>
+              {t?.caution && <div className="text-xs text-warm-coral mt-1"><strong>Caution:</strong> {t.caution}</div>}
+            </div>
+          )
+        })}
+      </div>
+      <p className="text-xs text-slate-500 mt-4">These guidelines are educational and not a substitute for clinical advice.</p>
     </div>
   )
 }

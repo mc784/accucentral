@@ -25,7 +25,7 @@ export default function AboutPage() {
                 About
               </Link>
               <Link href="/assessment" className="px-4 py-2 bg-coral text-white rounded-lg hover:bg-coral-500 transition font-semibold">
-                Take Assessment
+                Yin–Yang Energy Assessment
               </Link>
             </nav>
           </div>
@@ -157,7 +157,7 @@ export default function AboutPage() {
               href="/assessment"
               className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold rounded-xl transition-colors text-lg"
             >
-              Start Your Journey →
+              Start Yin–Yang Assessment →
             </Link>
           </div>
         </div>

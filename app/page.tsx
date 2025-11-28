@@ -224,12 +224,12 @@ export default function Home() {
             Evidence-based education grounded in both TCM wisdom and modern neuroscience.
           </p>
           <Link
-            href="/science"
+            href="/science#yin-yang"
             className="inline-block px-8 py-4 bg-deep-teal hover:bg-deep-teal-600
                        text-white font-semibold text-lg rounded-lg
                        transition-colors shadow-lg"
           >
-            Explore the Science →
+            Explore Yin–Yang Basics →
           </Link>
         </div>
       </section>

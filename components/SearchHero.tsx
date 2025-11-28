@@ -155,7 +155,7 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
               Book Consultation
             </a>
             <a
-              href="/science"
+              href="/science#yin-yang"
               className="px-8 py-4 border-2 border-sage-green text-sage-green-700 hover:bg-sage-green hover:text-white font-bold rounded-full transition-all hover:scale-105"
             >
               The Science
