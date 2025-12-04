@@ -185,8 +185,33 @@ export default function SpecialistsPage() {
           })}
         </div>
 
+        {/* Join as Provider CTA */}
+        <div className="mt-16 bg-linear-to-r from-deep-teal to-calm-blue rounded-2xl p-10 text-center text-white shadow-2xl">
+          <h2 className="text-3xl font-heading font-bold mb-4">
+            Are You an AYUSH Certified Therapist?
+          </h2>
+          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+            Join our network of certified specialists. Earn 70-80% commission on every session.
+            Weekly payouts, flexible hours, and verified bookings through our dispatch system.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/providers/register"
+              className="inline-block px-10 py-4 bg-[#F4A261] hover:bg-[#E96F1C] text-white font-bold text-lg rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              Join as Provider →
+            </Link>
+            <Link
+              href="/providers/dashboard"
+              className="inline-block px-10 py-4 bg-white text-deep-teal font-bold text-lg rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              Provider Login
+            </Link>
+          </div>
+        </div>
+
         {/* Bottom Info */}
-        <div className="mt-16 bg-linear-to-r from-sage-green/20 to-calm-blue/20 rounded-2xl p-8 text-center border-2 border-deep-teal/30">
+        <div className="mt-8 bg-linear-to-r from-sage-green/20 to-calm-blue/20 rounded-2xl p-8 text-center border-2 border-deep-teal/30">
           <h2 className="text-2xl font-heading font-bold text-deep-teal mb-3">
             All Bookings Through AccuCentral Dispatch
           </h2>
