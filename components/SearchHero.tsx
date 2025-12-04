@@ -143,16 +143,10 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
               Explore Services
             </a>
             <a
-              href="/protocols"
+              href="/assessment"
               className="px-8 py-4 bg-gray-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-700"
             >
-              Browse Services
-            </a>
-            <a
-              href="/book"
-              className="px-8 py-4 bg-gray-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-700"
-            >
-              Book Consultation
+              Yin-Yang Assessment
             </a>
             <a
               href="/science#yin-yang"
