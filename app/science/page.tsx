@@ -77,10 +77,13 @@ export default async function SciencePage() {
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-3xl font-heading font-bold text-deep-teal mb-4 text-center">Yin–Yang Energy: A Practical Lens</h2>
           <p className="text-slate-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-6">
-            We use a simple Yin–Yang framing to organize common symptom patterns. Yin often maps to cooling, moistening, and rest; Yang to warming, activating, and movement. 
+            We use a simple Yin–Yang framing to organize common symptom patterns. Yin often maps to cooling, moistening, and rest; Yang to warming, activating, and movement.
             This model is educational—not a medical diagnosis—and helps guide safe, non‑pharmacologic self‑care.
           </p>
-          <div className="text-center">
+          <div className="text-center flex flex-wrap justify-center gap-4">
+            <Link href="/assessment" className="inline-block px-6 py-3 bg-sage-green-700 hover:bg-sage-green-800 text-white font-semibold rounded-lg transition-colors">
+              Take Yin-Yang Assessment
+            </Link>
             <Link href="/protocols" className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors">
               Explore Services & Protocols →
             </Link>
