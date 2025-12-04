@@ -138,26 +138,25 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             <a
               href="/protocols"
-              className="px-8 py-4 bg-[#4A7C7E] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#4A7C7E] hover:bg-[#3C6567]"
+              className="px-8 py-4 bg-gray-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-700"
             >
               Explore Services
             </a>
             <a
               href="/protocols"
-              className="px-8 py-4 bg-[#7FB3D5] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#7FB3D5] hover:bg-[#5A9BC7]"
+              className="px-8 py-4 bg-gray-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-700"
             >
               Browse Services
             </a>
-            {/* Assessment removed per request */}
             <a
               href="/book"
-              className="px-8 py-4 bg-[#F4A261] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#F4A261] hover:bg-[#E96F1C]"
+              className="px-8 py-4 bg-gray-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-700"
             >
               Book Consultation
             </a>
             <a
               href="/science#yin-yang"
-              className="px-8 py-4 bg-[#4A7C7E] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#4A7C7E] hover:bg-[#3C6567]"
+              className="px-8 py-4 bg-gray-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 hover:bg-gray-700"
             >
               The Science
             </a>
