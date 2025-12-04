@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { SearchHero } from '@/components/SearchHero'
 import { ScienceNote } from '@/components/ScienceNote'
 import { StickyBookingButton } from '@/components/StickyBookingButton'
-import { getFeaturedServices, complexityLabels } from '@/data/services'
+import { getFeaturedServices } from '@/data/services'
 
 // Placeholder pose count (will be dynamic when we add pressure points library)
 const totalCount = 100
@@ -116,8 +116,8 @@ export default function Home() {
                     <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
                       ⏱️ {service.duration}
                     </span>
-                    <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700 capitalize">
-                      {complexityLabels[service.complexity]}
+                    <span className="bg-slate-100 px-3 py-1 rounded-full text-slate-700">
+                      ₹{service.price}
                     </span>
                   </div>
                   <div className="mt-4 text-calm-blue font-semibold flex items-center group-hover:translate-x-1 transition-transform">
