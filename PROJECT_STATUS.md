@@ -46,7 +46,7 @@ The homepage currently has VrikshaYoga content. Here's what needs to change:
 
 **Proposed for Accucentral:**
 - Logo: "Accucentral"
-- Nav: Points | Protocols | Science | About | **Book Consultation**
+- Nav: Services | Protocols | Science | About | **Book Consultation**
 - Colors: deep-teal (navigation) + warm-coral (CTA)
 
 #### Hero Section (SearchHero component)
@@ -111,12 +111,9 @@ Replace `yogaPose` with `acupressurePoint`:
 }
 ```
 
-**2. Update: File/Component Names**
-- `yogaPose.ts` → `acupressurePoint.ts`
-- `PoseCard.tsx` → `PointCard.tsx`
-- `PoseFilters.tsx` → `PointFilters.tsx`
-- `/pose/[slug]` → `/point/[code]`
-- `/poses` → `/points`
+**2. Routing/Components Update**
+- Neutralized legacy components: `PoseCard.tsx`, `PoseFilters.tsx`, `PosesClient.tsx`
+- `/pose/[slug]` and `/poses` now redirect to `/protocols`
 
 ---
 
@@ -217,17 +214,18 @@ accucentral/
 │   ├── page.tsx (needs homepage updates)
 │   ├── layout.tsx (needs font updates)
 │   ├── about/ (needs content rewrite)
-│   ├── assessment/ (repurpose for symptom quiz?)
-│   ├── pose/ → point/ (needs rename)
-│   ├── poses/ → points/ (needs rename)
+│   ├── assessment/ (redirects to /book)
+│   ├── pose/ (redirects to /protocols)
+│   ├── poses/ (redirects to /protocols)
 │   ├── protocol/ (keep, update content)
 │   ├── protocols/ (keep, update content)
 │   ├── science/ (needs content rewrite)
 │   └── studio/ (Sanity Studio - new project)
 ├── components/
-│   ├── PoseCard.tsx → PointCard.tsx (needs rename)
-│   ├── PoseFilters.tsx → PointFilters.tsx (needs rename)
-│   ├── SearchHero.tsx (needs text updates)
+│   ├── PoseCard.tsx (neutralized)
+│   ├── PoseFilters.tsx (neutralized)
+│   ├── PosesClient.tsx (neutralized)
+│   ├── SearchHero.tsx (updated to services-first)
 │   ├── ScienceNote.tsx (keep, change gold → teal borders)
 │   └── StickyAssessmentButton.tsx → StickyBookingButton.tsx
 ├── sanity/

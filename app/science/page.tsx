@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { client } from '@/lib/sanity.client'
 import Image from 'next/image'
 import { ScienceNote } from '@/components/ScienceNote'
 
@@ -17,23 +16,7 @@ interface Article {
   publishedAt?: string
 }
 
-async function getArticles(): Promise<Article[]> {
-  const query = `*[_type == "article" && status == "published"] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    excerpt,
-    category,
-    mainImage {
-      asset-> {
-        url
-      }
-    },
-    publishedAt
-  }`
-
-  return client.fetch(query)
-}
+async function getArticles(): Promise<Article[]> { return [] }
 
 export default async function SciencePage() {
   const articles = await getArticles()
@@ -48,11 +31,8 @@ export default async function SciencePage() {
               Accucentral
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Points
-              </Link>
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Protocols
+                Services
               </Link>
               <Link href="/science" className="text-deep-teal font-medium">
                 Science
@@ -71,7 +51,7 @@ export default async function SciencePage() {
       {/* Hero */}
       <section className="bg-slate-medical py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-heading font-bold text-navy-500 mb-6">
+          <h1 className="text-5xl md:text-6xl font-heading font-bold text-charcoal mb-6">
             The Science
           </h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
@@ -98,8 +78,8 @@ export default async function SciencePage() {
             This model is educational—not a medical diagnosis—and helps guide safe, non‑pharmacologic self‑care.
           </p>
           <div className="text-center">
-            <Link href="/assessment" className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors">
-              Take the Yin–Yang Energy Assessment →
+            <Link href="/protocols" className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors">
+              Explore Services & Protocols →
             </Link>
           </div>
           <p className="text-xs text-slate-500 mt-6 text-center">Always consider personal conditions (e.g., pregnancy) and consult a qualified clinician for medical concerns.</p>
@@ -109,13 +89,13 @@ export default async function SciencePage() {
       {/* Section 1: The Biology of Stress */}
       <section className="py-16 bg-white" id="biology">
         <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-4xl font-heading font-bold text-navy-500 mb-8 text-center">
+          <h2 className="text-4xl font-heading font-bold text-charcoal mb-8 text-center">
             How Chronic Stress Hijacks Your Body
           </h2>
 
           {/* HPA Axis */}
           <div className="mb-12">
-            <h3 className="text-2xl font-heading font-bold text-navy-500 mb-4">The HPA Axis Explained</h3>
+            <h3 className="text-2xl font-heading font-bold text-charcoal mb-4">The HPA Axis Explained</h3>
             <p className="text-lg text-slate-700 leading-relaxed mb-4">
               When you face stress, your body activates the <strong>HPA Axis</strong> (Hypothalamus → Pituitary → Adrenal pathway). 
               This is your body's alarm system, designed to save your life in emergencies.
@@ -128,17 +108,17 @@ export default async function SciencePage() {
 
           {/* Acute vs Chronic */}
           <div className="mb-12 bg-slate-50 p-8 rounded-xl">
-            <h3 className="text-2xl font-heading font-bold text-navy-500 mb-6">Acute vs. Chronic Stress</h3>
+            <h3 className="text-2xl font-heading font-bold text-charcoal mb-6">Acute vs. Chronic Stress</h3>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-xl font-semibold text-navy-500 mb-3">🦓 The Zebra (Acute Stress)</h4>
+                <h4 className="text-xl font-semibold text-charcoal mb-3">🦓 The Zebra (Acute Stress)</h4>
                 <p className="text-slate-700 mb-2"><strong>Duration:</strong> 5 minutes</p>
                 <p className="text-slate-700 mb-2"><strong>Trigger:</strong> Lion chases zebra</p>
                 <p className="text-slate-700 mb-2"><strong>Response:</strong> Cortisol spike → escape → cortisol drops</p>
                 <p className="text-slate-700"><strong>Result:</strong> System resets, zebra grazes peacefully</p>
               </div>
               <div>
-                <h4 className="text-xl font-semibold text-navy-500 mb-3">💼 The Human (Chronic Stress)</h4>
+                <h4 className="text-xl font-semibold text-charcoal mb-3">💼 The Human (Chronic Stress)</h4>
                 <p className="text-slate-700 mb-2"><strong>Duration:</strong> 8 hours/day, every day</p>
                 <p className="text-slate-700 mb-2"><strong>Trigger:</strong> Email, Slack, meetings, deadlines</p>
                 <p className="text-slate-700 mb-2"><strong>Response:</strong> Cortisol elevated all day, every day</p>
@@ -149,36 +129,34 @@ export default async function SciencePage() {
 
           {/* Three Cortisol Profiles */}
           <div className="mb-12">
-            <h3 className="text-2xl font-heading font-bold text-navy-500 mb-6">The Three Cortisol Profiles</h3>
+            <h3 className="text-2xl font-heading font-bold text-charcoal mb-6">The Three Cortisol Profiles</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-lg border-2 border-coral/30">
-                <h4 className="text-xl font-semibold text-navy-500 mb-3">🔥 The Spiker</h4>
+                <h4 className="text-xl font-semibold text-charcoal mb-3">🔥 The Spiker</h4>
                 <p className="text-sm text-slate-600 mb-2"><strong>Pattern:</strong> High morning cortisol, crashes by 3 PM</p>
                 <p className="text-sm text-slate-600"><strong>Symptoms:</strong> Morning anxiety, afternoon exhaustion, needs caffeine to function</p>
               </div>
               <div className="bg-white p-6 rounded-lg border-2 border-slate-300">
-                <h4 className="text-xl font-semibold text-navy-500 mb-3">😴 The Flatliner</h4>
+                <h4 className="text-xl font-semibold text-charcoal mb-3">😴 The Flatliner</h4>
                 <p className="text-sm text-slate-600 mb-2"><strong>Pattern:</strong> Flat cortisol all day (adrenal fatigue)</p>
                 <p className="text-sm text-slate-600"><strong>Symptoms:</strong> Chronic exhaustion, can't get out of bed, brain fog</p>
               </div>
-              <div className="bg-white p-6 rounded-lg border-2 border-navy-300">
-                <h4 className="text-xl font-semibold text-navy-500 mb-3">🌙 The Night Owl</h4>
+              <div className="bg-white p-6 rounded-lg border-2 border-calm-blue-300">
+                <h4 className="text-xl font-semibold text-charcoal mb-3">🌙 The Night Owl</h4>
                 <p className="text-sm text-slate-600 mb-2"><strong>Pattern:</strong> Reversed curve, high at night</p>
                 <p className="text-sm text-slate-600"><strong>Symptoms:</strong> Wired at night, can't fall asleep, groggy mornings</p>
               </div>
             </div>
           </div>
 
-          {/* Why Yoga Regulates */}
+          {/* Why Acupressure Regulates */}
           <div className="mb-8">
-            <h3 className="text-2xl font-heading font-bold text-navy-500 mb-4">Why Yoga Regulates the Nervous System</h3>
+            <h3 className="text-2xl font-heading font-bold text-charcoal mb-4">Why Acupressure Regulates the Nervous System</h3>
             <p className="text-lg text-slate-700 leading-relaxed mb-4">
-              Yoga isn't just stretching. It's <strong>vagus nerve activation</strong>—the direct pathway to switching your body 
-              from "fight or flight" (sympathetic) to "rest and digest" (parasympathetic).
+              Acupressure applies targeted mechanical pressure that modulates <strong>vagal tone</strong>, influences spinal <strong>gate control</strong> of pain, and improves local circulation via <strong>mechanotransduction</strong>—helping your body shift from sympathetic to parasympathetic state.
             </p>
             <p className="text-lg text-slate-700 leading-relaxed">
-              When you combine <strong>movement + breath</strong>, you create a biological reset that no pill, no meditation app, 
-              and no amount of "self-care" can replicate.
+              Gentle pressure + paced breathing create a practical biological reset you can use daily alongside professional care when needed.
             </p>
           </div>
 
@@ -191,10 +169,10 @@ export default async function SciencePage() {
 
           <div className="text-center mt-12">
             <Link
-              href="/assessment"
-              className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold rounded-lg transition-colors text-lg"
+              href="/protocols"
+              className="inline-block px-8 py-4 bg-warm-coral hover:bg-warm-coral-500 text-white font-semibold rounded-lg transition-colors text-lg"
             >
-              Yin–Yang Energy Assessment →
+              View Services →
             </Link>
           </div>
         </div>
@@ -203,12 +181,12 @@ export default async function SciencePage() {
       {/* Section 2: Why This Works */}
       <section className="py-16 bg-slate-medical">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-heading font-bold text-navy-500 mb-8 text-center">
+          <h2 className="text-4xl font-heading font-bold text-charcoal mb-8 text-center">
             Why This Works
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-xl">
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">
                 🧠 Nervous System Regulation
               </h3>
               <p className="text-slate-600">
@@ -217,7 +195,7 @@ export default async function SciencePage() {
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl">
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">
                 💊 Cortisol Management
               </h3>
               <p className="text-slate-600">
@@ -226,7 +204,7 @@ export default async function SciencePage() {
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl">
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">
                 🩺 Evidence-Based Movements
               </h3>
               <p className="text-slate-600">
@@ -235,7 +213,7 @@ export default async function SciencePage() {
               </p>
             </div>
             <div className="bg-white p-6 rounded-xl">
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">
                 ⏱️ Micro-Dose Interventions
               </h3>
               <p className="text-slate-600">
@@ -253,15 +231,15 @@ export default async function SciencePage() {
           {articles.length === 0 ? (
             <div className="max-w-2xl mx-auto text-center py-16">
               <div className="text-6xl mb-6">📚</div>
-              <h2 className="text-3xl font-heading font-bold text-navy-500 mb-4">
+              <h2 className="text-3xl font-heading font-bold text-charcoal mb-4">
                 Articles Coming Soon
               </h2>
               <p className="text-lg text-slate-600 mb-8">
-                We're crafting in-depth, science-backed articles on cortisol regulation, nervous system health, and yoga anatomy. 
+                We're crafting in-depth, science‑backed articles on acupressure, pain science, and nervous system health. 
                 Check back soon!
               </p>
-              <div className="bg-gold-300/10 border border-gold-300/30 rounded-xl p-6 text-left">
-                <h3 className="font-heading font-semibold text-navy-500 mb-3">Upcoming Articles:</h3>
+              <div className="bg-sage-green-300/10 border border-sage-green-300/30 rounded-xl p-6 text-left">
+                <h3 className="font-heading font-semibold text-charcoal mb-3">Upcoming Articles:</h3>
                 <ul className="space-y-2 text-slate-600">
                   <li>• Why You're Addicted to Being Busy (The Dopamine-Cortisol Loop)</li>
                   <li>• The 3 AM Wake-Up Call: Liver, Blood Sugar & Adrenaline</li>
@@ -272,10 +250,10 @@ export default async function SciencePage() {
               </div>
               <div className="mt-8">
                 <Link
-                  href="/poses"
-                  className="inline-block px-6 py-3 bg-navy-500 hover:bg-navy-600 text-white font-semibold rounded-lg transition-colors"
+                  href="/protocols"
+                  className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors"
                 >
-                  Explore Poses Instead →
+                  Explore Protocols Instead →
                 </Link>
               </div>
             </div>
@@ -287,7 +265,7 @@ export default async function SciencePage() {
                   href={`/science/${article.slug.current}`}
                   className="group"
                 >
-                  <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200 hover:border-gold-300 transition-all shadow-sm hover:shadow-md">
+                  <div className="bg-white rounded-xl overflow-hidden border-2 border-slate-200 hover:border-sage-green-300 transition-all shadow-sm hover:shadow-md">
                     {article.mainImage?.asset?.url && (
                       <div className="relative h-48 bg-slate-100">
                         <Image
@@ -304,7 +282,7 @@ export default async function SciencePage() {
                           {article.category.replace('-', ' ')}
                         </span>
                       )}
-                      <h2 className="text-xl font-heading font-bold text-navy-500 mt-2 mb-3 group-hover:text-coral transition-colors">
+                      <h2 className="text-xl font-heading font-bold text-charcoal mt-2 mb-3 group-hover:text-warm-coral transition-colors">
                         {article.title}
                       </h2>
                       {article.excerpt && (
@@ -330,7 +308,7 @@ export default async function SciencePage() {
       {/* Section 4: Expert Sources */}
       <section className="py-16 bg-slate-medical">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-heading font-bold text-navy-500 mb-8 text-center">
+          <h2 className="text-4xl font-heading font-bold text-charcoal mb-8 text-center">
             Expert Sources
           </h2>
           
@@ -348,40 +326,40 @@ export default async function SciencePage() {
           </div>
 
           <div className="mb-8">
-            <h3 className="text-2xl font-heading font-bold text-navy-500 mb-6">Recommended Reading</h3>
+            <h3 className="text-2xl font-heading font-bold text-charcoal mb-6">Recommended Reading</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-4 p-4 bg-white rounded-lg">
                 <div className="text-3xl">📖</div>
                 <div>
-                  <h4 className="font-semibold text-navy-500">Why Zebras Don't Get Ulcers</h4>
+                  <h4 className="font-semibold text-charcoal">Why Zebras Don't Get Ulcers</h4>
                   <p className="text-sm text-slate-600">Robert Sapolsky — The definitive book on stress physiology</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 bg-white rounded-lg">
                 <div className="text-3xl">📖</div>
                 <div>
-                  <h4 className="font-semibold text-navy-500">The Body Keeps the Score</h4>
+                  <h4 className="font-semibold text-charcoal">The Body Keeps the Score</h4>
                   <p className="text-sm text-slate-600">Bessel van der Kolk — How trauma lives in the nervous system</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 bg-white rounded-lg">
                 <div className="text-3xl">📖</div>
                 <div>
-                  <h4 className="font-semibold text-navy-500">The Myth of Normal</h4>
+                  <h4 className="font-semibold text-charcoal">The Myth of Normal</h4>
                   <p className="text-sm text-slate-600">Gabor Maté — Trauma, illness, and healing in a toxic culture</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 bg-white rounded-lg">
                 <div className="text-3xl">📖</div>
                 <div>
-                  <h4 className="font-semibold text-navy-500">Breath: The New Science of a Lost Art</h4>
+                  <h4 className="font-semibold text-charcoal">Breath: The New Science of a Lost Art</h4>
                   <p className="text-sm text-slate-600">James Nestor — How breathing regulates everything</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 bg-white rounded-lg">
                 <div className="text-3xl">📖</div>
                 <div>
-                  <h4 className="font-semibold text-navy-500">Huberman Lab Podcast</h4>
+                  <h4 className="font-semibold text-charcoal">Huberman Lab Podcast</h4>
                   <p className="text-sm text-slate-600">Andrew Huberman — Science-based tools for everyday life</p>
                 </div>
               </div>
@@ -393,43 +371,37 @@ export default async function SciencePage() {
       {/* CTA */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 text-center max-w-3xl">
-          <h2 className="text-3xl font-heading font-bold text-navy-500 mb-4">
+          <h2 className="text-3xl font-heading font-bold text-charcoal mb-4">
             Want Personalized Guidance?
           </h2>
           <p className="text-lg text-slate-600 mb-8">
-            Take our Yin–Yang Energy Assessment to discover your current pattern and get tailored point suggestions.
+            Not sure where to start? Browse common concerns and their matching service protocols.
           </p>
           <Link
-            href="/assessment"
-            className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold text-lg rounded-lg transition-colors"
+            href="/protocols"
+            className="inline-block px-8 py-4 bg-warm-coral hover:bg-warm-coral-500 text-white font-semibold text-lg rounded-lg transition-colors"
           >
-            Yin–Yang Energy Assessment →
+            Browse Services →
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-navy-500 text-slate-medical py-12">
+      <footer className="bg-deep-teal text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h3 className="text-2xl font-heading font-bold mb-4">VrikshaYoga</h3>
-            <p className="text-slate-300 mb-6">
-              Regulate your nervous system, not just your hamstrings
-            </p>
+            <h3 className="text-2xl font-heading font-bold mb-4">Accucentral</h3>
+            <p className="text-slate-200 mb-6">Pain Relief Through Acupressure</p>
             <div className="flex justify-center gap-6 text-sm flex-wrap">
-              <Link href="/protocols" className="text-gold-300 hover:text-gold-200">
-                Protocols
+              <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">
+                Services
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/poses" className="text-gold-300 hover:text-gold-200">
-                Poses
-              </Link>
-              <span className="text-slate-400">•</span>
-              <Link href="/science" className="text-gold-300 hover:text-gold-200">
+              <Link href="/science" className="text-sage-green hover:text-sage-green-300">
                 Science
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/about" className="text-gold-300 hover:text-gold-200">
+              <Link href="/about" className="text-sage-green hover:text-sage-green-300">
                 About
               </Link>
             </div>

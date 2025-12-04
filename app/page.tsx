@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { SearchHero } from '@/components/SearchHero'
-import { PoseCard } from '@/components/PoseCard'
 import { ScienceNote } from '@/components/ScienceNote'
 import { StickyBookingButton } from '@/components/StickyBookingButton'
 import { getFeaturedServices, complexityLabels } from '@/data/services'
@@ -55,11 +54,11 @@ export default function Home() {
               Accucentral
             </Link>
             <nav className="hidden md:flex items-center gap-6">
+              <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Services
+              </Link>
               <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Points
-              </Link>
-              <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Protocols
               </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
@@ -88,7 +87,7 @@ export default function Home() {
             <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
               Professional Acupressure Treatments
             </h2>
-            <p className="text-lg text-slate-gray max-w-2xl mx-auto">
+            <p className="text-lg text-slate-700 max-w-2xl mx-auto">
               Customized treatment protocols for your specific health concerns.
               Each session combines Traditional Chinese Medicine with modern therapeutic techniques.
             </p>
@@ -110,7 +109,7 @@ export default function Home() {
                   <h3 className="text-xl font-heading font-bold text-charcoal mb-2 group-hover:text-calm-blue transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-slate-gray mb-4 text-sm">
+                  <p className="text-slate-700 mb-4 text-sm">
                     {service.tagline}
                   </p>
                   <div className="flex gap-2 text-xs">
@@ -150,8 +149,8 @@ export default function Home() {
             <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
               What Brings You Here Today?
             </h2>
-            <p className="text-lg text-slate-gray max-w-2xl mx-auto">
-              Find relief for your specific symptoms through targeted pressure points
+            <p className="text-lg text-slate-700 max-w-2xl mx-auto">
+              Find relief for your specific symptoms with guided services
             </p>
           </div>
 
@@ -160,7 +159,7 @@ export default function Home() {
             {symptomCategories.map((category) => (
               <Link
                 key={category.value}
-                href={`/points?category=${category.value}`}
+                href={`/protocols?category=${category.value}`}
                 className="group"
               >
                 <div className="bg-slate-50 border-2 border-slate-200 rounded-xl p-6 hover:border-calm-blue hover:shadow-lg hover:bg-white transition-all h-full flex flex-col">
@@ -168,15 +167,28 @@ export default function Home() {
                   <h3 className="text-xl font-heading font-semibold text-charcoal mb-2 group-hover:text-calm-blue transition-colors">
                     {category.name}
                   </h3>
-                  <p className="text-sm text-slate-gray grow">
+                  <p className="text-sm text-slate-700 grow">
                     {category.description}
                   </p>
                   <div className="mt-4 text-calm-blue font-medium flex items-center group-hover:translate-x-1 transition-transform">
-                    Explore points →
+                    Explore services →
                   </div>
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Help */}
+      <section className="py-8 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/protocol/insomnia-treatment" className="px-4 py-2 rounded-full border-2 border-calm-blue text-calm-blue hover:bg-calm-blue hover:text-white font-semibold transition-colors">Can't Sleep</Link>
+            <Link href="/protocol/tech-neck-relief" className="px-4 py-2 rounded-full border-2 border-sage-green text-sage-green-700 hover:bg-sage-green hover:text-white font-semibold transition-colors">Neck & Shoulder Pain</Link>
+            <Link href="/protocol/anxiety-relief" className="px-4 py-2 rounded-full border-2 border-deep-teal text-deep-teal hover:bg-deep-teal hover:text-white font-semibold transition-colors">Stress & Anxiety</Link>
+            <Link href="/protocol/migraine-relief" className="px-4 py-2 rounded-full border-2 border-warm-coral text-warm-coral hover:bg-warm-coral hover:text-white font-semibold transition-colors">Headache/Migraine</Link>
+            <Link href="/protocol/digestive-support" className="px-4 py-2 rounded-full border-2 border-amber-400 text-amber-700 hover:bg-amber-400 hover:text-white font-semibold transition-colors">Bloating/IBS</Link>
           </div>
         </div>
       </section>
@@ -219,15 +231,14 @@ export default function Home() {
           <h2 className="text-4xl font-heading font-bold text-charcoal mb-4">
             How Does Pressing a Point Stop Pain?
           </h2>
-          <p className="text-lg text-slate-gray mb-8">
+          <p className="text-lg text-slate-700 mb-8">
             Learn the science behind acupressure—from Gate Control Theory to fascia research.
             Evidence-based education grounded in both TCM wisdom and modern neuroscience.
           </p>
           <Link
             href="/science#yin-yang"
-            className="inline-block px-8 py-4 bg-deep-teal hover:bg-deep-teal-600
-                       text-white font-semibold text-lg rounded-lg
-                       transition-colors shadow-lg"
+            className="inline-block px-8 py-4 border-2 border-deep-teal text-deep-teal hover:bg-deep-teal hover:text-white
+                       font-semibold text-lg rounded-lg transition-colors shadow-lg"
           >
             Explore Yin–Yang Basics →
           </Link>
@@ -235,20 +246,20 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-deep-teal text-white py-12">
+      <footer className="bg-white text-charcoal py-12 border-t border-slate-200">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h3 className="text-2xl font-heading font-bold mb-4">Accucentral</h3>
-            <p className="text-slate-200 mb-6">
+            <h3 className="text-2xl font-heading font-bold mb-4 text-deep-teal">Accucentral</h3>
+            <p className="text-slate-700 mb-6">
               Pain Relief Through Acupressure
             </p>
 
             {/* Recommended Reading */}
-            <div className="max-w-3xl mx-auto mb-8 border-t border-white/20 pt-8">
-              <h4 className="text-sm font-semibold text-sage-green uppercase tracking-wide mb-4">
+            <div className="max-w-3xl mx-auto mb-8 border-t border-slate-200 pt-8">
+              <h4 className="text-sm font-semibold text-deep-teal uppercase tracking-wide mb-4">
                 Evidence-Based Resources
               </h4>
-              <p className="text-sm text-slate-200 mb-4">
+              <p className="text-sm text-slate-700 mb-4">
                 Learn more about acupressure and pain science:
               </p>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
@@ -256,7 +267,7 @@ export default function Home() {
                   href="https://www.acusansthan-ald.in/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
+                  className="text-deep-teal hover:text-deep-teal-600 transition-colors underline decoration-slate-300 hover:decoration-deep-teal"
                 >
                   AYUSH Ministry Guidelines
                 </a>
@@ -264,7 +275,7 @@ export default function Home() {
                   href="https://www.amazon.com/Acupressure-Beginners-Guide-Alternative-Healing/dp/0895295733"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
+                  className="text-deep-teal hover:text-deep-teal-600 transition-colors underline decoration-slate-300 hover:decoration-deep-teal"
                 >
                   Acupressure's Potent Points (Gach)
                 </a>
@@ -272,7 +283,7 @@ export default function Home() {
                   href="https://www.amazon.com/Pain-Story-You-Need-Read/dp/0393355853"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
+                  className="text-deep-teal hover:text-deep-teal-600 transition-colors underline decoration-slate-300 hover:decoration-deep-teal"
                 >
                   The Pain Story (Moseley & Butler)
                 </a>
@@ -280,7 +291,7 @@ export default function Home() {
                   href="https://www.amazon.com/Body-Keeps-Score-Healing-Trauma/dp/0143127748"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-100 hover:text-sage-green transition-colors underline decoration-slate-300 hover:decoration-sage-green"
+                  className="text-deep-teal hover:text-deep-teal-600 transition-colors underline decoration-slate-300 hover:decoration-deep-teal"
                 >
                   The Body Keeps the Score (van der Kolk)
                 </a>
@@ -288,33 +299,33 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center gap-6 text-sm">
-              <Link href="/points" className="text-sage-green hover:text-sage-green-300">
-                Browse Points
+              <Link href="/protocols" className="text-deep-teal hover:text-deep-teal-600">
+                Browse Services
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">
-                Protocols
+              <Link href="/points" className="text-deep-teal hover:text-deep-teal-600">
+                Points
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/book" className="text-sage-green hover:text-sage-green-300">
+              <Link href="/book" className="text-deep-teal hover:text-deep-teal-600">
                 Book Consultation
               </Link>
             </div>
             <div className="flex justify-center gap-6 text-sm mt-6">
-              <Link href="/about" className="text-slate-200 hover:text-sage-green">
+              <Link href="/about" className="text-slate-700 hover:text-deep-teal">
                 About Chandan Accucenter
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/science" className="text-slate-200 hover:text-sage-green">
+              <Link href="/science" className="text-slate-700 hover:text-deep-teal">
                 Science
               </Link>
               <span className="text-slate-400">•</span>
-              <Link href="/studio" className="text-slate-200 hover:text-sage-green">
+              <Link href="/studio" className="text-slate-700 hover:text-deep-teal">
                 Studio
               </Link>
             </div>
-            <p className="mt-8 text-sm text-slate-300">
-              Built with Next.js • Sanity CMS • Vercel
+            <p className="mt-8 text-sm text-slate-600">
+              Built with Next.js • Tailwind CSS • Vercel
             </p>
           </div>
         </div>

@@ -15,9 +15,9 @@ export default async function ProtocolPage({
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50">
+    <main className="min-h-screen bg-linear-to-b from-white to-slate-50">
       {/* Hero Section */}
-      <div className={`bg-gradient-to-r ${categoryColors[service.category]} text-white py-12`}>
+      <div className={`bg-linear-to-r ${categoryColors[service.category]} text-white py-12`}>
         <div className="max-w-5xl mx-auto px-4">
           <Link href="/protocols" className="text-white/80 hover:text-white text-sm mb-4 inline-block">
             ← Back to Services
@@ -74,7 +74,7 @@ export default async function ProtocolPage({
             </section>
 
             {/* The Science */}
-            <section className="bg-gradient-to-br from-sage-green/10 to-calm-blue/10 rounded-xl shadow-md p-6 border border-sage-green/30">
+            <section className="bg-linear-to-br from-sage-green/10 to-calm-blue/10 rounded-xl shadow-md p-6 border border-sage-green/30">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <span className="text-3xl">🧬</span>
                 The Science & Mechanism
@@ -98,14 +98,14 @@ export default async function ProtocolPage({
                     className="flex gap-4 p-4 bg-slate-50 rounded-lg border border-slate-200 hover:border-calm-blue transition-colors"
                   >
                     {/* Step Number */}
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-gradient-to-br from-deep-teal to-calm-blue text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="shrink-0">
+                      <div className="w-10 h-10 bg-linear-to-br from-deep-teal to-calm-blue text-white rounded-full flex items-center justify-center font-bold">
                         {idx + 1}
                       </div>
                     </div>
 
                     {/* Point Info */}
-                    <div className="flex-grow">
+                    <div className="grow">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <div>
                           <h3 className="text-lg font-bold text-deep-teal">
@@ -130,7 +130,7 @@ export default async function ProtocolPage({
               </div>
 
               {/* Total Time */}
-              <div className="mt-6 p-4 bg-gradient-to-r from-sage-green/20 to-calm-blue/20 rounded-lg text-center border border-sage-green/30">
+              <div className="mt-6 p-4 bg-linear-to-r from-sage-green/20 to-calm-blue/20 rounded-lg text-center border border-sage-green/30">
                 <p className="text-sm font-semibold text-slate-700">
                   Session Duration: <span className="text-deep-teal text-lg">{service.duration}</span>
                 </p>
@@ -203,7 +203,7 @@ export default async function ProtocolPage({
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-12 bg-gradient-to-r from-deep-teal to-calm-blue text-white rounded-2xl p-8 text-center">
+        <div className="mt-12 bg-linear-to-r from-deep-teal to-calm-blue text-white rounded-2xl p-8 text-center">
           <h3 className="text-2xl font-bold mb-3">Ready to Book This Service?</h3>
           <p className="mb-6 text-white/90 max-w-2xl mx-auto">
             Schedule a {service.duration} session with Chandan to experience professional acupressure treatment.

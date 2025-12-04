@@ -1,52 +1,6 @@
 @import "tailwindcss";
 
-@theme {
-  /* Brand Colors - Abyssal Navy */
-  --color-navy-50: #E8EDF3;
-  --color-navy-100: #D1DBE7;
-  --color-navy-200: #A3B7CF;
-  --color-navy-300: #7593B7;
-  --color-navy-400: #476F9F;
-  --color-navy-500: #0B1929;
-  --color-navy-600: #091420;
-  --color-navy-700: #070F18;
-  --color-navy-800: #050A10;
-  --color-navy-900: #020508;
-  --color-navy: #0B1929;
 
-  /* Medical Slate */
-  --color-slate-medical-50: #FFFFFF;
-  --color-slate-medical-100: #F0F4F8;
-  --color-slate-medical-200: #E1E9F1;
-  --color-slate-medical-300: #D2DEEA;
-  --color-slate-medical-400: #C3D3E3;
-  --color-slate-medical-500: #B4C8DC;
-  --color-slate-medical: #F0F4F8;
-
-  /* Guru Gold */
-  --color-gold-50: #F5F0E5;
-  --color-gold-100: #EBE1CB;
-  --color-gold-200: #D7C397;
-  --color-gold-300: #C5A065;
-  --color-gold-400: #B38F52;
-  --color-gold-500: #8F7342;
-  --color-gold-600: #6D5732;
-  --color-gold: #C5A065;
-
-  /* Cortisol Coral */
-  --color-coral-50: #FBEDE9;
-  --color-coral-100: #F7DBD3;
-  --color-coral-200: #EFB7A7;
-  --color-coral-300: #E7937B;
-  --color-coral-400: #D9725F;
-  --color-coral-500: #C85E4C;
-  --color-coral-600: #A84D3E;
-  --color-coral: #D9725F;
-
-  /* Font Families */
-  --font-heading: var(--font-fraunces), 'Playfair Display', Georgia, serif;
-  --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
-}
 
 /* Smooth Scroll */
 html {

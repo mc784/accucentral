@@ -35,7 +35,7 @@
 
 - **Search Bar:**
   - Placeholder: "Where does it hurt? (e.g., headache, nausea, back pain)"
-  - Routes to: `/points?search=...` (instead of /poses)
+  - Routes to: `/protocols?search=...` (services-first)
   - Prominent search button with calm-blue color
 
 - **Navigation Pills:**
@@ -55,19 +55,19 @@
 
 1. **Stress & Anxiety** 🧘
    - Description: "Calming points for nervous tension and emotional balance"
-   - Links to: `/points?category=stress-anxiety`
+  - Links to: `/protocols?category=stress-anxiety`
 
 2. **Chronic Pain** 💆
    - Description: "Relief for headaches, back pain, and muscle tension"
-   - Links to: `/points?category=chronic-pain`
+  - Links to: `/protocols?category=chronic-pain`
 
 3. **Sleep & Insomnia** 😴
    - Description: "Points to calm your nervous system for restful sleep"
-   - Links to: `/points?category=sleep-insomnia`
+  - Links to: `/protocols?category=sleep-insomnia`
 
 4. **Digestive Health** 🌿
    - Description: "Support for bloating, IBS, and sluggish digestion"
-   - Links to: `/points?category=digestive-health`
+  - Links to: `/protocols?category=digestive-health`
 
 **Section Title:** "What Brings You Here Today?"
 **Cards:** Hover effects with calm-blue borders, icons, descriptions
@@ -119,7 +119,7 @@
   - Link color: sage-green on hover
 
 - **Footer Links:**
-  - Browse Points | Protocols | Book Consultation (sage-green)
+  - Services | Protocols | Book Consultation (sage-green)
   - About Chandan Accucenter | Science | Studio (slate-200)
   - Built with: Next.js • Sanity CMS • Vercel
 
@@ -140,15 +140,13 @@
 
 ### Components:
 - ✅ StickyAssessmentButton → StickyBookingButton (DONE)
-- ⏳ PoseCard → PointCard (pending)
-- ⏳ PoseFilters → PointFilters (pending)
+- ✅ PoseCard/PoseFilters neutralized (not used in runtime)
 - ✅ SearchHero (updated but not renamed)
 - ✅ ScienceNote (can stay as-is - reusable)
 
 ### Routes:
-- ⏳ /pose/[slug] → /point/[code] (pending)
-- ⏳ /poses → /points (pending)
-- ⏳ /assessment → /book (pending - need booking page)
+- ✅ /pose/[slug] and /poses redirect to /protocols
+- ✅ /assessment redirects to /book
 - ✅ /protocols (keep as-is)
 - ✅ /science (keep as-is)
 - ✅ /about (keep as-is, needs content update)
@@ -203,9 +201,7 @@
 - `app/layout.tsx` - Font loading, metadata
 - `app/about/page.tsx` - Content rewrite
 - `app/science/page.tsx` - Content rewrite
-- `app/pose/[slug]/page.tsx` - Rename to point/[code]
-- `app/poses/page.tsx` - Rename to points
-- `app/assessment/page.tsx` - Repurpose or create /book
+- `app/assessment/page.tsx` - Redirects to /book (done)
 - `components/PoseCard.tsx` - Rename to PointCard
 - `components/PoseFilters.tsx` - Rename to PointFilters
 - `sanity/schemas/yogaPose.ts` - Rewrite as acupressurePoint
@@ -226,8 +222,7 @@
 ### ⚠️ Blockers:
 - **Sanity CMS not configured** - Need new project + schemas
 - **Content not migrated** - No acupressure points in database
-- **Routing incomplete** - /poses and /pose/[slug] still yoga-focused
-- **Missing pages** - /book page doesn't exist
+-
 
 ### 📈 Progress: **~40% Complete**
 - ✅ Visual branding: 100%
@@ -260,8 +255,8 @@
 
 - Homepage is **visually complete** and matches Accucentral brand
 - All yoga references removed from homepage
-- Search functionality points to `/points` (will 404 until route renamed)
-- Footer links to `/book` (will 404 until page created)
+- Search functionality points to `/protocols` (works)
+- Footer links to `/book` (exists)
 - Old VrikshaYoga data still in Sanity (not affecting display)
 
 **Next Action:** Run `npm run dev` to see the visual transformation!

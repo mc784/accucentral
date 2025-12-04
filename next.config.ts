@@ -16,6 +16,16 @@ const nextConfig: NextConfig = {
         destination: '/science#biology',
         permanent: true,
       },
+      {
+        source: '/poses',
+        destination: '/protocols',
+        permanent: true,
+      },
+      {
+        source: '/pose/:slug',
+        destination: '/protocols',
+        permanent: true,
+      },
     ];
   },
 };

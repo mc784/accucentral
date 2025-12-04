@@ -1,21 +1,38 @@
 import Link from 'next/link';
-import { getPublishedServices, categoryColors, categoryLabels, complexityLabels } from '@/data/services';
+import { getPublishedServices, getServicesByCategory, categoryColors, categoryLabels, complexityLabels } from '@/data/services';
 
-export default function ProtocolsPage() {
-  const services = getPublishedServices();
+export default async function ProtocolsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const rawCategory = params?.category;
+  const category = Array.isArray(rawCategory) ? rawCategory[0] : rawCategory;
+  const services = category ? getServicesByCategory(category) : getPublishedServices();
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50">
+    <main className="min-h-screen bg-linear-to-b from-white to-slate-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-deep-teal to-calm-blue text-white py-16">
+      <div className="bg-linear-to-r from-deep-teal to-calm-blue text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <Link href="/" className="text-white/80 hover:text-white text-sm mb-4 inline-block">
             ← Back to Home
           </Link>
-          <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-          <p className="text-xl text-white/90 max-w-3xl">
+          <h1 className="text-5xl font-bold mb-2">Our Services</h1>
+          {category && (
+            <div className="mt-2 inline-block bg-white/20 text-white px-3 py-1 rounded-full text-sm font-semibold">
+              Filter: {categoryLabels[category] || category}
+            </div>
+          )}
+          <p className="text-xl text-white/90 max-w-3xl mt-4">
             Professional acupressure treatments designed to address your specific health concerns. Evidence-based protocols combining Traditional Chinese Medicine with modern science.
           </p>
+          {category && (
+            <div className="mt-4">
+              <Link href="/protocols" className="underline underline-offset-4 text-white/90 hover:text-white">Clear filter</Link>
+            </div>
+          )}
           <div className="mt-6 flex gap-4 text-sm flex-wrap">
             <div className="bg-white/20 px-4 py-2 rounded-full">
               ✓ Personalized Treatment
@@ -47,7 +64,7 @@ export default function ProtocolsPage() {
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 hover:border-calm-blue"
             >
               {/* Category Badge */}
-              <div className={`h-2 bg-gradient-to-r ${categoryColors[service.category] || 'from-gray-500 to-gray-600'}`} />
+              <div className={`h-2 bg-linear-to-r ${categoryColors[service.category] || 'from-gray-500 to-gray-600'}`} />
 
               <div className="p-6">
                 {/* Status Badge */}
@@ -120,7 +137,7 @@ export default function ProtocolsPage() {
         )}
 
         {/* Bottom CTA */}
-        <div className="mt-16 bg-gradient-to-r from-sage-green/20 to-calm-blue/20 rounded-2xl p-8 text-center border border-sage-green/30">
+        <div className="mt-16 bg-linear-to-r from-sage-green/20 to-calm-blue/20 rounded-2xl p-8 text-center border border-sage-green/30">
           <h3 className="text-2xl font-bold mb-2 text-charcoal">Ready to Book a Session?</h3>
           <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
             Not sure which service is right for you? Book a consultation with Chandan to discuss your symptoms and create a personalized treatment plan.

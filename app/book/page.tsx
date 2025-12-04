@@ -11,11 +11,8 @@ export default function BookPage() {
               Accucentral
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Points
-              </Link>
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Protocols
+                Services
               </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
@@ -51,7 +48,7 @@ export default function BookPage() {
 
           <div className="text-center mt-8">
             <Link href="/protocols" className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors">
-              Explore Protocols
+              Explore Services
             </Link>
           </div>
 
@@ -66,13 +63,13 @@ export default function BookPage() {
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-2xl font-heading font-bold mb-4">Accucentral</h3>
           <div className="flex justify-center gap-6 text-sm">
-            <Link href="/points" className="text-sage-green hover:text-sage-green-300">Browse Points</Link>
+            <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">Browse Services</Link>
             <span className="text-slate-400">•</span>
-            <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">Protocols</Link>
+            <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">Services</Link>
             <span className="text-slate-400">•</span>
             <Link href="/science" className="text-sage-green hover:text-sage-green-300">Science</Link>
           </div>
-          <p className="mt-6 text-sm text-slate-300">Built with Next.js • Sanity CMS • Vercel</p>
+          <p className="mt-6 text-sm text-slate-300">Built with Next.js • Tailwind CSS • Vercel</p>
         </div>
       </footer>
     </div>

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "dev:clean": "powershell -ExecutionPolicy Bypass -File scripts\\clear-dev-lock.ps1",
+    "clean:next": "powershell -Command \"if (Test-Path .next) { Remove-Item -Recurse -Force .next }\""
   },
   "dependencies": {
     "@aws-amplify/backend": "^1.18.0",

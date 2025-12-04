@@ -9,7 +9,7 @@ interface SearchHeroProps {
 
 const headlines = [
   { line1: "Acupressure for Pain", line2: "Clear, Practical Guidance" },
-  { line1: "Search Symptoms", line2: "Find Precise Pressure Points" },
+  { line1: "Search Symptoms", line2: "Find the Right Service" },
   { line1: "Relieve Headaches", line2: "Ease Neck & Back Pain" },
   { line1: "Where to Press", line2: "How Long & How Firm" },
   { line1: "Evidence‑Informed", line2: "TCM + Modern Insights" },
@@ -76,7 +76,7 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      router.push(`/points?search=${encodeURIComponent(searchQuery.trim())}`)
+      router.push(`/protocols?search=${encodeURIComponent(searchQuery.trim())}`)
     }
   }
 
@@ -102,10 +102,10 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
             <div
               className={`transition-opacity duration-1000 ease-in-out ${isQuoteVisible ? 'opacity-100' : 'opacity-60'}`}
             >
-              <blockquote className="text-lg md:text-xl text-slate-gray leading-relaxed italic mb-3">
+              <blockquote className="text-lg md:text-xl text-slate-700 leading-relaxed italic mb-3">
                 "{expertQuotes[currentQuote].quote}"
               </blockquote>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-600">
                 — <span className="font-semibold text-deep-teal">{expertQuotes[currentQuote].expert}</span>, {expertQuotes[currentQuote].source}
               </p>
             </div>
@@ -130,7 +130,7 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
             </form>
           </div>
 
-          <p className="text-base text-slate-500 mb-8">
+          <p className="text-base text-slate-600 mb-8">
             Pressure points • Evidence-based • TCM + Modern Science • Aligned with Ministry of AYUSH guidelines
           </p>
 
@@ -140,20 +140,15 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
               href="/protocols"
               className="px-8 py-4 bg-deep-teal hover:bg-deep-teal-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
-              Daily Protocols
+              Explore Services
             </a>
             <a
-              href="/points"
+              href="/protocols"
               className="px-8 py-4 bg-calm-blue hover:bg-calm-blue-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
-              Browse Points
+              Browse Services
             </a>
-            <a
-              href="/assessment"
-              className="px-8 py-4 border-2 border-calm-blue text-calm-blue hover:bg-calm-blue hover:text-white font-bold rounded-full transition-all hover:scale-105"
-            >
-              Yin–Yang Assessment
-            </a>
+            {/* Assessment removed per request */}
             <a
               href="/book"
               className="px-8 py-4 bg-warm-coral hover:bg-warm-coral-500 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
@@ -162,34 +157,13 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
             </a>
             <a
               href="/science#yin-yang"
-              className="px-8 py-4 border-2 border-sage-green text-sage-green-700 hover:bg-sage-green hover:text-white font-bold rounded-full transition-all hover:scale-105"
+              className="px-8 py-4 border-2 border-sage-green-700 bg-sage-green-700 text-white hover:bg-sage-green-800 hover:border-sage-green-800 font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
               The Science
             </a>
           </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-slate-gray">
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-sage-green" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>No sign-up required</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-sage-green" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>100% free knowledge</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-sage-green" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Instant relief techniques</span>
-          </div>
-        </div>
       </div>
     </section>
   )

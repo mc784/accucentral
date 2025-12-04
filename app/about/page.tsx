@@ -12,11 +12,8 @@ export default function AboutPage() {
               Accucentral
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Points
-              </Link>
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Protocols
+                Services
               </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
@@ -35,162 +32,103 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-slate-medical py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-heading font-bold text-navy-500 mb-6">
-            We're Not a Fitness App.
-            <span className="block text-coral mt-2">
-              We're a Biological Regulation Platform.
-            </span>
+          <h1 className="text-5xl md:text-6xl font-heading font-bold text-charcoal mb-4">
+            About Accucentral
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            VrikshaYoga exists to reclaim the human nervous system from the chaos of modern life
-            by synthesizing the ancient precision of Yoga with the validation of modern Medical Science.
+          <p className="text-xl text-slate-700 max-w-3xl mx-auto">
+            Evidence‑informed acupressure for pain relief, better sleep, and calmer days. We combine Traditional Chinese Medicine principles with modern pain science to deliver safe, structured hands‑on protocols.
           </p>
         </div>
       </section>
 
-      {/* Section 1: The Problem We Solve */}
+      {/* What We Do */}
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-heading font-bold text-navy-500 mb-6">
-            Modern Life Keeps Your Body in Permanent Emergency Mode
-          </h2>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-slate-700 leading-relaxed mb-4">
-              The current wellness landscape (Glo, Alo Moves, Apple Fitness+) treats Yoga as <strong>exercise</strong>.
-              They sell "sweat," "flexibility," and "aesthetic perfection." They ask the user to fit into the practice.
+          <h2 className="text-4xl font-heading font-bold text-charcoal mb-6">What We Do</h2>
+          <div className="prose max-w-none">
+            <p className="text-lg text-slate-800 mb-4">
+              Accucentral provides professional acupressure sessions and self‑care guidance focused on common concerns like headaches, neck & shoulder pain, back pain, poor sleep, and stress.
             </p>
-            <p className="text-lg text-slate-700 leading-relaxed mb-4">
-              <strong>The Reality:</strong> The modern human is not just "stiff"; they are <em>biologically dysregulated</em>.
+            <p className="text-lg text-slate-800 mb-4">
+              Sessions use safe, well‑known pressure points and gentle techniques to activate the body’s own regulatory systems (mechanotransduction, gate‑control, vagal tone).
             </p>
-            <p className="text-lg text-slate-700 leading-relaxed">
-              We are living through an epidemic of "Cortisol Addiction"—a state of chronic, low-grade fight-or-flight
-              that manifests as anxiety, inflammation, sleeplessness, and burnout. "Gym Yoga" does not fix this;
-              often, it aggravates it by adding more performance pressure.
+            <p className="text-sm text-slate-700">
+              Educational information only. We do not diagnose, treat, or replace medical care. For medical issues, consult a qualified clinician.
             </p>
           </div>
-
-          <ScienceNote 
-            expert="Robert Sapolsky"
-            insight="Chronic stress literally shrinks the hippocampus—the part of your brain responsible for memory and emotional regulation. But movement and breathing can reverse this damage."
-            source="Why Zebras Don't Get Ulcers"
-          />
         </div>
       </section>
 
-      {/* Section 2: The Three Pillars - How We're Different */}
+      {/* How It Works */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-4xl font-heading font-bold text-navy-500 text-center mb-4">
-            The VrikshaYoga Difference
-          </h2>
-          <p className="text-lg text-slate-600 text-center max-w-2xl mx-auto mb-12">
-            We're not a fitness app. We're a biological regulation platform.
+          <h2 className="text-4xl font-heading font-bold text-charcoal text-center mb-4">How It Works</h2>
+          <p className="text-lg text-slate-700 text-center max-w-2xl mx-auto mb-12">
+            A clear, gentle process focused on safety and results.
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl p-8 shadow-md border border-slate-200">
-              <div className="w-16 h-16 rounded-full bg-gold-300/20 flex items-center justify-center text-3xl mb-4">🔬</div>
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
-                The Authority
-              </h3>
-              <p className="mb-3 font-medium text-sm text-gold-300">
-                Science-backed, not woo-woo
-              </p>
-              <p className="text-slate-600">
-                Every practice is backed by physiological evidence. We explain the <em>why</em> (science) behind the <em>what</em> (asana), serving the skeptic and the engineer.
-              </p>
+              <div className="w-16 h-16 rounded-full bg-sage-green/20 flex items-center justify-center text-3xl mb-4">🗺️</div>
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">1) Assess</h3>
+              <p className="text-slate-600">Brief intake and Yin–Yang pattern screen. We note symptoms, red flags, and comfort range.</p>
             </div>
             <div className="bg-white rounded-xl p-8 shadow-md border border-slate-200">
-              <div className="w-16 h-16 rounded-full bg-gold-300/20 flex items-center justify-center text-3xl mb-4">💊</div>
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
-                The Remedy
-              </h3>
-              <p className="mb-3 font-medium text-sm text-gold-300">
-                The cortisol cure
-              </p>
-              <p className="text-slate-600">
-                We acknowledge you're addicted to busyness. Short, accessible interventions meet you where you are, breaking the stress loop without demanding hours you don't have.
-              </p>
+              <div className="w-16 h-16 rounded-full bg-calm-blue/20 flex items-center justify-center text-3xl mb-4">👐</div>
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">2) Apply</h3>
+              <p className="text-slate-600">Targeted points with light‑to‑moderate pressure, paced breathing, and simple positioning.</p>
             </div>
             <div className="bg-white rounded-xl p-8 shadow-md border border-slate-200">
-              <div className="w-16 h-16 rounded-full bg-gold-300/20 flex items-center justify-center text-3xl mb-4">🕊️</div>
-              <h3 className="text-xl font-heading font-semibold text-navy-500 mb-3">
-                The Sanctuary
-              </h3>
-              <p className="mb-3 font-medium text-sm text-gold-300">
-                Judgment-free, ego-free
-              </p>
-              <p className="text-slate-600">
-                A safe harbor devoid of competition and performance pressure. Built by a family, for families, to heal the "karmic knots" of modern living.
-              </p>
+              <div className="w-16 h-16 rounded-full bg-amber-200/30 flex items-center justify-center text-3xl mb-4">📈</div>
+              <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">3) Adjust</h3>
+              <p className="text-slate-600">We adapt pressure, cadence, and points by response. You leave with simple self‑care steps.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 3: Our Mission & Story */}
+      {/* Our Principles */}
       <section className="py-16 bg-slate-medical">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-4xl font-heading font-bold text-navy-500 mb-6">Our Mission</h2>
-          <p className="text-2xl text-navy-500 font-medium mb-6 leading-relaxed">
-            To reclaim the human nervous system from the chaos of modern life by synthesizing
-            the ancient precision of Yoga with the validation of modern Medical Science.
-          </p>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-slate-700 leading-relaxed mb-6">
-              Vrikshayoga does not exist to make you "good at yoga." We exist to make you <strong>good at life</strong>.
-              We use Yoga as a precision tool to:
-            </p>
-            <ul className="space-y-3 text-lg text-slate-700 mb-8">
-              <li><strong>Down-regulate</strong> the nervous system (The Cortisol Detox)</li>
-              <li><strong>Re-align</strong> the structural anatomy (The "Modern Hunch" Fix)</li>
-              <li><strong>Restore</strong> the body's innate healing capacity (The "Inflammation" Remedy)</li>
-            </ul>
-            <p className="text-lg text-slate-700 leading-relaxed">
-              We envision a future where Vrikshayoga is the <strong>"Main Clinic of Wellness"</strong>—the first place
-              a person turns not just for a workout, but when they feel pain, anxiety, or burnout. We bridge the gap
-              between the <strong>Doctor's Office</strong> and the <strong>Yoga Studio</strong>.
-            </p>
-          </div>
-          
+          <h2 className="text-4xl font-heading font-bold text-charcoal mb-6">Our Principles</h2>
+          <ul className="space-y-4 text-slate-700 text-lg">
+            <li><strong>Safety first:</strong> Cautions for pregnancy, recent injury, uncontrolled hypertension, and acute infection.</li>
+            <li><strong>Evidence‑informed:</strong> We align with Ministry of AYUSH guidance and modern pain science.</li>
+            <li><strong>Simple is effective:</strong> A few well‑chosen points practiced consistently beat complicated routines.</li>
+            <li><strong>Your pace:</strong> Pressure is always within your comfort range. You can stop any time.</li>
+          </ul>
+
           <div className="mt-12 text-center">
             <Link
-              href="/assessment"
-              className="inline-block px-8 py-4 bg-coral hover:bg-coral-500 text-white font-semibold rounded-xl transition-colors text-lg"
+              href="/protocols"
+              className="inline-block px-8 py-4 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-xl transition-colors text-lg"
             >
-              Start Yin–Yang Assessment →
+              Explore Services →
             </Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-navy-500 text-slate-medical py-12">
+      <footer className="bg-deep-teal text-white py-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h3 className="text-2xl font-heading font-bold mb-4">VrikshaYoga</h3>
-            <p className="text-slate-300 mb-6">
-              Regulate your nervous system, not just your hamstrings
-            </p>
+            <h3 className="text-2xl font-heading font-bold mb-4">Accucentral</h3>
+            <p className="text-slate-200 mb-6">Pain Relief Through Acupressure</p>
             <div className="flex justify-center gap-6 text-sm flex-wrap">
-              <Link href="/protocols" className="text-gold-300 hover:text-gold-200">
-                Protocols
-              </Link>
+              <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">Browse Services</Link>
               <span className="text-slate-400">•</span>
-              <Link href="/poses" className="text-gold-300 hover:text-gold-200">
-                Poses
-              </Link>
+              <Link href="/protocols" className="text-sage-green hover:text-sage-green-300">Services</Link>
               <span className="text-slate-400">•</span>
-              <Link href="/science" className="text-gold-300 hover:text-gold-200">
-                Science
-              </Link>
-              <span className="text-slate-400">•</span>
-              <Link href="/about" className="text-gold-300 hover:text-gold-200">
-                About
-              </Link>
+              <Link href="/book" className="text-sage-green hover:text-sage-green-300">Book Consultation</Link>
             </div>
-            <p className="mt-8 text-sm text-slate-400">
-              Built with Next.js • Sanity CMS • AWS Amplify
-            </p>
+            <div className="flex justify-center gap-6 text-sm mt-6">
+              <Link href="/about" className="text-slate-200 hover:text-sage-green">About</Link>
+              <span className="text-slate-400">•</span>
+              <Link href="/science" className="text-slate-200 hover:text-sage-green">Science</Link>
+              <span className="text-slate-400">•</span>
+              <Link href="/studio" className="text-slate-200 hover:text-sage-green">Studio</Link>
+            </div>
+            <p className="mt-8 text-sm text-slate-300">Built with Next.js • Tailwind CSS • Vercel</p>
           </div>
         </div>
       </footer>

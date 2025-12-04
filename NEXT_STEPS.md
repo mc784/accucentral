@@ -41,7 +41,7 @@
 - ✅ Rotating headlines: "The Google Maps of Your Body", etc.
 - ✅ Expert quotes: Moseley, Myers, Langevin, Levine
 - ✅ Search bar: "Where does it hurt? (e.g., headache, nausea, back pain)"
-- ✅ Routes to: `/points?search=...`
+- ✅ Routes to: `/protocols?search=...`
 - ✅ Navigation pills with Accucentral colors
 
 ### 5. StickyBookingButton Component
@@ -72,22 +72,21 @@
 - `sanity/schemas/protocol.ts` - Field updates
 - `.env.local` - New Sanity credentials
 
-### Component Renaming (MEDIUM PRIORITY)
-**Current State:** Still named after yoga poses
+### Component Cleanup (MEDIUM PRIORITY)
+**Current State:** Legacy pose components removed from runtime
 
-**Required Actions:**
-1. `components/PoseCard.tsx` → `PointCard.tsx`
-2. `components/PoseFilters.tsx` → `PointFilters.tsx`
-3. Update all imports across pages
+**Actions Completed:**
+1. Neutralized `components/PoseCard.tsx`
+2. Neutralized `components/PoseFilters.tsx`
+3. Neutralized `components/PosesClient.tsx`
 
 ### Routing Updates (MEDIUM PRIORITY)
-**Current State:** Routes still yoga-focused
+**Current State:** Legacy yoga routes redirected; services-first UX
 
-**Required Actions:**
-1. `app/pose/[slug]/page.tsx` → `app/point/[code]/page.tsx`
-2. `app/poses/page.tsx` → `app/points/page.tsx`
-3. Create `app/book/page.tsx` (Calendly embed or contact form)
-4. Update all internal links
+**Actions Completed:**
+1. `/pose/[slug]` and `/poses` now redirect to `/protocols`
+2. `/assessment` redirects to `/book`
+3. Internal links updated to Services/Protocols
 
 ### Content Pages (LOW PRIORITY - Can use placeholders)
 **Required Actions:**
@@ -204,17 +203,15 @@ mono: ui-monospace        // Point codes (LI4, PC6)
 - [ ] Test responsive design (mobile, tablet)
 
 ### Functional Testing:
-- [ ] Search redirects to `/points?search=...`
-- [ ] Category cards link to `/points?category=...`
-- [ ] Protocols section displays (may show yoga data if Sanity not updated)
+- [ ] Search redirects to `/protocols?search=...`
+- [ ] Category cards link to `/protocols?category=...`
+- [ ] Services list displays from static data
 - [ ] Footer links work
 - [ ] Sticky booking button appears after scroll
 
 ### Known Issues to Expect:
-- Search will redirect to `/points` which doesn't exist yet (404)
-- "Browse Points" nav link will 404
-- "Book Consultation" will 404 (no /book page)
-- Points section will show yoga poses (Sanity data not updated)
+- None critical expected; legacy pose routes now redirect
+- Some docs may still mention "points" historically
 
 ---
 
