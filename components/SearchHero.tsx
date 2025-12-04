@@ -157,7 +157,7 @@ export function SearchHero({ totalCount }: SearchHeroProps) {
             </a>
             <a
               href="/science#yin-yang"
-              className="px-8 py-4 border-2 border-sage-green-700 bg-sage-green-700 text-white hover:bg-sage-green-800 hover:border-sage-green-800 font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
+              className="px-8 py-4 bg-deep-teal hover:bg-deep-teal-600 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
             >
               The Science
             </a>

@@ -152,7 +152,7 @@ export default function PointsPage() {
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Services
               </Link>
-              <Link href="/points" className="text-deep-teal font-semibold">
+              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Points
               </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
@@ -161,7 +161,7 @@ export default function PointsPage() {
               <Link href="/about" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 About
               </Link>
-              <Link href="/book" className="px-4 py-2 bg-warm-coral text-white rounded-lg hover:bg-warm-coral-500 transition font-semibold shadow-md">
+              <Link href="/book" className="px-4 py-2 bg-[#F4A261] text-white rounded-lg hover:bg-[#E96F1C] transition font-semibold shadow-md">
                 Book Consultation
               </Link>
             </nav>
@@ -169,64 +169,29 @@ export default function PointsPage() {
         </div>
       </header>
 
-      {/* Hero Header with Quick Guide */}
-      <div className="bg-linear-to-r from-sage-green to-deep-teal text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-5xl font-bold mb-4">Essential Pressure Points</h1>
-          <p className="text-xl text-white/90 max-w-3xl mb-8">
-            Learn the precise location, technique, and science behind key acupressure points. 
-            Each point includes detailed instructions, visual guides, and evidence-based explanations.
+      {/* Points Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="mb-12">
+          <h1 className="text-4xl font-bold mb-3">Essential Pressure Points</h1>
+          <p className="text-lg text-slate-600 max-w-3xl mb-6">
+            Master the precise location, technique, and science behind key acupressure points. Each point includes detailed instructions, visual guides, and evidence-based explanations for safe, effective self-care.
           </p>
-
-          {/* Quick Reference Guide */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-            <h2 className="text-2xl font-bold mb-4">Quick Reference Guide</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="text-3xl mb-2">💆</div>
-                <h3 className="font-bold mb-1">Pain Relief</h3>
-                <p className="text-sm text-white/80">Headaches, muscle tension, general discomfort</p>
-                <p className="text-xs text-white/60 mt-2">→ LI4 (Hegu)</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="text-3xl mb-2">😴</div>
-                <h3 className="font-bold mb-1">Sleep & Calm</h3>
-                <p className="text-sm text-white/80">Insomnia, anxiety, restlessness</p>
-                <p className="text-xs text-white/60 mt-2">→ HT7, PC6</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="text-3xl mb-2">🤢</div>
-                <h3 className="font-bold mb-1">Nausea Relief</h3>
-                <p className="text-sm text-white/80">Motion sickness, digestive upset</p>
-                <p className="text-xs text-white/60 mt-2">→ PC6 (Nei Guan)</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="text-3xl mb-2">⚡</div>
-                <h3 className="font-bold mb-1">Emergency</h3>
-                <p className="text-sm text-white/80">Fainting, dizziness, alertness</p>
-                <p className="text-xs text-white/60 mt-2">→ GV26 (Ren Zhong)</p>
-              </div>
+          <div className="flex gap-3 text-sm flex-wrap">
+            <div className="bg-slate-100 px-4 py-2 rounded-full text-slate-700">
+              ✓ Precise Locations
             </div>
-            <div className="mt-6 flex gap-4 text-sm flex-wrap">
-              <div className="bg-white/20 px-4 py-2 rounded-full">
-                ✓ Precise Locations
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-full">
-                ✓ Step-by-Step Techniques
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-full">
-                ✓ Scientific Mechanisms
-              </div>
-              <div className="bg-white/20 px-4 py-2 rounded-full">
-                ✓ Safety Guidelines
-              </div>
+            <div className="bg-slate-100 px-4 py-2 rounded-full text-slate-700">
+              ✓ Step-by-Step Techniques
+            </div>
+            <div className="bg-slate-100 px-4 py-2 rounded-full text-slate-700">
+              ✓ Scientific Mechanisms
+            </div>
+            <div className="bg-slate-100 px-4 py-2 rounded-full text-slate-700">
+              ✓ Safety Guidelines
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Points Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="space-y-16">
           {pressurePoints.map((point, index) => (
             <article

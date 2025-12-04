@@ -218,7 +218,7 @@ export default async function ProtocolPage({
             </Link>
             <Link
               href="/protocols"
-              className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors border border-white/40"
+              className="bg-white text-deep-teal px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors border border-white shadow-md"
             >
               View All Services
             </Link>

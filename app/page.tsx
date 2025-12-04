@@ -66,7 +66,7 @@ export default function Home() {
               <Link href="/about" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 About
               </Link>
-              <Link href="/book" className="px-4 py-2 bg-warm-coral text-white rounded-lg hover:bg-warm-coral-500 transition font-semibold shadow-md">
+              <Link href="/book" className="px-4 py-2 bg-[#F4A261] text-white rounded-lg hover:bg-[#E96F1C] transition font-semibold shadow-md">
                 Book Consultation
               </Link>
             </nav>

@@ -13,44 +13,42 @@ export default async function ProtocolsPage({
 
   return (
     <main className="min-h-screen bg-linear-to-b from-white to-slate-50">
-      {/* Header */}
-      <div className="bg-linear-to-r from-deep-teal to-calm-blue text-white py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <Link href="/" className="text-white/80 hover:text-white text-sm mb-4 inline-block">
-            ← Back to Home
-          </Link>
-          <h1 className="text-5xl font-bold mb-2">Our Services</h1>
-          {category && (
-            <div className="mt-2 inline-block bg-white/20 text-white px-3 py-1 rounded-full text-sm font-semibold">
-              Filter: {categoryLabels[category] || category}
-            </div>
-          )}
-          <p className="text-xl text-white/90 max-w-3xl mt-4">
-            Professional acupressure treatments designed to address your specific health concerns. Evidence-based protocols combining Traditional Chinese Medicine with modern science.
-          </p>
-          {category && (
-            <div className="mt-4">
-              <Link href="/protocols" className="underline underline-offset-4 text-white/90 hover:text-white">Clear filter</Link>
-            </div>
-          )}
-          <div className="mt-6 flex gap-4 text-sm flex-wrap">
-            <div className="bg-white/20 px-4 py-2 rounded-full">
-              ✓ Personalized Treatment
-            </div>
-            <div className="bg-white/20 px-4 py-2 rounded-full">
-              ✓ 30-60 minute sessions
-            </div>
-            <div className="bg-white/20 px-4 py-2 rounded-full">
-              ✓ Expert Practitioner
-            </div>
+      {/* Navigation Header */}
+      <header className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-2xl font-heading font-bold text-deep-teal">
+              Accucentral
+            </Link>
+            <nav className="hidden md:flex items-center gap-6">
+              <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Services
+              </Link>
+              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Points
+              </Link>
+              <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Science
+              </Link>
+              <Link href="/about" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                About
+              </Link>
+              <Link href="/book" className="px-4 py-2 bg-[#F4A261] text-white rounded-lg hover:bg-[#E96F1C] transition font-semibold shadow-md">
+                Book Consultation
+              </Link>
+            </nav>
           </div>
         </div>
-      </div>
+      </header>
+
+
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-2">Treatment Offerings</h2>
+          <h2 className="text-2xl font-bold mb-2">
+            {category ? `${categoryLabels[category] || category} Services` : 'All Treatment Offerings'}
+          </h2>
           <p className="text-slate-600">
             Professional acupressure services tailored to your needs. Each session is customized to target your specific symptoms and health goals.
           </p>

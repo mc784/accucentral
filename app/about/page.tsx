@@ -15,13 +15,16 @@ export default function AboutPage() {
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Services
               </Link>
+              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Points
+              </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
               </Link>
               <Link href="/about" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 About
               </Link>
-              <Link href="/book" className="px-4 py-2 bg-warm-coral text-white rounded-lg hover:bg-warm-coral-500 transition font-semibold shadow-md">
+              <Link href="/book" className="px-4 py-2 bg-[#F4A261] text-white rounded-lg hover:bg-[#E96F1C] transition font-semibold shadow-md">
                 Book Consultation
               </Link>
             </nav>
