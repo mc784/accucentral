@@ -76,15 +76,28 @@ export default async function SciencePage() {
       <section id="yin-yang" className="py-12 bg-white scroll-mt-20">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-3xl font-heading font-bold text-deep-teal mb-4 text-center">Yin–Yang Energy: A Practical Lens</h2>
-          <p className="text-slate-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-6">
+          <p className="text-slate-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-8">
             We use a simple Yin–Yang framing to organize common symptom patterns. Yin often maps to cooling, moistening, and rest; Yang to warming, activating, and movement.
             This model is educational—not a medical diagnosis—and helps guide safe, non‑pharmacologic self‑care.
           </p>
-          <div className="text-center flex flex-wrap justify-center gap-4">
-            <Link href="/assessment" className="inline-block px-6 py-3 bg-sage-green-700 hover:bg-sage-green-800 text-white font-semibold rounded-lg transition-colors">
-              Take Yin-Yang Assessment
-            </Link>
-            <Link href="/protocols" className="inline-block px-6 py-3 bg-deep-teal hover:bg-deep-teal-600 text-white font-semibold rounded-lg transition-colors">
+
+          {/* Prominent Assessment CTA */}
+          <div className="bg-gradient-to-r from-calm-blue/10 to-sage-green/10 border-2 border-deep-teal/30 rounded-xl p-8 mb-6 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-heading font-bold text-deep-teal mb-3 text-center">
+              Discover Your Energy Profile
+            </h3>
+            <p className="text-slate-700 mb-6 text-center">
+              Take our quick 10-question assessment to understand your Yin-Yang balance and get personalized acupressure recommendations.
+            </p>
+            <div className="text-center">
+              <Link href="/assessment" className="inline-block px-10 py-4 bg-[#F4A261] hover:bg-[#E96F1C] text-white font-bold text-lg rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105">
+                Take Yin-Yang Assessment →
+              </Link>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link href="/protocols" className="inline-block px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg transition-colors">
               Explore Services & Protocols →
             </Link>
           </div>
