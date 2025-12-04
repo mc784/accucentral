@@ -12,10 +12,10 @@ export default function BookPage() {
             </Link>
             <nav className="hidden md:flex items-center gap-6">
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Services
+                Products
               </Link>
-              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Points
+              <Link href="/specialists" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Our Specialists
               </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science

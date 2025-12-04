@@ -17,8 +17,8 @@ export default function ProductsPage() {
               <Link href="/protocols" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Products
               </Link>
-              <Link href="/points" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
-                Points
+              <Link href="/specialists" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
+                Our Specialists
               </Link>
               <Link href="/science" className="text-slate-gray hover:text-deep-teal font-medium transition-colors">
                 Science
