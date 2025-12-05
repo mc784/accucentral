@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPatientById, calculateProgress, shouldShowRenewalAlert, packageTemplates } from '@/data/patients'
 import type { Patient } from '@/data/patients'
+import { useTour } from '@/components/tour/useTour'
+import { Tour } from '@/components/tour/Tour'
+import { patientOnboardingTour, patientRenewalTourStep } from '@/lib/tours'
 
 interface PatientPageProps {
   params: Promise<{
@@ -16,22 +18,57 @@ export default function PatientDashboard({ params }: PatientPageProps) {
   const [patient, setPatient] = useState<Patient | null>(null)
   const [id, setId] = useState<string>('')
 
-  useEffect(() => {
-    params.then(p => {
-      setId(p.id)
-      const patientData = getPatientById(p.id)
-      if (patientData) {
-        setPatient(patientData)
-      }
-    })
-  }, [params])
+  const progress = useMemo(() => patient ? calculateProgress(patient) : null, [patient]);
+  const showRenewal = useMemo(() => patient ? shouldShowRenewalAlert(patient) : false, [patient]);
 
-  if (!patient) {
-    return notFound()
+  const dynamicTour = useMemo(() => {
+    if (!patient) return patientOnboardingTour; // Return base tour if patient not loaded
+
+    const steps = [...patientOnboardingTour.steps];
+    if (showRenewal) {
+      // Insert the renewal step after the first step
+      steps.splice(1, 0, patientRenewalTourStep);
+    }
+    return { ...patientOnboardingTour, id: `patient-onboarding-${patient.id}`, steps };
+  }, [patient, showRenewal]);
+
+  const { 
+    start, 
+    stop, 
+    next, 
+    previous, 
+    currentStep, 
+    currentStepIndex, 
+    totalSteps, 
+    isActive 
+  } = useTour(dynamicTour);
+
+  useEffect(() => {
+    if (patient) { // Only start tour once patient data is loaded
+      const tourHasBeenSeen = localStorage.getItem(`tour_${dynamicTour.id}_completed`);
+      if (!tourHasBeenSeen) {
+        start();
+      }
+    }
+  }, [patient, start, dynamicTour.id]);
+
+  const handleTourFinish = () => {
+    if(patient) {
+      localStorage.setItem(`tour_${dynamicTour.id}_completed`, 'true');
+    }
+    stop();
   }
 
-  const progress = calculateProgress(patient)
-  const showRenewal = shouldShowRenewalAlert(patient)
+  const handleRestartTour = () => {
+    if(patient) {
+      localStorage.removeItem(`tour_${dynamicTour.id}_completed`);
+    }
+    start();
+  }
+
+  if (!patient || !progress) {
+    return notFound()
+  }
 
   // Prepare chart data
   const chartData = patient.painScoreHistory.map(entry => ({
@@ -41,7 +78,17 @@ export default function PatientDashboard({ params }: PatientPageProps) {
   }))
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
+    <>
+      <Tour
+        isOpen={isActive}
+        onClose={handleTourFinish}
+        onNext={next}
+        onPrev={previous}
+        currentStep={currentStep}
+        currentStepIndex={currentStepIndex}
+        totalSteps={totalSteps}
+      />
+      <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -49,8 +96,13 @@ export default function PatientDashboard({ params }: PatientPageProps) {
             <Link href="/" className="text-xl font-heading font-bold text-deep-teal">
               Accucentral
             </Link>
-            <div className="text-sm text-slate-600">
-              Patient ID: <span className="font-semibold">{patient.id}</span>
+            <div className="flex items-center gap-4 text-sm text-slate-600">
+              <button onClick={handleRestartTour} className="underline hover:text-deep-teal">
+                Help Tour
+              </button>
+              <div>
+                Patient ID: <span className="font-semibold">{patient.id}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -58,7 +110,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
 
       {/* Renewal Alert */}
       {showRenewal && (
-        <div className="bg-warm-coral text-white py-4">
+        <div id="tour-patient-renewal-alert" className="bg-warm-coral text-white py-4">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <p className="font-bold text-lg mb-2">⚠️ Only {patient.activePackage.sessionsRemaining} Session Remaining!</p>
             <p className="text-sm mb-3">Don't break your progress streak. Renew your package now.</p>
@@ -79,7 +131,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
         </div>
 
         {/* Progress Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div id="tour-patient-pain-reduction" className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-sage-green">
             <div className="text-sm text-slate-600 mb-1">Pain Reduction</div>
             <div className="text-4xl font-bold text-sage-green-700">{progress.painReductionPercent}%</div>
@@ -108,7 +160,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
         </div>
 
         {/* Pain Level Chart */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <div id="tour-patient-pain-chart" className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <h2 className="text-2xl font-heading font-bold text-deep-teal mb-6">Your Pain Journey</h2>
 
           {/* Simple Chart using HTML/CSS */}
@@ -197,7 +249,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
         </div>
 
         {/* Session Balance */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <div id="tour-patient-sessions-balance" className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <h2 className="text-2xl font-heading font-bold text-deep-teal mb-6">Sessions Balance</h2>
 
           {/* Visual Session Tracker */}
@@ -255,7 +307,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
 
         {/* Today's Homework */}
         {patient.homeworkVideoUrl && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+          <div id="tour-patient-homework" className="bg-white rounded-2xl shadow-xl p-8 mb-8">
             <h2 className="text-2xl font-heading font-bold text-deep-teal mb-6">Today's Homework</h2>
 
             <div className="bg-gradient-to-r from-sage-green/20 to-calm-blue/20 rounded-xl p-6">
@@ -320,3 +372,4 @@ export default function PatientDashboard({ params }: PatientPageProps) {
     </div>
   )
 }
+

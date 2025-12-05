@@ -1,0 +1,585 @@
+// AccuCentral - Production Database Schema
+// Marketplace aggregator for acupressure therapy services in India
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// USER MANAGEMENT & AUTHENTICATION
+// ============================================
+
+enum UserRole {
+  PATIENT
+  PROVIDER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  BANNED
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  phone     String     @unique
+  role      UserRole
+  status    UserStatus @default(ACTIVE)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Relationships
+  patient  Patient?
+  provider Provider?
+  admin    Admin?
+
+  @@index([email])
+  @@index([phone])
+  @@index([role, status])
+  @@map("users")
+}
+
+// ============================================
+// PATIENT MANAGEMENT
+// ============================================
+
+enum PatientStatus {
+  ACTIVE
+  INACTIVE
+  COMPLETED
+  CHURNED
+}
+
+model Patient {
+  id        String        @id @default(cuid())
+  userId    String        @unique
+  name      String
+  email     String?
+  phone     String
+  condition String // Primary health condition
+  startDate DateTime      @default(now())
+  status    PatientStatus @default(ACTIVE)
+
+  // Progress Tracking
+  initialPainScore Int // 1-10 scale
+  currentPainScore Int // 1-10 scale
+
+  // Homework Assignment
+  homeworkVideoUrl   String?
+  homeworkTitle      String?
+  homeworkFrequency  String? // e.g., "2x daily"
+  lastSessionDate    DateTime?
+  nextSessionDate    DateTime?
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  packages        Package[]
+  painScores      PainScore[]
+  bookings        Booking[]
+  reviewsGiven    Review[]
+
+  @@index([userId])
+  @@index([phone])
+  @@index([status])
+  @@map("patients")
+}
+
+model PainScore {
+  id            String   @id @default(cuid())
+  patientId     String
+  sessionNumber Int
+  painScore     Int // 1-10 scale
+  notes         String?
+  providerId    String
+  bookingId     String?  @unique
+  recordedAt    DateTime @default(now())
+  createdAt     DateTime @default(now())
+
+  // Relationships
+  patient  Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  provider Provider @relation(fields: [providerId], references: [id])
+  booking  Booking? @relation(fields: [bookingId], references: [id])
+
+  @@index([patientId, recordedAt])
+  @@index([providerId])
+  @@map("pain_scores")
+}
+
+// ============================================
+// PACKAGE & SUBSCRIPTION MANAGEMENT
+// ============================================
+
+enum PackageType {
+  BASIC    // 5 sessions
+  STANDARD // 10 sessions
+  PREMIUM  // 20 sessions
+}
+
+enum PackageStatus {
+  ACTIVE
+  COMPLETED
+  EXPIRED
+  CANCELLED
+}
+
+model Package {
+  id                 String        @id @default(cuid())
+  patientId          String
+  packageType        PackageType
+  totalSessions      Int
+  sessionsCompleted  Int           @default(0)
+  sessionsRemaining  Int
+  price              Int // in paise (₹2990 = 299000 paise)
+  purchaseDate       DateTime      @default(now())
+  expiryDate         DateTime?
+  status             PackageStatus @default(ACTIVE)
+
+  // Payment tracking
+  paymentId          String?
+  paymentMethod      String? // razorpay, phonepe, cash, etc.
+  paymentStatus      String? // success, pending, failed
+
+  // Metadata
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  // Relationships
+  patient  Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  bookings Booking[]
+
+  @@index([patientId, status])
+  @@index([status, expiryDate])
+  @@map("packages")
+}
+
+// ============================================
+// PROVIDER MANAGEMENT
+// ============================================
+
+enum ProviderStatus {
+  PENDING_APPROVAL
+  ACTIVE
+  ON_HOLD
+  SUSPENDED
+  DEACTIVATED
+}
+
+enum BadgeLevel {
+  LEVEL_1             // Protocol Instructor
+  LEVEL_2             // Wellness Instructor
+  LEVEL_3             // Senior Therapist
+  ACCUCENTRAL_VERIFIED
+}
+
+enum ServiceArea {
+  FARIDABAD
+  DELHI
+  GURGAON
+  NOIDA
+}
+
+model Provider {
+  id        String         @id @default(cuid())
+  userId    String         @unique
+  slug      String         @unique
+  name      String
+  photo     String?
+  gender    String // male, female
+  languages String[] // Hindi, English, etc.
+
+  // Certification & Badge
+  badgeLevel         BadgeLevel
+  badgeTitle         String
+  ayushCertified     Boolean   @default(false)
+  certificationBody  String?
+  certificationNumber String?
+
+  // Location & Service Area
+  territory      String
+  territoryCode  String
+  serviceArea    ServiceArea
+  serviceRadius  String // "5km radius"
+
+  // Experience & Stats
+  totalBookings   Int      @default(0)
+  experienceYears Int
+  rating          Float    @default(0.0)
+  completionRate  Float    @default(0.0)
+
+  // Verification
+  backgroundCheck Boolean @default(false)
+  covidVaccinated Boolean @default(false)
+  ayushRegistered Boolean @default(false)
+  kycComplete     Boolean @default(false)
+
+  // Equipment
+  portableTable Boolean @default(false)
+  bringsMats    Boolean @default(false)
+  oilFree       Boolean @default(false)
+
+  // Availability
+  availableDays       String[] // mon, tue, wed, etc.
+  preferredTimeSlots  String[] // Morning (8 AM - 12 PM), etc.
+  specializations     String[]
+  tags                String[]
+
+  // Commission & Payout
+  commissionRate Float   @default(0.75) // 75% to provider
+  bankAccountNumber String?
+  ifscCode          String?
+  panNumber         String?
+  upiId             String?
+
+  // Status
+  status          ProviderStatus @default(PENDING_APPROVAL)
+  femaleClientsOnly Boolean?     @default(false)
+  joinedDate      DateTime       @default(now())
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  user                User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  services            ProviderService[]
+  bookings            Booking[]
+  painScores          PainScore[]
+  commissions         Commission[]
+  reviewsReceived     Review[]
+  application         ProviderApplication?
+
+  @@index([userId])
+  @@index([slug])
+  @@index([status])
+  @@index([serviceArea, status])
+  @@map("providers")
+}
+
+model ProviderApplication {
+  id              String   @id @default(cuid())
+  providerId      String   @unique
+  applicationDate DateTime @default(now())
+
+  // Documents (file URLs)
+  photoUrl              String?
+  certificationFileUrl  String?
+  idProofUrl            String?
+  addressProofUrl       String?
+  covidCertUrl          String?
+
+  // Review Status
+  status            String   @default("pending") // pending, under-review, approved, rejected
+  reviewedBy        String?
+  reviewedAt        DateTime?
+  rejectionReason   String?
+  adminNotes        String?
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("provider_applications")
+}
+
+// ============================================
+// SERVICE CATALOG
+// ============================================
+
+enum ServiceCategory {
+  CHRONIC_PAIN
+  MUSCULOSKELETAL
+  SENIOR_CARE
+}
+
+enum ServiceStatus {
+  DRAFT
+  PUBLISHED
+  FEATURED
+  ARCHIVED
+}
+
+model Service {
+  id            String          @id @default(cuid())
+  slug          String          @unique
+  title         String
+  tagline       String
+  category      ServiceCategory
+  targetIssue   String
+  duration      String // "30 Minutes", "45 Minutes"
+  price         Int // in paise
+  originalPrice Int? // in paise
+  scope         String // What's included
+  description   String          @db.Text
+  outcomes      String[] // Expected outcomes
+  idealFor      String[] // Target audience
+  status        ServiceStatus   @default(DRAFT)
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  pressurePoints  PressurePoint[]
+  providerServices ProviderService[]
+  bookings        Booking[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([category, status])
+  @@map("services")
+}
+
+model PressurePoint {
+  id           String  @id @default(cuid())
+  serviceId    String
+  code         String // e.g., "LI4", "GB20"
+  name         String // e.g., "Large Intestine 4 (Hegu)"
+  duration     String // "2 minutes per hand"
+  instructions String  @db.Text
+  sortOrder    Int     @default(0)
+
+  // Relationships
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+  @@map("pressure_points")
+}
+
+// Junction table: Which providers can deliver which services
+model ProviderService {
+  id         String   @id @default(cuid())
+  providerId String
+  serviceId  String
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  // Relationships
+  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  service  Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, serviceId])
+  @@index([providerId, isActive])
+  @@index([serviceId, isActive])
+  @@map("provider_services")
+}
+
+// ============================================
+// BOOKING & DISPATCH SYSTEM
+// ============================================
+
+enum BookingStatus {
+  PENDING
+  ASSIGNED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentMethod {
+  PREPAID
+  CASH
+  ONLINE
+  UPI
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  bookingNumber String        @unique // ACC-2024-001
+
+  // Customer Info
+  patientId       String
+  customerName    String
+  customerPhone   String
+  customerAddress String        @db.Text
+
+  // Service Details
+  serviceId    String
+  serviceName  String
+  servicePrice Int // in paise
+  sessionNumber Int // Which session in package
+
+  // Scheduling
+  requestedDate String // YYYY-MM-DD
+  requestedTime String // "10:00 AM - 11:00 AM"
+  confirmedDate String?
+  confirmedTime String?
+
+  // Provider Assignment
+  providerId           String?
+  assignedProviderName String?
+  assignmentStatus     BookingStatus @default(PENDING)
+
+  // Location
+  territory   String
+  serviceArea ServiceArea
+
+  // Payment
+  packageId     String
+  isPaid        Boolean       @default(false)
+  paymentMethod PaymentMethod @default(PREPAID)
+
+  // Session Data (filled after completion)
+  painScoreBefore Int?
+  painScoreAfter  Int?
+  sessionNotes    String?       @db.Text
+  completedAt     DateTime?
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  patient    Patient     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  service    Service     @relation(fields: [serviceId], references: [id])
+  provider   Provider?   @relation(fields: [providerId], references: [id])
+  package    Package     @relation(fields: [packageId], references: [id])
+  painScore  PainScore?
+  commission Commission?
+
+  @@index([bookingNumber])
+  @@index([patientId])
+  @@index([providerId])
+  @@index([assignmentStatus])
+  @@index([serviceArea, assignmentStatus])
+  @@index([requestedDate])
+  @@map("bookings")
+}
+
+// ============================================
+// COMMISSION & PAYOUT TRACKING
+// ============================================
+
+enum PayoutStatus {
+  PENDING
+  PROCESSING
+  PAID
+  ON_HOLD
+  FAILED
+}
+
+model Commission {
+  id         String  @id @default(cuid())
+  providerId String
+  bookingId  String  @unique
+
+  // Financial Breakdown
+  sessionPrice     Int // in paise
+  commissionRate   Float // 0.75 = 75%
+  commissionAmount Int // in paise
+  platformFee      Int // in paise
+  tdsAmount        Int // in paise (10% TDS)
+  netPayout        Int // in paise
+
+  // Payout Tracking
+  payoutStatus    PayoutStatus @default(PENDING)
+  payoutDate      DateTime?
+  payoutMethod    String? // bank_transfer, upi
+  transactionId   String?
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  provider Provider @relation(fields: [providerId], references: [id])
+  booking  Booking  @relation(fields: [bookingId], references: [id])
+
+  @@index([providerId, payoutStatus])
+  @@index([payoutStatus])
+  @@map("commissions")
+}
+
+// ============================================
+// REVIEWS & RATINGS
+// ============================================
+
+model Review {
+  id         String   @id @default(cuid())
+  patientId  String
+  providerId String
+  bookingId  String?  @unique
+  rating     Int // 1-5 stars
+  comment    String?  @db.Text
+  createdAt  DateTime @default(now())
+
+  // Relationships
+  patient  Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  @@index([providerId])
+  @@index([patientId])
+  @@map("reviews")
+}
+
+// ============================================
+// ADMIN MANAGEMENT
+// ============================================
+
+model Admin {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("admins")
+}
+
+// ============================================
+// AUDIT LOG (for compliance & debugging)
+// ============================================
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  BOOKING_ASSIGNED
+  PAYMENT_RECEIVED
+  SESSION_COMPLETED
+  PROVIDER_APPROVED
+  PROVIDER_SUSPENDED
+}
+
+model AuditLog {
+  id          String      @id @default(cuid())
+  userId      String?
+  userRole    UserRole?
+  action      AuditAction
+  entity      String // "booking", "provider", "patient", etc.
+  entityId    String
+  changes     Json? // Store before/after state
+  ipAddress   String?
+  userAgent   String?
+  timestamp   DateTime    @default(now())
+
+  @@index([userId, timestamp])
+  @@index([entity, entityId])
+  @@index([timestamp])
+  @@map("audit_logs")
+}

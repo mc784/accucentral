@@ -1,434 +1,696 @@
-# Accucentral - Strategic Blueprint
+# AccuCentral - Strategic Blueprint v2.0
 
-## Vision: "The Google Maps of Your Body"
-
-**Mission:** Transform ancient acupressure knowledge into an instantly searchable, scientifically-grounded digital platform for modern pain relief.
-
-**Core Problem:** Acupressure knowledge is trapped in dusty textbooks and low-quality "woo-woo" blogs. Users can't easily find "Where exactly do I press for a migraine?"
-
-**Solution:** A searchable, interactive, evidence-based acupressure knowledge engine combining traditional wisdom with modern interface design.
+**Last Updated:** December 2024
+**Status:** Production-Ready Marketplace Platform
 
 ---
 
-## Product Positioning
+## Vision: "India's Acupressure Therapy Aggregator"
 
-### VrikshaYoga vs Accucentral
+**Mission:** Connect patients suffering from chronic pain with AYUSH-certified acupressure therapists through a transparent, data-driven marketplace platform.
 
-| Aspect | VrikshaYoga | Accucentral |
-|--------|-------------|-------------|
-| **Medium** | Video Platform (Flow/Movement) | Knowledge Engine (Search/Map) |
-| **Content** | Yoga poses & sequences | Pressure points & protocols |
-| **Primary Action** | Watch & follow | Search & apply |
-| **Key Feature** | Assessment Quiz → Protocols | Symptom Search → Points |
-| **Pain Point** | Stress/Dysregulation | Physical pain/discomfort |
-| **User Journey** | Browse → Watch → Practice | Search → Locate → Press |
-| **Core Hook** | Cortisol regulation | Instant pain relief |
+**Core Problem:** Fragmented acupressure therapy market in India with:
+- No centralized booking platform
+- No quality assurance for providers
+- No progress tracking for patients
+- Manual, unscalable operations
+- Provider disintermediation (stealing clients)
 
-### Shared DNA
-- Same tech stack (Next.js + Sanity + Tailwind)
-- Same "Ancient Wisdom + Modern Science" positioning
-- Same content library structure
-- Same search-first UX philosophy
-- Complementary wellness solutions (stress + pain)
+**Solution:** Two-sided marketplace aggregator with:
+1. **Supply Side:** Network of vetted AYUSH-certified therapists
+2. **Demand Side:** Patients seeking evidence-based pain relief
+3. **Platform Value:** Central dispatch, Digital Therapy Cards, commission-based revenue
 
 ---
 
-## Core Features (Phase 1 MVP)
+## Business Model: Marketplace Aggregator
 
-### 1. Symptom Decoder (Search Engine)
-**The Hook:** Prominent search bar on homepage: *"Where does it hurt?"*
+### Revenue Model
+**Commission-Based Platform Fee (20-30% per session)**
 
-**Function:** User types symptom (e.g., "Nausea", "Lower Back Pain", "Migraine")
+```
+₹499 session booking
+├─ ₹374 to Provider (75%)
+├─ ₹125 Platform Fee (25%)
+└─ ₹37 TDS (10% of provider payout)
+```
 
-**Output:** Top 3-5 pressure points with:
-- High-res location photo (exactly where to press)
-- Anatomical description (e.g., "LI4 - Between thumb and index finger")
-- TCM function (traditional Chinese medicine context)
-- Clinical indications (what it treats)
-- Pressure technique (5-second GIF or static illustration)
-- AYUSH ministry references (Indian acupressure validation)
+### Unit Economics
+| Metric | Value |
+|--------|-------|
+| **Average Package Price** | ₹2,990 (10 sessions) |
+| **Platform Revenue per Package** | ₹748 (25% × ₹2,990) |
+| **Provider Payout per Package** | ₹2,242 (75% × ₹2,990) |
+| **Customer LTV (3 packages/year)** | ₹2,244 annual platform revenue |
 
-### 2. Point Library (The Database)
-Definitive pages for each pressure point: `/library/point/[code]`
+### Market Position
+**Not competitors:**
+- UrbanClap/Urban Company (general wellness, no specialization)
+- Practo (doctor appointments, not therapists)
+- MFine/1mg (telemedicine, not physical therapy)
 
-Example: `/library/point/LI4` (Large Intestine 4)
-
-**Content Structure:**
-- Point code and traditional name
-- High-resolution location photo
-- Anatomical landmarks
-- TCM meridian and function
-- Clinical indications (symptoms treated)
-- Contraindications (when NOT to use)
-- Pressure technique details
-- Related points
-- Scientific references
-
-**SEO Strategy:** Dominate searches like "pressure point for headache", "acupressure for nausea", etc.
-
-### 3. Daily Protocols (The Prescription)
-Multi-point sequences for common modern ailments: `/protocol/[slug]`
-
-**Launch Protocols:**
-- **Tech-Neck Release** - 5-point sequence for desk workers
-- **Insomnia Switch** - 3-point bedside routine
-- **Anxiety Reset** - Discreet hand-point routine (meeting-safe)
-- **Migraine Relief** - Head/hand point combination
-- **Digestive Reset** - Abdominal + hand points for bloating/IBS
-
-**Protocol Structure:**
-- Problem statement (who this helps)
-- Complete point sequence (numbered steps)
-- Time estimate (e.g., "5 minutes")
-- Best time to practice (e.g., "before bed", "at desk")
-- Visual guide (numbered body diagram)
-
-### 4. Meridian Science Hub
-Educational content at `/science`
-
-**Topics:**
-- **The Biology of Pain** - Gate Control Theory explained
-- **Fascia & Connective Tissue** - Scientific basis for meridians
-- **HPA Axis Connection** - Stress + pain relationship (cross-link to VrikshaYoga)
-- **Clinical Research** - Studies on acupressure efficacy
-- **TCM Philosophy** - Qi, meridians, energy flow (accessible language)
-- **AYUSH Guidelines** - Indian government acupressure standards
-
-### 5. Appointment Booking
-Simple Calendly embed for Chandan Accucenter appointments
-
-**Placement:**
-- Header CTA: "Book Consultation"
-- Sticky button (after scrolling)
-- Protocol page CTAs: "Need personalized help?"
+**We are:**
+- **Vertical-specific marketplace** (acupressure only)
+- **Quality-controlled network** (AYUSH certification mandatory)
+- **Data-driven retention** (Digital Therapy Cards prevent churn)
+- **Territory-protected dispatch** (prevents provider poaching)
 
 ---
 
-## Content Categories (Symptom-Based)
+## Core Product: Three Pillars
 
-### 1. Stress & Anxiety Relief
-**Pain Points:** Chronic stress, nervous tension, emotional burnout
-**Key Points:** PC6 (Pericardium 6), HT7 (Heart 7), GV20 (Governing Vessel 20)
-**Visual Tone:** Calm, airy, soft blues/greys
-**Protocols:** Anxiety Reset, Workplace Stress Relief
+### 1. Patient Experience (Demand Side)
 
-### 2. Chronic Pain Management
-**Pain Points:** Headaches, back pain, neck pain, joint pain
-**Key Points:** LI4 (Large Intestine 4), GB20 (Gallbladder 20), BL10 (Bladder 10)
-**Visual Tone:** Grounded, clear, warm neutrals
-**Protocols:** Tech-Neck Release, Migraine Relief, Lower Back Support
+**Discovery & Booking:**
+- WhatsApp-first booking flow (mobile-dominant market)
+- Package-based pricing (prepaid commitment)
+- Territory-based provider matching
+- Transparent pricing and provider profiles
 
-### 3. Sleep & Insomnia Support
-**Pain Points:** Difficulty falling asleep, staying asleep, restless nights
-**Key Points:** HT7, SP6 (Spleen 6), KI3 (Kidney 3)
-**Visual Tone:** Tranquil blues/purples, soft gradients
-**Protocols:** Insomnia Switch, Sleep Prep Routine
+**Digital Therapy Card (DTC) - Retention Engine:**
+```
+Purpose: Lock patients into multi-session cycles through visual progress tracking
+```
 
-### 4. Digestive Health
-**Pain Points:** Bloating, IBS, sluggish digestion, nausea
-**Key Points:** ST36 (Stomach 36), PC6, CV12 (Conception Vessel 12)
-**Visual Tone:** Light, uplifting greens
-**Protocols:** Digestive Reset, Nausea Relief
+**DTC Features:**
+- **Pain Journey Chart:** Visual graph showing pain reduction over time
+- **Progress Tracker:** Sessions completed vs remaining (scarcity/urgency)
+- **Renewal Alerts:** Automated upsell when ≤1 session left
+- **Homework Videos:** YouTube exercise routines (engagement between sessions)
+- **Next Session Booking:** One-tap WhatsApp booking
+
+**Business Impact:**
+- 10x LTV: Single session (₹299) → Full package (₹2,990) → Renewals
+- Visual retention prevents ghosting
+- Prepaid model = upfront cash flow
+- Data proves efficacy for marketing
 
 ---
 
-## Design System
+### 2. Provider Experience (Supply Side)
 
-### Color Palette (Calm & Professional)
+**Onboarding:**
+- **5-Step Registration Wizard:**
+  1. Personal Info (photo, languages, gender)
+  2. Certification Upload (AYUSH, ID, address, COVID)
+  3. Services & Territory (service selection, coverage area, equipment)
+  4. Availability (days, time slots)
+  5. Banking (account, IFSC, PAN for TDS, UPI)
 
-**Primary Colors:**
-- **Calm Blue:** `#7FB3D5` - Headers, primary CTAs
-- **Sage Green:** `#A9CBB7` - Accents, success states
-- **Deep Teal:** `#4A7C7E` - Navigation, hover states
+**Provider Dashboard:**
+- Real-time bookings and dispatch notifications
+- Earnings tracker (commission breakdown, TDS)
+- Rating and review management
+- Payout history and status
 
-**Neutrals:**
-- **White:** `#FFFFFF` - Backgrounds
-- **Slate Gray:** `#64748B` - Body text
-- **Charcoal:** `#334155` - Headings
+**Quick-Log Session (30-second workflow):**
+```
+1. Search patient by phone
+2. Select patient from results
+3. Slide pain score (1-10 visual slider)
+4. Submit → WhatsApp notification sent
+```
 
-**Accent:**
-- **Warm Coral:** `#F4A261` - Important CTAs (book appointment)
+**AYUSH Badge System (Quality Signal):**
+| Level | Badge | Color | Meaning |
+|-------|-------|-------|---------|
+| Level 1 | Protocol Instructor | Amber | Basic certified |
+| Level 2 | Wellness Instructor | Blue | Experienced therapist |
+| Level 3 | Senior Therapist | Purple | Expert for complex cases |
+| Verified | AccuCentral Verified | Green | Platform-vetted |
 
-### Typography
-- **Headings:** Montserrat (bold, clean, professional)
-- **Body:** Open Sans (readable, friendly)
-- **Point Codes:** Monospace (e.g., "LI4", "PC6")
+---
 
-### Component Patterns (Inherited from VrikshaYoga)
-- **ScienceNote** - Quote blocks with expert citations (gold → teal borders)
-- **SearchHero** - Large search input with autocomplete
-- **Card Grid** - Point/protocol browsing (3-column responsive)
-- **StickyAssessmentButton** - Persistent "Book Consultation" CTA
+### 3. Admin Operations Center (Platform Management)
+
+**Central Dispatch Dashboard:**
+- **Real-Time Metrics:**
+  - Revenue: Total, MTD, growth %
+  - Bookings: Pending, assigned, completed
+  - Providers: Active, pending approval
+  - Patients: Active, need renewal
+- **Alert System:** Red banners for pending actions
+- **Performance KPIs:** Avg pain reduction %, completion rate, ratings
+
+**Booking Dispatch (Smart Matching):**
+```
+When booking arrives:
+1. Filter providers by: Territory + Available Services + Active Status
+2. Sort by: Rating, Completion Rate, Availability
+3. Admin assigns best match
+4. WhatsApp notification to both parties
+5. Status: Pending → Assigned → Confirmed → Completed
+```
+
+**Provider Approval Workflow:**
+```
+Application → Document Review → Certification Verification → Approve/Reject → WhatsApp Credentials
+```
+
+**Commission Tracking:**
+- Auto-calculate: Session Price × Commission Rate
+- Deduct: Platform Fee + 10% TDS
+- Track: Pending → Processing → Paid
+- Payout: Weekly batches via bank/UPI
+
+---
+
+## Service Catalog: Fixed SKUs
+
+**Product Philosophy:** Standardized, bookable services with fixed pricing (not educational content).
+
+### 3 Launch Products
+
+| Service | Duration | Price | Target |
+|---------|----------|-------|--------|
+| **Tech-Neck Reset** | 30 min | ₹299 | IT professionals, desk workers |
+| **Migraine Eraser** | 45 min | ₹499 | Chronic headache sufferers |
+| **Senior Pain Relief** | 45 min | ₹449 | Elderly with knee/back pain |
+
+**Service Structure:**
+- Fixed scope and duration
+- Defined pressure point protocol
+- Standardized outcomes
+- WhatsApp booking message template
+- Home visit or clinic-based
+
+---
+
+## Package Tiers (Prepaid Commitment)
+
+| Package | Sessions | Price | Per Session | Discount | Best For |
+|---------|----------|-------|-------------|----------|----------|
+| **Basic** | 5 | ₹1,495 | ₹299 | - | Trial period |
+| **Standard** | 10 | ₹2,990 | ₹299 | 10% | Complete treatment cycle ⭐ |
+| **Premium** | 20 | ₹5,499 | ₹275 | 20% | Long-term recovery |
+
+**Package Mechanics:**
+- Must be purchased before first booking
+- Sessions don't expire (customer-friendly)
+- Auto-renewal prompt at ≤1 session
+- Can upgrade mid-cycle (pay difference)
 
 ---
 
 ## Technical Architecture
 
-### Tech Stack (Identical to VrikshaYoga)
-- **Framework:** Next.js 16 (App Router, React Server Components)
-- **CMS:** Sanity Studio v4 (headless content management)
-- **Styling:** Tailwind CSS v4
-- **Deployment:** Vercel
-- **Search:** Sanity GROQ queries (full-text search)
+### Tech Stack (Production-Grade)
 
-### Sanity Schema Changes
+**Frontend:**
+- Next.js 16 (App Router, Server Components)
+- TypeScript (strict mode)
+- Tailwind CSS v4
+- Vercel (edge deployment)
 
-#### New Schema: `acupressurePoint`
-```typescript
-{
-  name: 'acupressurePoint',
-  type: 'document',
-  fields: [
-    { name: 'code', type: 'string' },           // e.g., "LI4"
-    { name: 'traditionalName', type: 'string' }, // e.g., "Hegu (Joining Valley)"
-    { name: 'meridian', type: 'string' },       // e.g., "Large Intestine"
-    { name: 'location', type: 'text' },         // Anatomical description
-    { name: 'locationPhoto', type: 'image' },   // High-res photo
-    { name: 'techniqueGif', type: 'image' },    // Optional animated guide
-    { name: 'tcmFunction', type: 'text' },      // Traditional function
-    { name: 'symptoms', type: 'array', of: [{ type: 'string' }] }, // Searchable tags
-    { name: 'contraindications', type: 'text' },
-    { name: 'relatedPoints', type: 'array', of: [{ type: 'reference', to: [{ type: 'acupressurePoint' }] }] },
-    { name: 'scientificReferences', type: 'array', of: [{ type: 'object', fields: [...] }] }
-  ]
-}
+**Backend:**
+- PostgreSQL (Supabase)
+- Prisma ORM (type-safe queries, migrations)
+- NextAuth.js (role-based auth: Patient, Provider, Admin)
+- Vercel Edge Functions (API routes)
+
+**Integrations:**
+- **Razorpay/PhonePe:** Payment gateway
+- **WhatsApp Business API:** Automated notifications
+- **Google Sheets API:** Fleet management override
+- **AWS S3/Supabase Storage:** Document uploads
+
+---
+
+## Database Schema Highlights
+
+### Core Entities (14 tables)
+
+**User Management:**
+- `users` - Authentication (email, phone, role, status)
+- `patients` - Patient profiles + DTC data
+- `providers` - Provider profiles + certifications
+- `admins` - Admin users
+
+**Service Catalog:**
+- `services` - Product SKUs (Tech-Neck, Migraine, etc.)
+- `pressure_points` - Acupoints per service
+- `provider_services` - Junction table (which provider delivers what)
+
+**Booking & Dispatch:**
+- `bookings` - Session bookings with assignment status
+- `packages` - Prepaid session packages
+- `pain_scores` - Session-by-session progress tracking
+
+**Financial:**
+- `commissions` - Provider payouts (session, TDS, net)
+- `reviews` - Patient ratings of providers
+
+**Operations:**
+- `provider_applications` - Onboarding pipeline
+- `audit_logs` - Compliance & debugging trail
+
+**Key Design Decisions:**
+- All prices stored in **paise** (avoid float errors)
+- Cascade deletes for patient/provider data
+- Compound indexes for common queries
+- Enum types for status fields
+- Row-level security ready (Supabase)
+
+---
+
+## Operational Workflows
+
+### Patient Journey
+
+```
+1. Discovery → Website/WhatsApp
+2. Browse Services → Select Tech-Neck Reset (₹299)
+3. Click "Book Now" → WhatsApp pre-filled message
+4. Purchase Package → Razorpay payment (₹2,990 for 10 sessions)
+5. Booking Submitted → Admin receives dispatch alert
+6. Provider Assigned → WhatsApp confirmation to both parties
+7. Session Completed → Provider logs pain score
+8. DTC Updated → Patient sees progress chart
+9. Renewal Alert → ≤1 session remaining → WhatsApp prompt
+10. Renew Package → Cycle repeats
 ```
 
-#### Modified Schema: `protocol`
-```typescript
-{
-  name: 'protocol',
-  type: 'document',
-  fields: [
-    { name: 'title', type: 'string' },          // e.g., "Tech-Neck Release"
-    { name: 'slug', type: 'slug' },
-    { name: 'problem', type: 'text' },          // Who this helps
-    { name: 'points', type: 'array', of: [{ type: 'reference', to: [{ type: 'acupressurePoint' }] }] },
-    { name: 'sequence', type: 'array', of: [{ type: 'block' }] }, // Step-by-step instructions
-    { name: 'duration', type: 'number' },       // Minutes
-    { name: 'bestTime', type: 'string' },       // "Before bed", "At desk", etc.
-    { name: 'category', type: 'reference', to: [{ type: 'category' }] },
-    { name: 'diagram', type: 'image' }          // Numbered body illustration
-  ]
-}
+### Provider Journey
+
+```
+1. Application → 5-step registration form
+2. Document Upload → Photo, AYUSH cert, ID, address, COVID
+3. Admin Review → Verify certifications
+4. Approval → WhatsApp credentials + dashboard access
+5. Booking Received → WhatsApp notification
+6. Accept/Decline → Confirm availability
+7. Complete Session → Use Quick-Log (30 seconds)
+8. Commission Calculated → Auto-computed
+9. Payout → Weekly batch transfer
+10. Rating Received → Patient review + dashboard update
 ```
 
-#### Keep from VrikshaYoga:
-- `article` (for science content)
-- `category` (symptom categories)
-- `userProfile` & `userActivity` (future subscription features)
+### Admin Daily Operations
+
+```
+Morning:
+├─ Check pending bookings → Assign providers
+├─ Review new applications → Approve/reject
+└─ Monitor renewal alerts → Send WhatsApp prompts
+
+Throughout Day:
+├─ Track session completions
+├─ Resolve provider/patient issues
+└─ Monitor real-time revenue
+
+Weekly:
+├─ Process commission payouts
+├─ Export data to Google Sheets
+└─ Review performance metrics
+```
 
 ---
 
-## Phase 1 MVP Checklist
+## Growth Strategy
 
-### Foundation (Week 1)
-- [x] Fork VrikshaYoga codebase
-- [x] Clean up yoga-specific files
-- [x] Initialize new Git repo
-- [x] Update branding (package.json, README)
-- [ ] Update Tailwind config (blue/green palette)
-- [ ] Create new Sanity project (`accucentral-cms`)
-- [ ] Define acupressurePoint schema
-- [ ] Modify protocol schema
+### Phase 1: Faridabad Launch (Months 1-3)
+**Goal:** Prove unit economics with 20 providers, 100 patients
 
-### Homepage (Week 1-2)
-- [ ] Update hero: "The Google Maps of Your Body"
-- [ ] Implement symptom search bar
-- [ ] Update navigation (Points | Protocols | Science | Book)
-- [ ] Create 4 category cards (Stress, Pain, Sleep, Digestive)
-- [ ] Add "How It Works" section (3 steps: Search → Locate → Press)
-- [ ] Update footer with Chandan Accucenter info
+**Tactics:**
+- Launch with Chandan Accucenter as anchor provider
+- Onboard 20 providers in Faridabad territory
+- Local WhatsApp group marketing
+- Facebook/Instagram geo-targeted ads
+- Google Ads: "acupressure therapy Faridabad"
 
-### Content (Week 2)
-- [ ] Create 20 essential pressure points (LI4, PC6, ST36, GB20, etc.)
-- [ ] Write 5 launch protocols
-- [ ] Create location photos (stock or illustrated)
-- [ ] Write science page content (Gate Control Theory, fascia, TCM basics)
-
-### Point Library Pages (Week 2)
-- [ ] Design point detail page template
-- [ ] Implement dynamic routing: `/library/point/[code]`
-- [ ] Add related points section
-- [ ] Add "Book Consultation" CTA
-
-### Protocol Pages (Week 2)
-- [ ] Design protocol detail template
-- [ ] Implement dynamic routing: `/protocol/[slug]`
-- [ ] Add step-by-step numbered sequence
-- [ ] Add protocol diagram/illustration
-
-### Integration (Week 3)
-- [ ] Calendly appointment embed
-- [ ] Update sticky CTA to "Book Consultation"
-- [ ] Test search functionality
-- [ ] Mobile responsive check
-
-### Deployment (Week 3)
-- [ ] Create new Vercel project
-- [ ] Configure environment variables
-- [ ] Deploy to accucentral.com (or temporary domain)
-- [ ] Test production build
+**Success Metrics:**
+- 100 packages sold (₹299,000 revenue)
+- ₹74,750 platform revenue (25% commission)
+- 80% completion rate
+- 50% renewal rate
+- 4.5★ average rating
 
 ---
 
-## Phase 2: Enhancement (Future)
+### Phase 2: NCR Expansion (Months 4-9)
+**Goal:** Scale to 100 providers, 1,000 patients across NCR
 
-### Interactive Atlas
-- 2D body SVG with clickable points
-- Toggle layers (muscles, meridians, trigger points)
-- Zoom/pan functionality
-- Point highlighting on hover
-- Mobile touch support
+**Territories:**
+- Delhi (4 zones)
+- Gurgaon (3 zones)
+- Noida (3 zones)
+- Total: 11 territories
 
-### Advanced Features
-- User accounts (save favorite points/protocols)
-- Progress tracking
-- Custom protocol builder
-- Practitioner directory
-- Video demonstrations (technique close-ups)
+**Tactics:**
+- Provider referral program (₹5,000 per referred provider)
+- Patient referral program (1 free session per referral)
+- SEO content: Science pages, acupressure guides
+- Partnerships with corporate wellness programs
 
-### Business Model
-- Free tier (20 points, 3 protocols)
-- Premium subscription ($9.99/mo - full library)
-- Certification courses ($299 - B2B)
-- E-commerce (acupressure tools via Shopify)
+**Success Metrics:**
+- 1,000 packages sold (₹2.99M revenue)
+- ₹747,500 platform revenue
+- Provider utilization: 15 sessions/week average
+- 60% renewal rate
 
 ---
 
-## Success Metrics (Phase 1)
+### Phase 3: Multi-City Rollout (Months 10-18)
+**Goal:** Launch in Bangalore, Mumbai, Pune (3 cities)
 
-**Traffic:**
-- 1,000 monthly visitors (organic search)
-- Top 3 ranking for 5 symptom keywords
+**Playbook per city:**
+1. Identify 2 anchor providers (high ratings)
+2. Onboard 30 providers in 4 weeks
+3. Launch local marketing campaign (₹50k budget/city)
+4. Achieve 100 packages/city in Month 1
+5. Repeat for next city
 
-**Engagement:**
-- 3+ pages per session
-- 2+ minute average session
-- 30% search usage rate
+---
 
-**Conversion:**
-- 50 appointment bookings
-- 20% email signup rate (future newsletter)
+## Retention Mechanics (Platform Moat)
 
-**Content:**
-- 20 pressure points live
-- 5 protocols published
-- 10 science articles
+### 1. Digital Therapy Card (DTC)
+**Problem:** Patients ghost after 1-2 sessions
+**Solution:** Visual progress tracking makes quitting psychologically harder
+
+**Behavioral Psychology:**
+- **Sunk Cost Fallacy:** Prepaid sessions → must complete
+- **Progress Visualization:** Chart going up → want to see result
+- **Scarcity:** Session counter → urgency to use remaining
+- **Social Proof:** Homework videos → engagement between sessions
+
+---
+
+### 2. Territory Protection
+**Problem:** Providers steal patients after first session
+**Solution:** Never share patient contact with provider until confirmed
+
+**Workflow:**
+```
+Booking → Admin Assigns → WhatsApp Notification (no phone numbers shared)
+→ Provider arrives at address (platform provides)
+→ Session completed → Provider logs in app (patient ID, not contact)
+```
+
+**Why it works:**
+- Provider never gets patient's phone/email
+- All future bookings must go through platform
+- Provider commission is high enough (75%) to stay loyal
+
+---
+
+### 3. Central Dispatch Model
+**Problem:** Direct provider-patient relationships bypass platform
+**Solution:** All bookings funnel through admin operations center
+
+**Admin adds value:**
+- Smart provider matching (rating, availability, territory)
+- Conflict resolution (no-shows, quality issues)
+- Quality assurance (ratings, reviews)
+- Insurance (provider background checks)
+
+---
+
+## Financial Projections (Year 1)
+
+| Metric | Q1 | Q2 | Q3 | Q4 | Year 1 |
+|--------|-----|-----|-----|-----|--------|
+| **Active Providers** | 20 | 50 | 100 | 150 | 150 |
+| **Active Patients** | 100 | 300 | 600 | 1,000 | 1,000 |
+| **Packages Sold** | 100 | 250 | 500 | 800 | 1,650 |
+| **GMV** | ₹2.99L | ₹7.48L | ₹14.95L | ₹23.92L | ₹49.34L |
+| **Platform Revenue** | ₹75k | ₹1.87L | ₹3.74L | ₹5.98L | ₹12.34L |
+| **Provider Payouts** | ₹2.24L | ₹5.61L | ₹11.21L | ₹17.94L | ₹37L |
+
+**Assumptions:**
+- Average package: ₹2,990 (Standard 10-session)
+- Platform commission: 25%
+- Renewal rate: 50%
+- Average 1.5 packages/patient/year
 
 ---
 
 ## Key Differentiators
 
-1. **Scientific Grounding** - Gate Control Theory, fascia research, AYUSH standards (not just TCM mysticism)
-2. **Modern Search UX** - Google-like symptom search (not just browsing)
-3. **Clinical Precision** - High-res photos, anatomical landmarks (not vague diagrams)
-4. **Practical Protocols** - Modern use cases (tech-neck, workplace stress) not just traditional ailments
-5. **Professional Aesthetics** - Medical-grade UI design (looks like medical software, not wellness blog)
+### vs Urban Company
+| Aspect | Urban Company | AccuCentral |
+|--------|---------------|-------------|
+| **Focus** | General services | Acupressure only |
+| **Quality Control** | Basic training | AYUSH certification mandatory |
+| **Progress Tracking** | None | Digital Therapy Card |
+| **Retention Model** | Repeat bookings | Prepaid packages + DTC |
+| **Commission** | 15-20% | 25% (specialized) |
+
+### vs Independent Therapists
+| Aspect | Independent | AccuCentral |
+|--------|-------------|-------------|
+| **Discovery** | Word of mouth | Platform reach |
+| **Booking** | Phone calls | WhatsApp + dashboard |
+| **Payments** | Cash only | Online prepaid |
+| **Credibility** | Self-claimed | AYUSH verified |
+| **Client Management** | Excel sheets | Automated DTC |
 
 ---
 
-## Cross-Promotion with VrikshaYoga
+## Risks & Mitigation
 
-**Shared Mission:** Both solve dysregulation (stress + pain) using ancient wisdom + modern tech
+### 1. Provider Disintermediation
+**Risk:** Providers contact patients directly after first session
 
-**Integration Opportunities:**
-- **Science Page Crosslinks:** "Stress increases pain sensitivity → VrikshaYoga for cortisol regulation"
-- **Protocol Combos:** "Back hurts? Do this yoga pose + press these points"
-- **Bundle Pricing:** "Stress + Pain Relief Suite" (future subscription)
-- **Shared Design System:** Consistent components, brand language
-- **Shared CMS Infrastructure:** Same Sanity workspace, different datasets
-
----
-
-## Content Style Guide
-
-### Voice & Tone
-- **Authoritative but accessible** (not academic jargon)
-- **Evidence-based** (cite studies, reference AYUSH/TCM)
-- **Practical** (focus on "how to use" not "what to believe")
-- **Modern** (tech-neck, workplace stress - not just ancient ailments)
-
-### Writing Principles
-1. **Lead with pain point** ("Desk work causing neck tension?")
-2. **Provide precise location** ("Between thumb and index finger, in the muscle")
-3. **Include technique** ("Press firmly for 30 seconds, circular motion")
-4. **Validate with science** ("Gate Control Theory explains why...")
-5. **Offer next step** ("Try this protocol" or "Book consultation")
-
-### Visual Principles
-1. **High-resolution photos** (clear anatomical landmarks)
-2. **Numbered sequences** (for protocols)
-3. **Minimal text on images** (let photos speak)
-4. **Consistent lighting** (professional medical photography style)
-5. **Body diversity** (various skin tones, ages, body types)
+**Mitigation:**
+- High commission (75%) keeps providers loyal
+- Territory protection (contract clause)
+- Never share patient contact info
+- Monthly incentives for on-platform bookings
+- Legal agreement with penalty clauses
 
 ---
 
-## Implementation Notes
+### 2. Low Patient Retention
+**Risk:** Patients don't complete packages
 
-### Reusable from VrikshaYoga
-- SearchHero component (change placeholder text)
-- ScienceNote component (change gold → teal border)
-- Card grid layouts
-- Navigation structure
-- Footer pattern
-- Sanity Studio configuration
-- GROQ query patterns
-
-### New Components Needed
-- PointLocationPhoto (photo + anatomical labels)
-- ProtocolSequence (numbered step list)
-- SymptomSearchAutocomplete (search with suggestions)
-- RelatedPointsGrid (point cross-references)
-- BookingCTA (Calendly embed wrapper)
-
-### Content Creation Workflow
-1. Research authoritative sources (TCM textbooks, AYUSH guidelines, clinical studies)
-2. Draft point content in Sanity Studio
-3. Create/source location photos
-4. Generate technique illustrations (photos or GIFs)
-5. Write protocol sequences
-6. Cross-reference related points
-7. Add scientific citations
-8. Publish and test search
+**Mitigation:**
+- Digital Therapy Card (visual progress)
+- Prepaid model (sunk cost)
+- WhatsApp renewal reminders
+- Homework videos (engagement)
+- Money-back guarantee (if no progress after 5 sessions)
 
 ---
 
-## Launch Strategy
+### 3. Provider Quality Issues
+**Risk:** Bad sessions damage brand
 
-### Pre-Launch (Week 1-2)
-- Build MVP (20 points, 5 protocols, science page)
-- Create social media profiles
-- Design logo and brand assets
-- Write launch announcement
-
-### Launch Week (Week 3)
-- Deploy to production
-- Announce on social media
-- Email existing Chandan Accucenter clients
-- Submit to wellness directories
-- Post on Reddit (r/acupressure, r/wellness)
-
-### Post-Launch (Month 1-3)
-- Publish 1 science article per week
-- Add 5 new points per week
-- Monitor search analytics (what symptoms are users searching?)
-- Optimize for top-performing keywords
-- Collect user feedback
-- Iterate on UX based on behavior
+**Mitigation:**
+- AYUSH certification mandatory
+- Background checks
+- Rating system (below 4.0★ = suspension review)
+- Mystery audits (admin books as patient)
+- Patient complaint hotline
 
 ---
 
-## Questions for User
+### 4. Scalability Bottleneck (Manual Dispatch)
+**Risk:** Admin can't keep up with bookings
 
-1. **Domain:** Use accucentral.com or different domain?
-2. **Chandan Accucenter Branding:** How prominent? Separate "About" page?
-3. **Initial Content:** Do you have existing point descriptions to migrate?
-4. **Photos:** Will you create custom location photos or use stock/illustrations?
-5. **Certification Courses:** Phase 2 priority or later?
-6. **Interactive Atlas:** MVP must-have or Phase 2?
+**Mitigation:**
+- **Phase 1 (Manual):** Admin assigns providers
+- **Phase 2 (Semi-Auto):** System suggests top 3, admin picks
+- **Phase 3 (Fully Auto):** AI auto-assigns based on rating + availability
+- **Google Sheets Integration:** Manual override always available
 
 ---
 
-**Next Step:** Update Tailwind config with blue/green palette and begin homepage hero adaptation.
+## Science & Education Content (SEO Strategy)
+
+**Purpose:** Build authority, drive organic traffic, educate market
+
+**Content Pillars:**
+
+### 1. Science Pages
+- Gate Control Theory of Pain
+- Fascia and Connective Tissue Research
+- AYUSH Standards for Acupressure
+- Clinical Studies Database
+
+### 2. Acupressure Points Library
+- LI4 (Hegu) - Headache, stress
+- PC6 (Neiguan) - Nausea, anxiety
+- ST36 (Zusanli) - Digestive, immunity
+- GB20 (Feng Chi) - Neck tension, migraine
+- 50+ total pressure points with:
+  - High-res location photos
+  - Clinical indications
+  - Contraindications
+  - Scientific references
+
+### 3. Assessment Tools
+- **Yin-Yang Balance Quiz:** Lead generation
+- **Pain Level Tracker:** Self-assessment before booking
+- **Condition Matcher:** Recommends best service
+
+**SEO Keywords to Dominate:**
+- "acupressure therapy near me"
+- "AYUSH certified therapist"
+- "chronic pain relief [city]"
+- "migraine acupressure [city]"
+- "tech neck treatment at home"
+
+---
+
+## Technology Roadmap
+
+### Phase 1: MVP (Completed ✅)
+- Patient DTC dashboard
+- Provider registration + dashboard
+- Admin operations center
+- Booking dispatch system
+- Commission tracking
+- Static data (mock)
+
+### Phase 2: Backend (In Progress 🔄)
+- ✅ Prisma schema designed
+- ⏳ Supabase database setup
+- ⏳ Authentication (NextAuth.js)
+- ⏳ API routes (CRUD)
+- ⏳ Migration + seed data
+
+### Phase 3: Integrations (Next)
+- Payment gateway (Razorpay)
+- WhatsApp Business API
+- Google Sheets sync
+- Email notifications (SendGrid)
+- SMS (Twilio)
+
+### Phase 4: Automation (Future)
+- AI provider matching
+- Predictive renewal alerts
+- Dynamic pricing
+- Inventory management (time slots)
+- Analytics dashboard (Mixpanel)
+
+### Phase 5: Mobile Apps (Future)
+- Provider app (React Native)
+- Patient app (PWA)
+- Push notifications
+- Offline mode
+
+---
+
+## Success Metrics (North Star)
+
+### Business Metrics
+1. **GMV (Gross Merchandise Value):** Total bookings value
+2. **Take Rate:** Platform commission %
+3. **Provider Utilization:** Sessions/week per provider
+4. **Patient LTV:** Average lifetime revenue per patient
+5. **Renewal Rate:** % of patients buying 2nd+ package
+
+### Operational Metrics
+1. **Time to Assign:** Minutes from booking to provider assigned
+2. **Completion Rate:** % of bookings actually completed
+3. **No-Show Rate:** % of confirmed bookings missed
+4. **Avg Pain Reduction:** % pain score improvement
+5. **Provider Ratings:** Average stars
+
+### Growth Metrics
+1. **Provider CAC:** Cost to acquire one provider
+2. **Patient CAC:** Cost to acquire one patient
+3. **Viral Coefficient:** Referrals per patient
+4. **Churn Rate:** % of patients who don't renew
+5. **Payback Period:** Months to recover CAC
+
+---
+
+## Regulatory & Compliance
+
+### AYUSH Compliance
+- All providers must have AYUSH certification
+- Regular audits of certifications
+- Mandatory continuing education
+- Adherence to AYUSH guidelines
+
+### Data Privacy (India)
+- DISHA compliance (Digital Information Security in Healthcare Act)
+- Secure storage of patient health data
+- Consent management
+- Right to data deletion
+
+### Financial Compliance
+- GST registration (18% on platform fee)
+- TDS deduction (10% on provider payouts)
+- Form 26AS reporting
+- Annual financial audit
+
+### Labor Compliance
+- Providers are contractors (not employees)
+- Clear service agreements
+- Insurance coverage for providers
+- Background verification mandatory
+
+---
+
+## Exit Strategy (5-Year Horizon)
+
+### Potential Acquirers
+
+**1. UrbanClap/Urban Company**
+- Add specialized vertical
+- Leverage existing infrastructure
+- Valuation: 3-5x revenue
+
+**2. Practo/1mg**
+- Expand beyond doctors to therapists
+- Holistic health platform
+- Valuation: 4-6x revenue
+
+**3. Large Hospital Chains (Apollo, Fortis)**
+- Add ancillary therapy services
+- Corporate wellness programs
+- Valuation: 2-3x revenue
+
+**4. Wellness Aggregators (Curefit, HealthifyMe)**
+- Integrate therapy with fitness/nutrition
+- Cross-sell opportunities
+- Valuation: 3-5x revenue
+
+---
+
+## Team & Roles (As Business Scales)
+
+### Phase 1 (Launch Team - 3 people)
+- **Founder/CEO:** Strategy, fundraising, partnerships
+- **Operations Manager:** Dispatch, provider management
+- **Tech Lead:** Platform development, maintenance
+
+### Phase 2 (Growth Team - 10 people)
+- **City Managers (4):** 1 per territory
+- **Customer Support (2):** Patient + provider queries
+- **Marketing Manager (1):** SEO, ads, content
+- **Backend Developer (1):** Database, APIs
+- **Finance Manager (1):** Payouts, compliance
+- **CEO + Operations Manager**
+
+### Phase 3 (Scale Team - 30 people)
+- **Regional Heads (5):** Multi-city oversight
+- **City Managers (10):** 1 per city
+- **Support Team (6):** 24/7 coverage
+- **Marketing Team (3):** Content, performance, brand
+- **Tech Team (4):** Frontend, backend, mobile, DevOps
+- **Finance Team (2):** Accounting, legal
+- **CEO + COO**
+
+---
+
+## Contact & Resources
+
+**Project Repository:** https://github.com/mc784/accucentral
+**Live Platform:** https://accucentral.vercel.app
+**Admin Dashboard:** https://accucentral.vercel.app/admin
+**Sample DTC:** https://accucentral.vercel.app/patient/PAT001
+
+**Key Documents:**
+- `PROJECT_HANDOFF.md` - Technical documentation
+- `prisma/schema.prisma` - Database schema
+- `TRANSFORMATION_PROGRESS.md` - Development log
+
+---
+
+**Blueprint Version:** 2.0
+**Last Updated:** December 2024
+**Status:** Production-ready marketplace platform ✅
