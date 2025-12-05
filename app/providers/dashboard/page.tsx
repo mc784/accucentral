@@ -116,6 +116,16 @@ export default function ProviderDashboard() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Quick Action Button */}
+        <div className="mb-8">
+          <Link
+            href="/providers/log-session"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#F4A261] hover:bg-[#E96F1C] text-white font-bold text-lg rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105"
+          >
+            📝 Quick Log Session
+          </Link>
+        </div>
+
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-deep-teal">
