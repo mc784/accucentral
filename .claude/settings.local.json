@@ -18,7 +18,8 @@
       "Bash(cat:*)",
       "Bash(grep:*)",
       "Bash(npm run build:*)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(git fetch:*)"
     ],
     "deny": [],
     "ask": []
