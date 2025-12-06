@@ -101,9 +101,9 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
         totalSessions,
         upcomingSessions,
         totalPackages: patient.packages.length,
-        activePackages: patient.packages.filter(p => p.status === 'ACTIVE').length,
+        activePackages: patient.packages.filter((p: any) => p.status === 'ACTIVE').length,
       },
-      packages: patient.packages.map(pkg => ({
+      packages: patient.packages.map((pkg: any) => ({
         id: pkg.id,
         type: pkg.packageType,
         totalSessions: pkg.totalSessions,
@@ -113,7 +113,7 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
         purchaseDate: pkg.purchaseDate,
         price: pkg.price / 100, // Convert paise to rupees
       })),
-      bookings: allBookings.map(b => ({
+      bookings: allBookings.map((b: any) => ({
         id: b.id,
         bookingNumber: b.bookingNumber,
         serviceName: b.service.title,
