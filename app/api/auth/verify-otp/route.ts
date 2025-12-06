@@ -68,26 +68,33 @@ export async function POST(request: Request) {
             data: {
               userId: user.id,
               name: `Test Patient ${phone.slice(-4)}`,
+              phone: phone,
               condition: 'General Wellness',
+              initialPainScore: 5,
               currentPainScore: 5,
-              age: 30,
-              gender: 'male',
             },
           });
         } else if (role === 'PROVIDER') {
           await prisma.provider.create({
             data: {
               userId: user.id,
+              slug: `provider-${phone.slice(-4)}`,
               name: `Test Provider ${phone.slice(-4)}`,
-              specialization: 'General Therapist',
-              serviceArea: 'FARIDABAD',
-              badgeLevel: 'LEVEL_1',
               gender: 'male',
-              experience: 5,
+              languages: ['Hindi', 'English'],
+              badgeLevel: 'LEVEL_1',
+              badgeTitle: 'Bronze Provider',
+              territory: 'Faridabad',
+              territoryCode: 'FBD',
+              serviceArea: 'FARIDABAD',
+              serviceRadius: '5km radius',
+              experienceYears: 5,
               rating: 4.5,
-              totalSessions: 0,
+              availableDays: ['mon', 'tue', 'wed', 'thu', 'fri'],
+              preferredTimeSlots: ['Morning (8 AM - 12 PM)'],
+              specializations: ['General Therapist'],
+              tags: ['Acupressure'],
               status: 'ACTIVE',
-              ayushCertified: false,
             },
           });
         }
@@ -100,7 +107,18 @@ export async function POST(request: Request) {
             provider: true,
             admin: true,
           },
-        })!;
+        });
+
+        if (!user) {
+          throw new Error('Failed to create user');
+        }
+      }
+
+      if (!user) {
+        return NextResponse.json(
+          { error: 'User not found' },
+          { status: 404 }
+        );
       }
 
       // Generate token for dev user
@@ -128,7 +146,7 @@ export async function POST(request: Request) {
         userData.provider = {
           id: user.provider.id,
           name: user.provider.name,
-          specialization: user.provider.specialization,
+          specializations: user.provider.specializations,
           serviceArea: user.provider.serviceArea,
         };
       }
