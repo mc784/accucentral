@@ -82,8 +82,8 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
     );
 
     // Calculate summary stats
-    const totalSessions = allBookings.filter(b => b.assignmentStatus === 'COMPLETED').length;
-    const upcomingSessions = allBookings.filter(b =>
+    const totalSessions = allBookings.filter((b: any) => b.assignmentStatus === 'COMPLETED').length;
+    const upcomingSessions = allBookings.filter((b: any) =>
       ['PENDING', 'ASSIGNED', 'CONFIRMED'].includes(b.assignmentStatus)
     ).length;
 
