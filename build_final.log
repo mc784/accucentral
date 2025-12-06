@@ -1,0 +1,27 @@
+
+> accucentral@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 29.4s
+   Running TypeScript ...
+Failed to compile.
+
+./app/api/patients/[phone]/progress/route.ts:32:7
+Type error: Type '{ phone: string; }' is not assignable to type 'PatientWhereUniqueInput'.
+  Type '{ phone: string; }' is not assignable to type '{ id: string; userId: string; } & { id?: string | undefined; userId?: string | undefined; AND?: PatientWhereInput | PatientWhereInput[] | undefined; ... 21 more ...; reviewsGiven?: ReviewListRelationFilter | undefined; }'.
+    Type '{ phone: string; }' is missing the following properties from type '{ id: string; userId: string; }': id, userId
+
+[0m [90m 30 |[39m     [90m// Find patient by phone[39m
+ [90m 31 |[39m     [36mconst[39m patient [33m=[39m [36mawait[39m prisma[33m.[39mpatient[33m.[39mfindUnique({
+[31m[1m>[22m[39m[90m 32 |[39m       where[33m:[39m { phone[33m:[39m decodedPhone }[33m,[39m
+ [90m    |[39m       [31m[1m^[22m[39m
+ [90m 33 |[39m       include[33m:[39m {
+ [90m 34 |[39m         painScores[33m:[39m {
+ [90m 35 |[39m           include[33m:[39m {[0m
+Next.js build worker exited with code: 1 and signal: null

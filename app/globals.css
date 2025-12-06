@@ -1,10 +1,61 @@
 @import "tailwindcss";
 
-
+/* App Background - Light Grey */
+body {
+  background-color: #FAFBFC;
+  color: #1F2937;
+}
 
 /* Smooth Scroll */
 html {
   scroll-behavior: smooth;
+}
+
+/* Tribal Pattern Divider (SVG Background) */
+.tribal-divider {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 L5 5 L10 10 L15 5 L20 10 M25 10 L30 5 L35 10 L40 5 L45 10 M50 10 L55 5 L60 10' stroke='%233730A3' stroke-width='1' fill='none' opacity='0.1'/%3E%3Ccircle cx='5' cy='10' r='1' fill='%23D97706' opacity='0.1'/%3E%3Ccircle cx='30' cy='10' r='1' fill='%23D97706' opacity='0.1'/%3E%3Ccircle cx='55' cy='10' r='1' fill='%23D97706' opacity='0.1'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+  height: 20px;
+}
+
+.tribal-divider-bottom {
+  position: relative;
+}
+
+.tribal-divider-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 L5 5 L10 10 L15 5 L20 10 M25 10 L30 5 L35 10 L40 5 L45 10 M50 10 L55 5 L60 10' stroke='%23FFFFFF' stroke-width='1' fill='none' opacity='0.3'/%3E%3Ccircle cx='5' cy='10' r='1' fill='%23FFFFFF' opacity='0.3'/%3E%3Ccircle cx='30' cy='10' r='1' fill='%23FFFFFF' opacity='0.3'/%3E%3Ccircle cx='55' cy='10' r='1' fill='%23FFFFFF' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+  height: 20px;
+}
+
+/* Subtle Pattern Background for Cards */
+.pattern-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L20 40 M0 20 L40 20' stroke='%233730A3' stroke-width='0.5' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Brand Button Styles */
+.btn-primary {
+  background-color: #3730A3;
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #2C2682;
+}
+
+.btn-accent {
+  background-color: #D97706;
+  color: white;
+}
+.btn-accent:hover {
+  background-color: #AE5F05;
 }
 
 /* For Tour Component */

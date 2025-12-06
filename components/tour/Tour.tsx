@@ -2,12 +2,12 @@
 'use client';
 
 import { useEffect, useState, useMemo, useRef } from 'react';
-import type { Tour, TourStep } from './useTour';
+import type { Tour as TourConfig, TourStep } from './useTour';
 
 type Position = 'top' | 'bottom' | 'left' | 'right';
 
 interface TourProps {
-  tour: Tour;
+  tour: TourConfig;
   isOpen: boolean;
   onClose: () => void;
   onNext: () => void;

@@ -1,0 +1,26 @@
+
+> accucentral@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 24.6s
+   Running TypeScript ...
+Failed to compile.
+
+./lib/prisma.ts:3:22
+Type error: Could not find a declaration file for module 'pg'. 'C:/Users/manee/Documents/1_AI_ALL/accucentral/node_modules/pg/esm/index.mjs' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/pg` if it exists or add a new declaration (.d.ts) file containing `declare module 'pg';`
+
+[0m [90m 1 |[39m [36mimport[39m { [33mPrismaClient[39m } [36mfrom[39m [32m'@prisma/client'[39m
+ [90m 2 |[39m [36mimport[39m { [33mPrismaPg[39m } [36mfrom[39m [32m'@prisma/adapter-pg'[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mPool[39m } [36mfrom[39m [32m'pg'[39m
+ [90m   |[39m                      [31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [90m// PrismaClient is attached to the `global` object in development to prevent[39m
+ [90m 6 |[39m [90m// exhausting your database connection limit during hot reloads in Next.js[39m[0m
+Next.js build worker exited with code: 1 and signal: null

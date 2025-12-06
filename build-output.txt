@@ -1,0 +1,29 @@
+
+> accucentral@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 22.0s
+   Running TypeScript ...
+Failed to compile.
+
+./app/api/bookings/[id]/assign/route.ts:9:42
+Type error: Argument of type '(request: Request, user: JWTPayload, context: { params: Promise<{ id: string; }>; }) => Promise<NextResponse<{ error: string; }> | NextResponse<{ success: boolean; booking: { ...; }; message: string; }>>' is not assignable to parameter of type '(request: Request, user: JWTPayload, ...args: any[]) => Promise<NextResponse<{ error: string; }>>'.
+  Type 'Promise<NextResponse<{ error: string; }> | NextResponse<{ success: boolean; booking: { id: string; createdAt: Date; updatedAt: Date; patientId: string; paymentMethod: PaymentMethod; ... 22 more ...; completedAt: Date | null; }; message: string; }>>' is not assignable to type 'Promise<NextResponse<{ error: string; }>>'.
+    Type 'NextResponse<{ error: string; }> | NextResponse<{ success: boolean; booking: { id: string; createdAt: Date; updatedAt: Date; patientId: string; paymentMethod: PaymentMethod; ... 22 more ...; completedAt: Date | null; }; message: string; }>' is not assignable to type 'NextResponse<{ error: string; }>'.
+      Type 'NextResponse<{ success: boolean; booking: { id: string; createdAt: Date; updatedAt: Date; patientId: string; paymentMethod: PaymentMethod; sessionNumber: number; providerId: string | null; ... 20 more ...; completedAt: Date | null; }; message: string; }>' is not assignable to type 'NextResponse<{ error: string; }>'.
+        Property 'error' is missing in type '{ success: boolean; booking: { id: string; createdAt: Date; updatedAt: Date; patientId: string; paymentMethod: $Enums.PaymentMethod; sessionNumber: number; ... 21 more ...; completedAt: Date | null; }; message: string; }' but required in type '{ error: string; }'.
+
+[0m [90m  7 |[39m [90m * Assign provider to booking (Admin only)[39m
+ [90m  8 |[39m [90m */[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mexport[39m [36mconst[39m [33mPATCH[39m [33m=[39m withRole([[32m'ADMIN'[39m][33m,[39m [36masync[39m (request[33m,[39m user[33m,[39m context[33m:[39m { params[33m:[39m [33mPromise[39m[33m<[39m{ id[33m:[39m string }[33m>[39m }) [33m=>[39m {
+ [90m    |[39m                                          [31m[1m^[22m[39m
+ [90m 10 |[39m   [36mtry[39m {
+ [90m 11 |[39m     [36mconst[39m { id } [33m=[39m [36mawait[39m context[33m.[39mparams[33m;[39m
+ [90m 12 |[39m     [36mconst[39m body [33m=[39m [36mawait[39m request[33m.[39mjson()[33m;[39m[0m
+Next.js build worker exited with code: 1 and signal: null

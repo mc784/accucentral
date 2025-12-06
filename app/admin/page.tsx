@@ -46,6 +46,7 @@ export default function AdminDashboard() {
   return (
     <>
       <Tour
+        tour={adminOnboardingTour}
         isOpen={isActive}
         onClose={handleTourFinish}
         onNext={next}

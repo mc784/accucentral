@@ -1,0 +1,25 @@
+
+> accucentral@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 23.0s
+   Running TypeScript ...
+Failed to compile.
+
+./app/api/bookings/[id]/route.ts:39:13
+Type error: Object literal may only specify known properties, and 'phone' does not exist in type 'ProviderSelect<DefaultArgs>'.
+
+[0m [90m 37 |[39m             id[33m:[39m [36mtrue[39m[33m,[39m
+ [90m 38 |[39m             name[33m:[39m [36mtrue[39m[33m,[39m
+[31m[1m>[22m[39m[90m 39 |[39m             phone[33m:[39m [36mtrue[39m[33m,[39m
+ [90m    |[39m             [31m[1m^[22m[39m
+ [90m 40 |[39m             photo[33m:[39m [36mtrue[39m[33m,[39m
+ [90m 41 |[39m             badgeLevel[33m:[39m [36mtrue[39m[33m,[39m
+ [90m 42 |[39m             badgeTitle[33m:[39m [36mtrue[39m[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null

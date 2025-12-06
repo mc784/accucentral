@@ -14,6 +14,30 @@ interface PatientPageProps {
   }>
 }
 
+function calculateProgress(patient: Patient) {
+  if (!patient.activePackage) return null;
+  const { sessionsCompleted, totalSessions } = patient.activePackage;
+  const percentComplete = (sessionsCompleted / totalSessions) * 100;
+  const painReductionPercent = Math.round(
+    ((patient.initialPainScore - patient.currentPainScore) / patient.initialPainScore) * 100
+  );
+  
+  let trend: 'improving' | 'stable' | 'worsening' = 'stable';
+  if (patient.currentPainScore < patient.initialPainScore) {
+    trend = 'improving';
+  } else if (patient.currentPainScore > patient.initialPainScore) {
+    trend = 'worsening';
+  }
+  
+  return { percentComplete, painReductionPercent, trend };
+}
+
+function shouldShowRenewalAlert(patient: Patient) {
+  if (!patient.activePackage) return false;
+  const { sessionsRemaining } = patient.activePackage;
+  return sessionsRemaining <= 1;
+}
+
 export default function PatientDashboard({ params }: PatientPageProps) {
   const [patient, setPatient] = useState<Patient | null>(null)
   const [id, setId] = useState<string>('')
@@ -80,6 +104,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
   return (
     <>
       <Tour
+        tour={dynamicTour}
         isOpen={isActive}
         onClose={handleTourFinish}
         onNext={next}
@@ -370,6 +395,7 @@ export default function PatientDashboard({ params }: PatientPageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

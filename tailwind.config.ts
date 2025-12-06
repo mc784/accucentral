@@ -9,77 +9,64 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Primary Brand Colors - "Calm Blue & Sage Green"
+        // Doctolib x India Brand Colors
+        'brand-indigo': {
+          DEFAULT: '#3730A3',
+          50: '#EFEEF9',
+          100: '#DEDCF3',
+          200: '#BEB9E7',
+          300: '#9D96DB',
+          400: '#7D73CF',
+          500: '#3730A3', // Main - Deep Indigo (The "Ink" of tribal art)
+          600: '#2C2682',
+          700: '#211D62',
+          800: '#161341',
+          900: '#0B0A21',
+        },
+        'brand-ochre': {
+          DEFAULT: '#D97706',
+          50: '#FEF6E7',
+          100: '#FDEDCF',
+          200: '#FBDB9F',
+          300: '#F9C96F',
+          400: '#F7B73F',
+          500: '#D97706', // Main - Ochre/Turmeric (The "Earth" of tribal art)
+          600: '#AE5F05',
+          700: '#824704',
+          800: '#573003',
+          900: '#2B1801',
+        },
+        'bg-app': {
+          DEFAULT: '#FAFBFC',
+          50: '#FFFFFF',
+          100: '#FAFBFC', // Main - Light Grey background
+          200: '#F4F6F8',
+          300: '#E9EDF1',
+          400: '#DFE4EA',
+          500: '#D4DBE3',
+        },
+        'brand-charcoal': {
+          DEFAULT: '#1F2937',
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937', // Main - Soft Charcoal text
+          900: '#111827',
+        },
+        // Legacy colors (keeping for backward compatibility)
         'calm-blue': {
-          DEFAULT: '#7FB3D5',
-          50: '#EDF6FB',
-          100: '#DBEdf7',
-          200: '#B7DBEF',
-          300: '#93C9E7',
-          400: '#7FB3D5', // Main - Tranquil, healing, professional
-          500: '#5A9BC7',
-          600: '#4781AB',
-          700: '#36648A',
-          800: '#264B68',
-          900: '#153246',
+          DEFAULT: '#3730A3', // Mapped to brand-indigo
         },
         'sage-green': {
-          DEFAULT: '#A9CBB7',
-          50: '#F2F7F4',
-          100: '#E5EFE9',
-          200: '#CBDFD3',
-          300: '#B1CFBD',
-          400: '#A9CBB7', // Main - Natural healing, balance
-          500: '#8BB59D',
-          600: '#6D9F83',
-          700: '#547F68',
-          800: '#3E5F4E',
-          900: '#283F34',
+          DEFAULT: '#A9CBB7', // Keep for wellness content
         },
-        'deep-teal': {
-          DEFAULT: '#4A7C7E',
-          50: '#E9F1F1',
-          100: '#D3E3E3',
-          200: '#A7C7C7',
-          300: '#7BABAB',
-          400: '#4A7C7E', // Main - Professional, grounded
-          500: '#3C6567',
-          600: '#2E4E4F',
-          700: '#213738',
-          800: '#162223',
-          900: '#0B1112',
-        },
-        'slate-medical': {
-          DEFAULT: '#F0F4F8',
-          50: '#FFFFFF',
-          100: '#F0F4F8', // Main - Clean, clinical background
-          200: '#E1E9F1',
-          300: '#D2DEEA',
-          400: '#C3D3E3',
-          500: '#B4C8DC',
-        },
-        // Accent Color - "Warm Coral" (for important CTAs)
         'warm-coral': {
-          DEFAULT: '#F4A261',
-          50: '#FEF6EF',
-          100: '#FCEDDF',
-          200: '#F9DBBF',
-          300: '#F7C99F',
-          400: '#F4A261', // Main - Energy, call-to-action
-          500: '#F18A3E',
-          600: '#E96F1C',
-          700: '#C35714',
-          800: '#91410F',
-          900: '#5F2B0A',
-        },
-        // Neutral Text Colors
-        'charcoal': {
-          DEFAULT: '#334155',
-          500: '#334155', // Headings
-        },
-        'slate-gray': {
-          DEFAULT: '#64748B',
-          500: '#64748B', // Body text
+          DEFAULT: '#D97706', // Mapped to brand-ochre
         },
       },
       fontFamily: {

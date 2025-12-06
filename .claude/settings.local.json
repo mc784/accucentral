@@ -8,7 +8,13 @@
       "Bash(git commit:*)",
       "Bash(git add:*)",
       "Bash(xcopy:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npm run db:seed:*)",
+      "Bash(find:*)",
+      "Bash(dir /s /b appproviders)"
     ],
     "deny": [],
     "ask": []

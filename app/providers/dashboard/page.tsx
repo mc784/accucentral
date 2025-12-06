@@ -112,6 +112,7 @@ export default function ProviderDashboard() {
   return (
     <>
       <Tour
+        tour={providerOnboardingTour}
         isOpen={isActive}
         onClose={handleTourFinish}
         onNext={next}

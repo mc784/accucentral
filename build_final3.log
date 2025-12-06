@@ -1,0 +1,25 @@
+
+> accucentral@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 24.9s
+   Running TypeScript ...
+Failed to compile.
+
+./app/patient/[id]/page.tsx:171:25
+Type error: Property 'trend' does not exist on type '{ percentComplete: number; painReductionPercent: number; }'.
+
+[0m [90m 169 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"text-sm text-slate-600 mb-1"[39m[33m>[39m[33mTrend[39m[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 170 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"text-2xl font-bold text-warm-coral flex items-center gap-2"[39m[33m>[39m
+[31m[1m>[22m[39m[90m 171 |[39m               {progress[33m.[39mtrend [33m===[39m [32m'improving'[39m [33m&&[39m [32m'📈 Improving'[39m}
+ [90m     |[39m                         [31m[1m^[22m[39m
+ [90m 172 |[39m               {progress[33m.[39mtrend [33m===[39m [32m'stable'[39m [33m&&[39m [32m'➡️ Stable'[39m}
+ [90m 173 |[39m               {progress[33m.[39mtrend [33m===[39m [32m'worsening'[39m [33m&&[39m [32m'📉 Attention'[39m}
+ [90m 174 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null

@@ -1,0 +1,71 @@
+{
+  "name": "AccuCentral Provider App",
+  "short_name": "AccuCentral",
+  "description": "Provider portal for managing acupressure therapy sessions and bookings",
+  "start_url": "/provider/login",
+  "scope": "/provider/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4A7C7E",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234A7C7E' width='192' height='192'/><text x='50%' y='50%' font-size='100' font-weight='bold' fill='white' text-anchor='middle' dy='.3em'>A</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%234A7C7E' width='192' height='192'/><text x='50%' y='50%' font-size='100' font-weight='bold' fill='white' text-anchor='middle' dy='.3em'>A</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["medical", "health"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%234A7C7E' width='540' height='720'/><text x='270' y='360' font-size='100' font-weight='bold' fill='white' text-anchor='middle' dy='.3em'>Provider App</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "share_target": {
+    "action": "/provider/dashboard",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "Today's Bookings",
+      "short_name": "Bookings",
+      "description": "View today's bookings",
+      "url": "/provider/dashboard",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%234A7C7E' width='96' height='96'/><text x='50%' y='50%' font-size='50' text-anchor='middle' dy='.3em'>📋</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Earnings",
+      "short_name": "Earnings",
+      "description": "Check your weekly earnings",
+      "url": "/provider/earnings",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect fill='%234A7C7E' width='96' height='96'/><text x='50%' y='50%' font-size='50' text-anchor='middle' dy='.3em'>💰</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}

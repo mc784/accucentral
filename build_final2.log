@@ -1,0 +1,25 @@
+
+> accucentral@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Environments: .env.local, .env
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 33.7s
+   Running TypeScript ...
+Failed to compile.
+
+./app/patient/[id]/page.tsx:150:79
+Type error: Property 'painReductionPercent' does not exist on type 'number'.
+
+[0m [90m 148 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"bg-white rounded-xl shadow-lg p-6 border-l-4 border-sage-green"[39m[33m>[39m
+ [90m 149 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"text-sm text-slate-600 mb-1"[39m[33m>[39m[33mPain[39m [33mReduction[39m[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+[31m[1m>[22m[39m[90m 150 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"text-4xl font-bold text-sage-green-700"[39m[33m>[39m{progress[33m.[39mpainReductionPercent}[33m%[39m[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m     |[39m                                                                               [31m[1m^[22m[39m
+ [90m 151 |[39m             [33m<[39m[33mdiv[39m className[33m=[39m[32m"text-xs text-slate-500 mt-1"[39m[33m>[39m
+ [90m 152 |[39m               {patient[33m.[39minitialPainScore} → {patient[33m.[39mcurrentPainScore} (on [35m1[39m[33m-[39m[35m10[39m scale)
+ [90m 153 |[39m             [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
+Next.js build worker exited with code: 1 and signal: null
