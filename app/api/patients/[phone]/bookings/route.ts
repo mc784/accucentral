@@ -69,8 +69,8 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
     }
 
     // Flatten bookings from all packages
-    const allBookings = patient.packages.flatMap(pkg =>
-      pkg.bookings.map(booking => ({
+    const allBookings = patient.packages.flatMap((pkg: any) =>
+      pkg.bookings.map((booking: any) => ({
         ...booking,
         package: {
           id: pkg.id,
