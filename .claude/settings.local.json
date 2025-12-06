@@ -14,7 +14,11 @@
       "Bash(npx prisma:*)",
       "Bash(npm run db:seed:*)",
       "Bash(find:*)",
-      "Bash(dir /s /b appproviders)"
+      "Bash(dir /s /b appproviders)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(npm run build:*)",
+      "Bash(tee:*)"
     ],
     "deny": [],
     "ask": []

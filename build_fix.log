@@ -1,0 +1,26 @@
+
+> accucentral@0.1.0 build
+> next build
+
+   ▲ Next.js 16.0.7 (Turbopack)
+   - Environments: .env.local, .env.production, .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 26.5s
+   Running TypeScript ...
+   Collecting page data using 11 workers ...
+   Generating static pages using 11 workers (0/42) ...
+ ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/patient/payment/success". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+    at S (c:\Users\manee\Documents\1_AI_ALL\accucentral\.next\server\chunks\ssr\node_modules_next_cf02c53c._.js:2:2111)
+    at p (c:\Users\manee\Documents\1_AI_ALL\accucentral\.next\server\chunks\ssr\node_modules_next_cf02c53c._.js:4:4878)
+    at f (c:\Users\manee\Documents\1_AI_ALL\accucentral\.next\server\chunks\ssr\[root-of-the-server]__4e587b94._.js:1:3068)
+    at ar (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84366)
+    at aa (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86185)
+    at as (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:107952)
+    at ao (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:105374)
+    at an (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:84718)
+    at aa (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:86234)
+    at aa (c:\Users\manee\Documents\1_AI_ALL\accucentral\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.prod.js:2:104714)
+Error occurred prerendering page "/patient/payment/success". Read more: https://nextjs.org/docs/messages/prerender-error
+Export encountered an error on /patient/payment/success/page: /patient/payment/success, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

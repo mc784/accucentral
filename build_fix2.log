@@ -1,0 +1,80 @@
+
+> accucentral@0.1.0 build
+> next build
+
+   ▲ Next.js 16.0.7 (Turbopack)
+   - Environments: .env.local, .env.production, .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 25.9s
+   Running TypeScript ...
+   Collecting page data using 11 workers ...
+   Generating static pages using 11 workers (0/42) ...
+   Generating static pages using 11 workers (10/42) 
+   Generating static pages using 11 workers (20/42) 
+   Generating static pages using 11 workers (31/42) 
+ ✓ Generating static pages using 11 workers (42/42) in 3.0s
+   Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /admin
+├ ○ /admin/bookings
+├ ○ /admin/dashboard
+├ ○ /admin/login
+├ ○ /admin/providers
+├ ƒ /api/admin/bookings
+├ ƒ /api/admin/bookings/[id]/status
+├ ƒ /api/admin/login
+├ ƒ /api/admin/providers
+├ ƒ /api/admin/providers/[id]/status
+├ ƒ /api/admin/stats
+├ ƒ /api/auth/send-otp
+├ ƒ /api/auth/verify-otp
+├ ƒ /api/bookings
+├ ƒ /api/bookings/[id]
+├ ƒ /api/bookings/[id]/assign
+├ ƒ /api/patient/[id]
+├ ƒ /api/patients/[phone]/bookings
+├ ƒ /api/patients/[phone]/progress
+├ ƒ /api/payment/create-order
+├ ƒ /api/payment/verify
+├ ƒ /api/providers
+├ ƒ /api/providers/[id]/bookings/today
+├ ƒ /api/providers/[id]/earnings
+├ ƒ /api/sessions/log
+├ ○ /assessment
+├ ○ /book
+├ ○ /illustration-test
+├ ○ /master
+├ ○ /packages
+├ ƒ /patient/[id]
+├ ○ /patient/book
+├ ○ /patient/login
+├ ƒ /patient/payment/[bookingId]
+├ ○ /patient/payment/success
+├ ○ /points
+├ ƒ /pose/[slug]
+├ ○ /poses
+├ ○ /programs
+├ ƒ /protocol/[slug]
+├ ○ /protocols
+├ ○ /provider/dashboard
+├ ○ /provider/earnings
+├ ○ /provider/login
+├ ○ /provider/profile
+├ ƒ /provider/session/[bookingId]
+├ ○ /providers/dashboard
+├ ○ /providers/log-session
+├ ○ /providers/register
+├ ○ /science
+├ ○ /specialists
+├ ƒ /specialists/[slug]
+└ ƒ /studio/[[...tool]]
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

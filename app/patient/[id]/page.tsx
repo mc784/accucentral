@@ -176,9 +176,9 @@ export default function PatientDashboard({ params }: PatientPageProps) {
           <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-warm-coral">
             <div className="text-sm text-slate-600 mb-1">Trend</div>
             <div className="text-2xl font-bold text-warm-coral flex items-center gap-2">
-              {progress.trend === 'improving' && '📈 Improving'}
-              {progress.trend === 'stable' && '➡️ Stable'}
-              {progress.trend === 'worsening' && '📉 Attention'}
+              {progress && 'trend' in progress && progress.trend === 'improving' && '📈 Improving'}
+              {progress && 'trend' in progress && progress.trend === 'stable' && '➡️ Stable'}
+              {progress && 'trend' in progress && progress.trend === 'worsening' && '📉 Attention'}
             </div>
             <div className="text-xs text-slate-500 mt-1">Based on last 3 sessions</div>
           </div>

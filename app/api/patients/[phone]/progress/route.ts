@@ -100,7 +100,7 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
         date: patient.startDate,
         label: 'Initial',
       },
-      ...patient.painScores.map((ps, index) => ({
+      ...patient.painScores.map((ps: any, index: number) => ({
         session: ps.sessionNumber,
         painScore: ps.painScore,
         date: ps.recordedAt,
