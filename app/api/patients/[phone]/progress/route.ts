@@ -79,7 +79,7 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
 
     // Find best and worst sessions
     const sessionsWithChange = patient.painScores
-      .map(ps => ({
+      .map((ps: any) => ({
         sessionNumber: ps.sessionNumber,
         before: ps.painScore,
         after: ps.painScore,
@@ -87,7 +87,7 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
       }));
 
     // Calculate consistency (sessions with improvement)
-    const sessionsWithImprovement = patient.painScores.filter(ps => {
+    const sessionsWithImprovement = patient.painScores.filter((ps: any) => {
       // This would need booking painScoreBefore to calculate properly
       return true; // Placeholder
     }).length;
