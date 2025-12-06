@@ -59,11 +59,16 @@ export async function POST(request: Request) {
     // Send OTP via SMS
     await sendOTPSMS(phone, otp);
 
-    return NextResponse.json({
+    const response: { success: boolean; message: string; otp?: string } = {
       success: true,
       message: 'OTP sent successfully',
-      ...(process.env.NODE_ENV === 'development' && { otp }), // Include OTP in dev mode
-    });
+    };
+    
+    if (process.env.NODE_ENV !== 'production') {
+      response.otp = otp; // Include OTP in non-production mode
+    }
+
+    return NextResponse.json(response);
   } catch (error) {
     console.error('Send OTP error:', error);
     return NextResponse.json(
