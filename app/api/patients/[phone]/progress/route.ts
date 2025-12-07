@@ -138,8 +138,8 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ p
       } : null,
       packages: {
         total: patient.packages.length,
-        active: patient.packages.filter(p => p.status === 'ACTIVE').length,
-        completed: patient.packages.filter(p => p.status === 'COMPLETED').length,
+        active: patient.packages.filter((p: any) => p.status === 'ACTIVE').length,
+        completed: patient.packages.filter((p: any) => p.status === 'COMPLETED').length,
       },
       chartData,
       insights: {
