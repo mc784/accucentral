@@ -77,9 +77,9 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ i
     });
 
     // Calculate summary statistics
-    const totalEarnings = commissions.reduce((sum, c) => sum + c.netPayout, 0);
-    const totalCommission = commissions.reduce((sum, c) => sum + c.commissionAmount, 0);
-    const totalTDS = commissions.reduce((sum, c) => sum + c.tdsAmount, 0);
+    const totalEarnings = commissions.reduce((sum: number, c) => sum + c.netPayout, 0);
+    const totalCommission = commissions.reduce((sum: number, c) => sum + c.commissionAmount, 0);
+    const totalTDS = commissions.reduce((sum: number, c) => sum + c.tdsAmount, 0);
     const totalSessions = commissions.length;
 
     // Group by payout status
@@ -87,9 +87,9 @@ export const GET = withAuth(async (request, user, context: { params: Promise<{ i
     const paid = commissions.filter(c => c.payoutStatus === 'PAID');
     const processing = commissions.filter(c => c.payoutStatus === 'PROCESSING');
 
-    const pendingAmount = pending.reduce((sum, c) => sum + c.netPayout, 0);
-    const paidAmount = paid.reduce((sum, c) => sum + c.netPayout, 0);
-    const processingAmount = processing.reduce((sum, c) => sum + c.netPayout, 0);
+    const pendingAmount = pending.reduce((sum: number, c) => sum + c.netPayout, 0);
+    const paidAmount = paid.reduce((sum: number, c) => sum + c.netPayout, 0);
+    const processingAmount = processing.reduce((sum: number, c) => sum + c.netPayout, 0);
 
     // Fetch provider details for context
     const provider = await prisma.provider.findUnique({
